@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import LoginPage from "./pages/login/loginPage";
+import ProtectedRoute from "./components/ProtecttedRoute";
+import Dashboard from "./pages/dashboard/dashboard";
+import DashboardLayout from "./layout/DashboardLayout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/admin/*"
+          element={<ProtectedRoute allowedRoles={["admin"]} >
+            <DashboardLayout />
+          </ProtectedRoute>}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+            <Route index element={<Dashboard />}   />
+
+        </Route>
+        
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
