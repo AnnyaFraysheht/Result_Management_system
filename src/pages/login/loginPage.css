@@ -13,6 +13,11 @@ body{
     /* background-color: blue; */
     display: grid;
     place-content: center;
+    text-align: center;
+}
+.logo > h1{
+    color: green;
+    
 }
 .logo > img{
     width: 90%;

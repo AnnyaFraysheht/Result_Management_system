@@ -1,11 +1,13 @@
 import "./loginPage.css"
 
 import image from "../../assets/sms image.png"
-import { useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const LoginPage = () => {
     const [notices, setNotices] = useState();
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -13,27 +15,39 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const handleInput = (event) => {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
-        console.log(values)
+        // console.log(values)
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            
-            const response = await axios.post("http://localhost:8080/api/login",values,{
-                headers:{
+
+            const response = await axios.post("http://localhost:8080/api/login", values, {
+                headers: {
                     'Content-Type': 'application/json',
                 },
                 withCredentials: true,
             })
             if (response.status === 200) {
                 const data = response.data;
-                console.log(data);
-                navigate("/admin")
+                console.log(data.data[0].role);
+                const userRole = data.data[0].role;
+                // setIsAuthenticated(true);
+                // setRole(userRole)
+                navigate(`/${userRole}`)
                 // window.location.href = `/${data.data[0].role}`;
             } else {
                 console.log("Login Failed");
             }
         } catch (error) {
+            setEmailError("");
+            setPasswordError("")
+            if (error.response.data.message) {
+                if (error.response.data.message === 'Wrong Credentials') {
+                    setEmailError(error.response.data.message)
+                } else {
+                    setPasswordError(error.response.data.message)
+                }
+            }
             console.log(error);
         }
     }
@@ -44,19 +58,18 @@ const LoginPage = () => {
                 const response = await axios.get("http://localhost:8080/api/check-auth", { withCredentials: true });
 
                 if (response.data.authenticated) {
-                    navigate("/admin");
+                    navigate(`/${response.data.role}`);
                 }
             } catch (error) {
+
                 console.error("Error checking authentication status", error);
             }
         };
-
         checkAuthStatus();
         const fetchOpenNotice = async () => {
             const response = await fetch("http://localhost:8080/api/opennotice")
             const data = await response.json();
             setNotices(data.data);
-            // console.log(data.data)
         }
         fetchOpenNotice();
         // eslint-disable-next-line
@@ -65,6 +78,7 @@ const LoginPage = () => {
         <>
             <div className="container">
                 <div className="logo">
+                    <h1>Result Management System</h1>
                     <img src={image} alt="someimage" />
                 </div>
                 <div className="form">
@@ -74,11 +88,13 @@ const LoginPage = () => {
 
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" onChange={handleInput} placeholder="Enter your email" />
+                            <section>{emailError}</section>
                         </div>
                         <div>
 
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" onChange={handleInput} placeholder="Enter your password" />
+                            <section>{passwordError}</section>
                         </div>
                         <button>Submit</button>
                     </form>

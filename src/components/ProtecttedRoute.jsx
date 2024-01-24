@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({allowedRoles}) => {
-  const [auth, setAuth] = useState(true);
+const ProtectedRoute = ({ Component }) => {
+  const [auth, setAuth] = useState(null); // Use null to indicate loading state
 
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -12,29 +12,28 @@ const ProtectedRoute = ({allowedRoles}) => {
           "http://localhost:8080/api/check-auth",
           { withCredentials: true }
         );
-        // const data = await response.json();
-        // console.log(data)
-        console.log(response)
+
         if (response.data.authenticated === true || response.status === 200) {
           setAuth(true);
         } else {
           setAuth(false);
         }
-        console.log(auth)
       } catch (error) {
         console.log("Error checking Session", error);
-        console.log(error.response.data.authenticated)
         setAuth(false);
-      } 
+      }
     };
+
     checkAuthentication();
     // eslint-disable-next-line
-  }, []); // Add an empty dependency array to run the effect only once
+  }, []);
 
-  return (
+  // While authentication status is loading, you can choose to show a loading spinner or a message
+  if (auth === null) {
+    return <div>Loading...</div>;
+  }
 
-    auth ? <Outlet /> : <Navigate to={"/login"} />
-  );
+  return auth ? Component : <Navigate to={"/login"} />;
 };
 
 export default ProtectedRoute;
