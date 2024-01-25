@@ -1,0 +1,51 @@
+table{
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+thead{
+    background-color: rgb(176, 176, 165);
+}
+thead,body, tr,th, td{
+    border: 2px solid black;
+}
+h2{
+    padding: 10px 0;
+}
+td> button{
+    width: 100%;
+    background: none;
+    padding: 2px;
+    border: none;
+    cursor: pointer;
+}
+
+.add{
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgb(12, 132, 231);
+    color:white;
+    border: none;
+}
+.link{
+    text-decoration: none;
+    color: black;
+}
+
+
+.contain{
+    width: 100%;
+}
+.classSelect{
+    gap: 10px;
+    flex-direction: row;
+}
+textarea{
+    resize: none;
+}
+.submit{
+    cursor: pointer;
+}

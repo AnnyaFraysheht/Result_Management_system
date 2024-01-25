@@ -30,7 +30,7 @@ const DashboardLayout = () => {
 
                         <li><PiStudent /> Student</li>
                     </Link>
-                    <Link className='link' to={"teacher"}>
+                    <Link className='link' to={"teachers"}>
                         <li><GiTeacher /> Teacher</li>
 
                     </Link>
@@ -65,7 +65,10 @@ const DashboardLayout = () => {
                         <li><img className='profile' src={oip} alt="" srcset="" /></li>
                     </ul>
                 </nav>
+                <div className='outlet'>
+
                 <Outlet />
+                </div>
             </div>
         </div>
     )
