@@ -8,6 +8,7 @@ import TeacherPage from "./pages/teacher/teacherPage";
 import ProtectedRoute from "./components/ProtecttedRoute";
 import NoticePage from "./pages/notice/noticePage";
 import AddNotice from "./pages/notice/addNotice";
+import AddStudent from "./pages/student/addStudent";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
+          <Route path="students/add" element={<AddStudent />} />
           <Route path="teachers" element={<TeacherPage />} />
           <Route path="notice" element={<NoticePage />} />
           <Route path="notice/add" element={<AddNotice />} />

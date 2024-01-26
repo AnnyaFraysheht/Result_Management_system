@@ -4,29 +4,28 @@ import React, { useCallback, useEffect, useState } from 'react'
 import "./notice.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { getNotices } from '../../services/fetchFunction'
 const NoticePage = () => {
     const [notices, setNotices] = useState()
 
-    const getNotices = async () => {
-        const response = await axios.get("http://localhost:8080/api/notice", {
-            withCredentials: true,
-        })
-        setNotices(response.data.data)
-        // console.log(response.data.data)
-    }
+    
     const handleDelete =useCallback( async (id) =>{
         try {
             await axios.delete(`http://localhost:8080/api/notice/${id}`,{
                 withCredentials: true
             })
-            getNotices();
+            getData();
             // console.log(response)
         } catch (error) {
             
         }
     },[]);
+    const getData =async () =>{
+        const data= await getNotices();
+        setNotices(data)
+    }
     useEffect(() => {
-        getNotices();
+        getData()
     }, [handleDelete])
     return (
         <>
@@ -37,6 +36,7 @@ const NoticePage = () => {
                     <tr>
                         <th>For</th>
                         <th>Notice</th>
+                        <th>Date</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -47,6 +47,7 @@ const NoticePage = () => {
                             return <tr key={notice.notice_id}>
                                 <td>{notice.class_id ? notice.class_name : "Open Notice"}</td>
                                 <td>{notice.notice_text}</td>
+                                <td>{(new Date(notice.date_posted.toLocaleString('en-US',"Asia/Kathmandu"))).toISOString().slice(0,10)}</td>
                                 <td><button><FaEdit size={20} color="green" /></button></td>
                                 <td><button onClick={(e) =>handleDelete(notice.notice_id)}><MdDelete size={20} color="red" /></button></td>
                             </tr>
@@ -58,7 +59,7 @@ const NoticePage = () => {
         </>
     )
 }
-
+//(new Date(notice.date_posted.toLocaleString('en-US',UTC+5:45))).toISOString().slice(0,10)
 export default NoticePage
 
 

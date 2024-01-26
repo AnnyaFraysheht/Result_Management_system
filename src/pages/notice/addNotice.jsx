@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./notice.css"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { getClass } from '../../services/fetchFunction';
 const AddNotice = () => {
     const [classes, setClasses] = useState();
     const [noticeData, setNoticeData] = useState({
@@ -9,20 +10,13 @@ const AddNotice = () => {
         notice_text: ''
     })
     const navigate = useNavigate()
-    const getClass = async () => {
+    const getData = async () => {
 
-        try {
-            const response = await axios.get("http://localhost:8080/api/class", {
-                withCredentials: true,
-            })
-            // console.log(response.data.data)
-            setClasses(response.data.data)
-        } catch (error) {
-            console.log(error)
-        }
+        const data = await getClass();
+        setClasses(data)
     }
     useEffect(() => {
-        getClass();
+        getData();
     }, [])
     const submitNotice = async (e) => {
         e.preventDefault();

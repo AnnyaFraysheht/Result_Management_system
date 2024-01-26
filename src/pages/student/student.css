@@ -30,3 +30,16 @@ td> button{
     color:white;
     border: none;
 }
+
+.student_form > div{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+}
+.student_form > div > input{
+    width: 60%;
+}
+.selectBox{
+    width: 60%;
+}

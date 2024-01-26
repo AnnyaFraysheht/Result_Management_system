@@ -62,7 +62,7 @@ const DashboardLayout = () => {
                     <ul>
                         <li><h3>Dashboard</h3></li>
                         <li style={{display:'flex', alignItems:'center'}}><input type="text" /><FaSearch /></li>
-                        <li><img className='profile' src={oip} alt="" srcset="" /></li>
+                        <li><img className='profile' src={oip} alt=""  /></li>
                     </ul>
                 </nav>
                 <div className='outlet'>
