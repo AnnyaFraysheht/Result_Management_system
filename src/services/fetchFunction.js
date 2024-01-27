@@ -32,9 +32,9 @@ export const getStudents = async () =>{
         console.log(error)
     }
 }
-export const getSectionByClass = async (id) =>{
+export const getTeachers = async () =>{
     try {
-        const response = await axios.get(`http://localhost:8080/api/section/${id}`,{
+        const response = await axios.get("http://localhost:8080/api/teachers",{
             withCredentials: true,
         })
         // console.log(response.data.data)
@@ -43,3 +43,43 @@ export const getSectionByClass = async (id) =>{
         console.log(error)
     }
 }
+export const getSectionByClass = async (id) =>{
+    try {
+        const response = await axios.get(`http://localhost:8080/api/section/${id}`,{
+            withCredentials: true,
+        })
+        // console.log(response.data.data)
+        return response.data.data;
+    } catch (error) {
+        console.log("Error fetching sections:", error);
+        throw error;
+    }
+}
+
+
+export const deleteUser = async (id) =>{
+    try {
+        await axios.delete(`http://localhost:8080/api/users/${id}`,{
+            withCredentials: true,
+          });
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const deleteClass = async (id) =>{
+    try {
+        await axios.delete(`http://localhost:8080/api/class/${id}`,{
+            withCredentials: true,
+          });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// export const getSubjects = async () =>{
+//     try {
+//         const response = await axios.get('http://localhost:8080/api/subjects')
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }

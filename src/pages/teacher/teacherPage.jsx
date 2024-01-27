@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import "./teacher.css"
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
+import { deleteUser, getTeachers } from '../../services/fetchFunction'
+import { Link } from 'react-router-dom'
 const TeacherPage = () => {
+  const [teachers, setTeacher] = useState();
+  const getData = async () => {
+    const data = await getTeachers();
+    setTeacher(data)
+  }
+  useEffect(() => {
+    getData();
+  }, [])
+  const handleDelete = useCallback( async (id) => {
+    try {
+     deleteUser(id)
+      getData();
+    } catch (error) {
+      console.log(error)
+    }
+  }, []);
   return (
     <>
       <h2>Teacher</h2>
-      <button className="add">Add Teacher</button>
+      <button className="add"><Link className="link" to={"add"}>Add Teacher</Link> </button>
       <table border={"2px"}>
         <thead>
           <tr>
+            <th>Image</th>
             <th>Fname</th>
             <th>Mname</th>
             <th>Lname</th>
@@ -19,14 +38,19 @@ const TeacherPage = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Roshan</td>
-            <td></td>
-            <td>Tandukar</td>
-            <td>OS</td>
-            <td><button><FaEdit size={20} color="green" /></button></td>
-            <td><button><MdDelete size={20} color="red" /></button></td>
-          </tr>
+          {
+            teachers?.map((teacher) => {
+              return <tr key={teacher.teacher_id}>
+                <td><img src={""} alt="profile" /></td>
+                <td>{teacher.fname}</td>
+                <td>{teacher.mname}</td>
+                <td>{teacher.lname}</td>
+                <td>{teacher.subject}</td>
+                <td><button><FaEdit size={20} color="green" /></button></td>
+                <td><button onClick={(e)=> handleDelete(teacher.user_id)}><MdDelete  size={20} color="red" /></button></td>
+              </tr>
+            })
+          }
         </tbody>
       </table>
     </>

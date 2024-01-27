@@ -29,7 +29,7 @@ const LoginPage = () => {
             })
             if (response.status === 200) {
                 const data = response.data;
-                console.log(data.data[0].role);
+                // console.log(data.data[0].role);
                 const userRole = data.data[0].role;
                 // setIsAuthenticated(true);
                 // setRole(userRole)

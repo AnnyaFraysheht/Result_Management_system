@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ Component }) => {
+const ProtectedRoute = ({ Component , permittedRole }) => {
   const [auth, setAuth] = useState(null); // Use null to indicate loading state
-
+  const [userrole,setUserrole] = useState()
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
@@ -12,9 +12,10 @@ const ProtectedRoute = ({ Component }) => {
           "http://localhost:8080/api/check-auth",
           { withCredentials: true }
         );
-
-        if (response.data.authenticated === true || response.status === 200) {
+          // console.log(response.data.role)
+        if (response.status === 200  ) {
           setAuth(true);
+          setUserrole(response.data.role)
         } else {
           setAuth(false);
         }
@@ -32,8 +33,9 @@ const ProtectedRoute = ({ Component }) => {
   if (auth === null) {
     return <div>Loading...</div>;
   }
+  const hasRequiredRole = permittedRole ? userrole === permittedRole : true;
 
-  return auth ? Component : <Navigate to={"/login"} />;
+  return auth && hasRequiredRole ? Component : <Navigate to={"/login"} />;
 };
 
 export default ProtectedRoute;

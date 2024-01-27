@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import "./student.css"
-import { getClass, getSectionByClass } from '../../services/fetchFunction';
+import "./teacher.css"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import {IoMdArrowRoundBack} from 'react-icons/io'
-const AddStudent = () => {
+import { IoMdArrowRoundBack } from 'react-icons/io'
+const AddTeacher = () => {
     const navigate = useNavigate();
-    const [classes, setClasses] = useState();
-    const [section, setSection] = useState();
+    // const [subjects, setSubjects] = useState()
     const [validationError, setValidationError] = useState({
         email: '',
         primaryContact: '',
         secondaryContact: ''
 
     });
-    const [studentData, setStudentData] = useState({
+    const [teacherData, setTeacherData] = useState({
         fname: '',
         mname: '',
         lname: '',
@@ -24,11 +22,8 @@ const AddStudent = () => {
         secondaryContact: '',
         temp_address: '',
         perm_address: '',
-        class_id: '',
-        section_id: '',
-        blood_group: '',
-        nationality: '',
-        role: 'student'
+        subject : '',
+        role: 'teacher'
 
     });
     const regexPatterns = {
@@ -42,7 +37,7 @@ const AddStudent = () => {
         const { name, value } = e.target;
         const regexPattern = regexPatterns[name];
         const ifValid = value === '' || (regexPattern ? regexPattern.test(value) : true);
-        setStudentData(prev => ({ ...prev, [name]: value }));
+        setTeacherData(prev => ({ ...prev, [name]: value }));
         // console.log(studentData)
         setValidationError((prev) => ({ ...prev, [name]: ifValid ? '' : `Invalid ` }))
     }
@@ -52,14 +47,14 @@ const AddStudent = () => {
         if (hasErrors) {
             alert("Fill form correctly")
         } else {
-            console.log(studentData)
+            console.log(teacherData)
             // alert("Form can be submitted")
 
-            axios.post("http://localhost:8080/api/register", studentData, {
+            axios.post("http://localhost:8080/api/register", teacherData, {
                 withCredentials: true,
             }).then(response => {
                 console.log(response.data)
-                navigate("/admin/students");
+                navigate("/admin/teachers");
             }).catch(error => {
                 if (error.response) {
                     console.log(error.response)
@@ -68,28 +63,18 @@ const AddStudent = () => {
             })
         }
     }
-    const getClassData = async () => {
-        const classData = await getClass();
-        setClasses(classData)
-    }
-    const getSectionData = async (class_id) => {
-        if (class_id) {
-
-            const sectionData = await getSectionByClass(class_id);
-            setSection(sectionData)
-        }
-    }
-    useEffect(() => {
-        getClassData();
-    }, [])
-    useEffect(() => {
-        getSectionData(studentData.class_id);
-    }, [studentData.class_id])
-
+    // const getSubjects = async () => {
+    //     const subjectData = await getClass();
+    //     setSubjects(subjectData)
+    // }
+    
+    // useEffect(() => {
+    //     getSubjects();
+    // }, [])
 
     return (
         <div>
-            <h1><Link className='link' to={"/admin/students"}> <IoMdArrowRoundBack /></Link></h1>
+            <h1><Link className='link' to={"/admin/teachers"}> <IoMdArrowRoundBack /></Link></h1>
             <form onSubmit={handleSubmit} className='student_form' action="">
                 <div>
 
@@ -114,7 +99,7 @@ const AddStudent = () => {
                 </div>
                 <div>
 
-                    <label htmlFor="fname">Dob</label>
+                    <label htmlFor="dob">Dob</label>
                     <input required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
                 </div>
                 <div>
@@ -141,55 +126,18 @@ const AddStudent = () => {
                     <label htmlFor="perm_address">Permanent Address</label>
                     <input required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
                 </div>
+                
+                
                 <div>
 
-                    <label htmlFor="class_id">Class</label>
-                    <select required className='selectBox' onChange={handleChange} name="class_id" id="">
-                        <option value="">Select Class</option>
-                        {
-                            classes?.map((_class) => {
-                                return <option key={_class.class_id} value={_class.class_id}>{_class.class_name}</option>
-                            })
-                        }
-                    </select>
-                </div>
-                <div>
-
-                    <label htmlFor="section_id">Section</label>
-                    <select required className='selectBox' onChange={handleChange} name="section_id" id="">
-                        <option value="">Select Section</option>
-                        {
-                            section?.map((sec) => {
-                                return <option key={sec.section_id} value={sec.section_id}>{sec.section_name}</option>
-                            })
-                        }
-                    </select>
-                </div>
-                <div>
-
-                    <label htmlFor="blood_group">Blood Group</label>
-                    <select required className='selectBox' onChange={handleChange} name="blood_group" id="">
-                        <option value="">Select Blood Group</option>
-                        <option value="A+">A+</option>
-                        <option value="B+">B+</option>
-                        <option value="A-">A-</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                    </select>
-                </div>
-                <div>
-
-                    <label htmlFor="nationality">Nationaligy</label>
-                    <select required className='selectBox' onChange={handleChange} name="nationality" id="">
-                        <option value="">Select Nationality</option>
-                        <option value="nepali">Nepali</option>
-                        <option value="indian">Indian</option>
-                        <option value="american">American</option>
-                        <option value="australian">Australian</option>
-                        <option value="japanese">Japanese</option>
+                    <label htmlFor="subject">Subjects</label>
+                    <select required className='selectBox' onChange={handleChange} name="subject" id="">
+                        <option value="">Select subject</option>
+                        <option value="operating system">Operating System</option>
+                        <option value="scripting language">scripting language</option>
+                        <option value="nm">nm</option>
+                        <option value="dbms">dbms</option>
+                        <option value="se">se</option>
                     </select>
                 </div>
                 <button>Submit</button>
@@ -198,4 +146,4 @@ const AddStudent = () => {
     )
 }
 
-export default AddStudent
+export default AddTeacher

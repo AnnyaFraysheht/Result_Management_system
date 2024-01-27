@@ -3,8 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import { Link } from "react-router-dom"
-import { getStudents } from "../../services/fetchFunction"
-import axios from "axios"
+import { deleteUser, getStudents } from "../../services/fetchFunction"
 const StudentPage = () => {
   const [students, setStudents] = useState();
   const getData = async () => {
@@ -16,9 +15,7 @@ const StudentPage = () => {
   }, [])
   const handleDelete = useCallback( async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/users/${id}`,{
-        withCredentials: true,
-      });
+      deleteUser(id);
       getData();
     } catch (error) {
       console.log(error)
@@ -27,10 +24,11 @@ const StudentPage = () => {
   return (
     <>
       <h2>Students</h2>
-      <button className="add"><Link to={"add"}>Add Student</Link> </button>
+      <button className="add"><Link className="link" to={"add"}>Add Student</Link> </button>
       <table border={"2px"}>
         <thead>
           <tr>
+            <td>Image</td>
             <th>Fname</th>
             <th>Mname</th>
             <th>Lname</th>
@@ -44,6 +42,7 @@ const StudentPage = () => {
           {
             students?.map((student) => {
               return <tr key={student.student_id}>
+                <td><img src={""} alt="profile" /></td>
                 <td>{student.fname}</td>
                 <td>{student.mname}</td>
                 <td>{student.lname}</td>
