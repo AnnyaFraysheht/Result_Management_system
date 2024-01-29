@@ -14,6 +14,8 @@ import ClassPage from "./pages/class/classPage";
 import AddClass from "./pages/class/addClass";
 import StudentDashboardLayout from "./layout/StudentDashboardLayout";
 import TeacherDashboardLayout from "./layout/TeacherDashboardLayout";
+import StudentComplain from "./pages/complain/StudentComplain";
+import AdminComplain from "./pages/complain/AdminComplain";
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
           <Route path="notice/add" element={<AddNotice />} />
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
+          <Route path="complains" element={<AdminComplain />} />
         </Route>
         <Route
           path="/student/*"
@@ -42,6 +45,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="teachers" element={<TeacherPage />} />
+          <Route path="complains" element={<StudentComplain />} />
         </Route>
         <Route
           path="/teacher/*"
