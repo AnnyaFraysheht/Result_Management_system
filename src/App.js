@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./pages/login/loginPage";
 import Dashboard from "./pages/dashboard/dashboard";
@@ -16,16 +16,21 @@ import StudentDashboardLayout from "./layout/StudentDashboardLayout";
 import TeacherDashboardLayout from "./layout/TeacherDashboardLayout";
 import StudentComplain from "./pages/complain/StudentComplain";
 import AdminComplain from "./pages/complain/AdminComplain";
+import { useState } from "react";
 
 function App() {
+  const [userData, setUserData] = useState();
+  const handleLoginData = (user) =>{
+    setUserData(user)
+  }
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage onLogin={handleLoginData} />} />
 
         <Route
           path="/admin/*"
-          element={<ProtectedRoute Component={<DashboardLayout />} permittedRole='admin'/>}
+          element={<ProtectedRoute Component={<DashboardLayout user={userData} />} permittedRole='admin'/>}
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
@@ -55,6 +60,7 @@ function App() {
           <Route path="students" element={<StudentPage />} />
           <Route path="teachers" element={<TeacherPage />} />
         </Route>
+        <Route path="*" element={<Navigate to={"/login"} /> } />
       </Routes>
     </BrowserRouter>
   );

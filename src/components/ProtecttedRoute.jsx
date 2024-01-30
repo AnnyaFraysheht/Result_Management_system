@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ Component , permittedRole }) => {
+const ProtectedRoute = ({ Component, permittedRole }) => {
   const [auth, setAuth] = useState(null); // Use null to indicate loading state
-  const [userrole,setUserrole] = useState()
+  const [userrole, setUserrole] = useState()
   useEffect(() => {
     const checkAuthentication = async () => {
       try {
@@ -12,8 +12,8 @@ const ProtectedRoute = ({ Component , permittedRole }) => {
           "http://localhost:8080/api/check-auth",
           { withCredentials: true }
         );
-          // console.log(response.data.role)
-        if (response.status === 200  ) {
+        // console.log(response.data.role)
+        if (response.status === 200) {
           setAuth(true);
           setUserrole(response.data.role)
         } else {
@@ -26,6 +26,19 @@ const ProtectedRoute = ({ Component , permittedRole }) => {
     };
 
     checkAuthentication();
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        checkAuthentication();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+
     // eslint-disable-next-line
   }, []);
 

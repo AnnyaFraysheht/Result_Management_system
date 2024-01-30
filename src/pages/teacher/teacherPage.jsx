@@ -4,6 +4,7 @@ import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import { deleteUser, getTeachers } from '../../services/fetchFunction'
 import { Link } from 'react-router-dom'
+import { ArrayDataToBase } from '../../services/imgDataArrayToBase64'
 const TeacherPage = () => {
   const [teachers, setTeacher] = useState();
   const getData = async () => {
@@ -12,10 +13,11 @@ const TeacherPage = () => {
   }
   useEffect(() => {
     getData();
+    // console.log(teachers)
   }, [])
   const handleDelete = useCallback( async (id) => {
     try {
-     deleteUser(id)
+     await deleteUser(id)
       getData();
     } catch (error) {
       console.log(error)
@@ -28,7 +30,7 @@ const TeacherPage = () => {
       <table border={"2px"}>
         <thead>
           <tr>
-            <th>Image</th>
+            <th></th>
             <th>Fname</th>
             <th>Mname</th>
             <th>Lname</th>
@@ -41,7 +43,7 @@ const TeacherPage = () => {
           {
             teachers?.map((teacher) => {
               return <tr key={teacher.teacher_id}>
-                <td><img src={""} alt="profile" /></td>
+                <td><img src={ArrayDataToBase(teacher.image_data.data)} height={30} width={30} alt="profile" /></td>
                 <td>{teacher.fname}</td>
                 <td>{teacher.mname}</td>
                 <td>{teacher.lname}</td>

@@ -4,7 +4,7 @@ import image from "../../assets/sms image.png"
 import {  useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const LoginPage = () => {
+const LoginPage = ({onLogin}) => {
     const [notices, setNotices] = useState();
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
@@ -33,6 +33,7 @@ const LoginPage = () => {
                 const userRole = data.data[0].role;
                 // setIsAuthenticated(true);
                 // setRole(userRole)
+                onLogin(data.data[0])
                 navigate(`/${userRole}`)
                 // window.location.href = `/${data.data[0].role}`;
             } else {

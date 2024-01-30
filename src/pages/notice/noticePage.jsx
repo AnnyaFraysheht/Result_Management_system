@@ -47,7 +47,7 @@ const NoticePage = () => {
                             return <tr key={notice.notice_id}>
                                 <td>{notice.class_id ? notice.class_name : "Open Notice"}</td>
                                 <td>{notice.notice_text}</td>
-                                <td>{(new Date(notice.date_posted.toLocaleString('en-US',"Asia/Kathmandu"))).toISOString().slice(0,10)}</td>
+                                <td>{notice.date_posted}</td>
                                 <td><button><FaEdit size={20} color="green" /></button></td>
                                 <td><button onClick={(e) =>handleDelete(notice.notice_id)}><MdDelete size={20} color="red" /></button></td>
                             </tr>
