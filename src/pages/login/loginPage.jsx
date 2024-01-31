@@ -85,13 +85,13 @@ const LoginPage = ({onLogin}) => {
                 <div className="form">
                     <h3>LOGIN</h3>
                     <form onSubmit={handleSubmit}>
-                        <div>
+                        <div className="input-container">
 
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" onChange={handleInput} placeholder="Enter your email" />
                             <section>{emailError}</section>
                         </div>
-                        <div>
+                        <div className="input-container">
 
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" onChange={handleInput} placeholder="Enter your password" />

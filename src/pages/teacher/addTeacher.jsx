@@ -74,61 +74,62 @@ const AddTeacher = () => {
 
     return (
         <div>
+            <h1 style={{textAlign: 'center'}}>Adding Teacher</h1>
             <h1><Link className='link' to={"/admin/teachers"}> <IoMdArrowRoundBack /></Link></h1>
             <form onSubmit={handleSubmit} className='student_form' action="">
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="fname">First Name</label>
                     <input onChange={handleChange} type="text" name="fname" placeholder='Enter first name' required />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="mname">Middle Name</label>
                     <input onChange={handleChange} type="text" name="mname" placeholder='Enter middle name' />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="lname">Last Name</label>
                     <input onChange={handleChange} type="text" name="lname" placeholder='Enter last name' required />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="email">Email</label>
                     <input required onChange={handleChange} type="text" name="email" placeholder='Enter your email' />
                     {validationError.email && (<span>{validationError.email}</span>)}
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="dob">Dob</label>
                     <input required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="contacts">Contact One</label>
                     <input required onChange={handleChange} type="text" name="primaryContact" placeholder='Enter primary contact' />
                     {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
 
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="contacts">Contact Two</label>
                     <input required onChange={handleChange} type="text" name="secondaryContact" placeholder='Enter secondary contact' />
                     {validationError.secondaryContact && (<span>{validationError.secondaryContact}</span>)}
 
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="temp_address">Temporary Address</label>
                     <input required onChange={handleChange} type="text" name="temp_address" placeholder='Enter your Permanent Address' />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="perm_address">Permanent Address</label>
                     <input required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
                 </div>
                 
                 
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="subject">Subjects</label>
                     <select required className='selectBox' onChange={handleChange} name="subject" id="">

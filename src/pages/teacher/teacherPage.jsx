@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import "./teacher.css"
+import oip from "../../assets/OIP.jpeg"
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import { deleteUser, getTeachers } from '../../services/fetchFunction'
@@ -15,9 +16,9 @@ const TeacherPage = () => {
     getData();
     // console.log(teachers)
   }, [])
-  const handleDelete = useCallback( async (id) => {
+  const handleDelete = useCallback(async (id) => {
     try {
-     await deleteUser(id)
+      await deleteUser(id)
       getData();
     } catch (error) {
       console.log(error)
@@ -43,13 +44,13 @@ const TeacherPage = () => {
           {
             teachers?.map((teacher) => {
               return <tr key={teacher.teacher_id}>
-                <td><img src={ArrayDataToBase(teacher.image_data.data)} height={30} width={30} alt="profile" /></td>
+                <td><img src={teacher.image ? teacher.image : oip} height={30} width={30} alt="profile" /></td>
                 <td>{teacher.fname}</td>
                 <td>{teacher.mname}</td>
                 <td>{teacher.lname}</td>
                 <td>{teacher.subject}</td>
                 <td><button><FaEdit size={20} color="green" /></button></td>
-                <td><button onClick={(e)=> handleDelete(teacher.user_id)}><MdDelete  size={20} color="red" /></button></td>
+                <td><button onClick={(e) => handleDelete(teacher.user_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>
             })
           }

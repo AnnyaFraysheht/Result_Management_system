@@ -38,12 +38,12 @@ const AddNotice = () => {
     }
     return (
         <>
-            <h1>Add Notice</h1>
+            <h1 style={{textAlign: 'center'}}>Add Notice</h1>
             <form onSubmit={submitNotice} >
-                <div className="contain classSelect">
+                <div className="contain input-container classSelect">
 
                     <label htmlFor="class">Select Class</label>
-                    <select name="class_id" id="class" onChange={handleChange}>
+                    <select className='selectBox' name="class_id" id="class" onChange={handleChange}>
 
                         <option value={''}>Open Notice</option>
                         {
@@ -54,7 +54,7 @@ const AddNotice = () => {
 
                     </select>
                 </div>
-                <div className="contain">
+                <div className="contain input-container">
                     <label htmlFor="message">Message</label>
                     <textarea onChange={handleChange} name="notice_text" id="message" cols="30" rows="10"></textarea>
 

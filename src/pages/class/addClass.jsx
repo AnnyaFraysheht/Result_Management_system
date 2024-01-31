@@ -38,12 +38,12 @@ const AddClass = () => {
         <div>
             <h1><Link className='link' to={"/admin/teachers"}> <IoMdArrowRoundBack /></Link></h1>
             <form onSubmit={handleSubmit} className='student_form' action="">
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="class_name">Class Name</label>
                     <input onChange={handleChange} type="text" name="class_name" placeholder='Enter class name' required />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="_class">Class</label>
                     <input onChange={handleChange} type="text" name="_class" placeholder='Enter class' />

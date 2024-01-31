@@ -8,10 +8,8 @@ import { SiBookstack } from "react-icons/si";
 import { FaSearch } from "react-icons/fa";
 import { MdAnnouncement, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
-import { ArrayDataToBase } from '../services/imgDataArrayToBase64';
 const DashboardLayout = (user) => {
     const [userData, setUserData] = useState(user.user);
-    const [image, setImage] = useState()
     const navigate = useNavigate();
     const handleLogout = async () => {
         await axios.post("http://localhost:8080/api/logout", null, {
@@ -20,48 +18,41 @@ const DashboardLayout = (user) => {
         navigate("/login");
         // console.log(resp);
     }
-    useEffect(() => {
-        console.log(userData)
-        const imageDataArray = userData?.image_data?.data;
-        const img =ArrayDataToBase(imageDataArray);
-        setImage(img)
-
-    }, [])
     return (
         <div className='parent'>
             <aside>
                 <ul>
-                    <li><h1>Admin Dashboard</h1></li>
+                    <li><h1 className='headdd'>Admin Dashboard</h1></li>
                     <Link className='link' to={"/admin"}>
 
-                        <li><MdDashboard />Dashboard </li>
+                        <li className='li'><MdDashboard />Dashboard </li>
                     </Link>
                     <Link className='link' to={"students"}>
 
-                        <li><PiStudent /> Student</li>
+                        <li className='li'><PiStudent /> Student</li>
                     </Link>
                     <Link className='link' to={"teachers"}>
-                        <li><GiTeacher /> Teacher</li>
+                        <li className='li'><GiTeacher /> Teacher</li>
 
                     </Link>
                     <Link className='link' to={"exam"}>
-                        <li><PiExam /> Exam</li>
+                        <li className='li'><PiExam /> Exam</li>
 
                     </Link>
                     <Link className='link' to={"class"}>
-                        <li><MdFlightClass /> Class</li>
+                        <li className='li'><MdFlightClass /> Class</li>
 
                     </Link>
                     <Link className='link' to={"subject"}>
-                        <li><SiBookstack /> Subject</li>
+                        <li className='li'><SiBookstack /> Subject</li>
 
                     </Link>
                     <Link className='link' to={"notice"}>
-                        <li><MdAnnouncement /> Notice</li>
+                        <li className='li'><MdAnnouncement /> Notice</li>
 
                     </Link>
                     <Link className='link' to={"complains"}>
-                        <li><MdReportProblem /> Complains</li>
+                        <li className='li'><MdReportProblem /> Complains</li>
 
                     </Link>
                 </ul>
@@ -71,8 +62,7 @@ const DashboardLayout = (user) => {
                 <nav>
                     <ul>
                         <li><h3>{`Hello ${userData?.fname}`}</h3></li>
-                        <li style={{ display: 'flex', alignItems: 'center' }}><input type="text" /><FaSearch /></li>
-                        <li><img className='profile' src={image ? image : oip} alt="Your image here" /></li>
+                        <li><Link to={"profile"}> <img className='profile' src={userData?.image ? userData.image : oip} alt="Your image here" /></Link></li>
                     </ul>
                 </nav>
                 <div className='outlet'>

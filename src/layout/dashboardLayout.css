@@ -8,6 +8,8 @@ aside{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: fixed;
+    z-index: 2;
 }
 ul{
     list-style: none;
@@ -15,7 +17,7 @@ ul{
 .link{
     text-decoration: none;
 }
-li{
+.li{
     padding: 15px 25px;
     width: 100%;
     font-size: 18px;
@@ -44,18 +46,29 @@ aside > ul> li:hover, .dashboardButton:hover{
 }
 .content{
     width: 75%;
+    margin-left: 25%;
+    box-sizing: border-box;
 }
 nav{
     height: 10vh;
     background-color: rgb(152, 220, 213);
     display: flex;
-    width: 100%;
+    width: 75%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    margin: auto;
+    padding: 0 25px;
 }
-
+.headdd{
+    font-size: 30px;
+    padding: 10px;
+    margin: 10px 25px;
+}
 nav > ul{
     display: flex;
     align-items: center;
-    justify-content: space-around !important;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -67,5 +80,7 @@ nav > ul{
 }
 
 .outlet{
+    margin-top: 10vh;
     padding: 10px;
+    border: none;
 }

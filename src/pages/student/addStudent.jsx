@@ -3,7 +3,7 @@ import "./student.css"
 import { getClass, getSectionByClass } from '../../services/fetchFunction';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import {IoMdArrowRoundBack} from 'react-icons/io'
+import { IoMdArrowRoundBack } from 'react-icons/io'
 const AddStudent = () => {
     const navigate = useNavigate();
     const [classes, setClasses] = useState();
@@ -28,7 +28,8 @@ const AddStudent = () => {
         section_id: '',
         blood_group: '',
         nationality: '',
-        role: 'student'
+        role: 'student',
+        gender: ''
 
     });
     const regexPatterns = {
@@ -48,6 +49,7 @@ const AddStudent = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const hasErrors = Object.values(validationError).some((error) => error);
         if (hasErrors) {
             alert("Fill form correctly")
@@ -88,60 +90,68 @@ const AddStudent = () => {
 
 
     return (
-        <div>
+        <div className='main_container'>
+            <h1 style={{ textAlign: 'center' }}>Adding Student</h1>
+
             <h1><Link className='link' to={"/admin/students"}> <IoMdArrowRoundBack /></Link></h1>
             <form onSubmit={handleSubmit} className='student_form' action="">
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="fname">First Name</label>
-                    <input onChange={handleChange} type="text" name="fname" placeholder='Enter first name' required />
+                    <input onChange={handleChange} type="text" name="fname" required />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="mname">Middle Name</label>
-                    <input onChange={handleChange} type="text" name="mname" placeholder='Enter middle name' />
+                    <input onChange={handleChange} type="text" name="mname" />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="lname">Last Name</label>
-                    <input onChange={handleChange} type="text" name="lname" placeholder='Enter last name' required />
+                    <input onChange={handleChange} type="text" name="lname" required />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="email">Email</label>
-                    <input required onChange={handleChange} type="text" name="email" placeholder='Enter your email' />
+                    <input required onChange={handleChange} type="text" name="email" />
                     {validationError.email && (<span>{validationError.email}</span>)}
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="fname">Dob</label>
-                    <input required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
+                    <input required onChange={handleChange} type="date" name="dob" />
                 </div>
-                <div>
-
+                <div className='input-container'>
                     <label htmlFor="contacts">Contact One</label>
-                    <input required onChange={handleChange} type="text" name="primaryContact" placeholder='Enter primary contact' />
+                    <input required onChange={handleChange} type="text" name="primaryContact" />
                     {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
 
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="contacts">Contact Two</label>
-                    <input required onChange={handleChange} type="text" name="secondaryContact" placeholder='Enter secondary contact' />
+                    <input required onChange={handleChange} type="text" name="secondaryContact" />
                     {validationError.secondaryContact && (<span>{validationError.secondaryContact}</span>)}
 
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="temp_address">Temporary Address</label>
-                    <input required onChange={handleChange} type="text" name="temp_address" placeholder='Enter your Permanent Address' />
+                    <input required onChange={handleChange} type="text" name="temp_address" />
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="perm_address">Permanent Address</label>
-                    <input required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
+                    <input required onChange={handleChange} type="text" name="perm_address" />
                 </div>
-                <div>
+                <div className='input-container gender'>
+
+                    <label htmlFor="gender">Gender</label>
+                    <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                    <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                    <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                </div>
+                <div className='input-container'>
 
                     <label htmlFor="class_id">Class</label>
                     <select required className='selectBox' onChange={handleChange} name="class_id" id="">
@@ -153,7 +163,7 @@ const AddStudent = () => {
                         }
                     </select>
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="section_id">Section</label>
                     <select required className='selectBox' onChange={handleChange} name="section_id" id="">
@@ -165,7 +175,7 @@ const AddStudent = () => {
                         }
                     </select>
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="blood_group">Blood Group</label>
                     <select required className='selectBox' onChange={handleChange} name="blood_group" id="">
@@ -180,7 +190,7 @@ const AddStudent = () => {
                         <option value="O-">O-</option>
                     </select>
                 </div>
-                <div>
+                <div className='input-container'>
 
                     <label htmlFor="nationality">Nationaligy</label>
                     <select required className='selectBox' onChange={handleChange} name="nationality" id="">

@@ -17,6 +17,7 @@ import TeacherDashboardLayout from "./layout/TeacherDashboardLayout";
 import StudentComplain from "./pages/complain/StudentComplain";
 import AdminComplain from "./pages/complain/AdminComplain";
 import { useState } from "react";
+import Profile from "./pages/viewAndEdit/profile";
 
 function App() {
   const [userData, setUserData] = useState();
@@ -42,6 +43,7 @@ function App() {
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
           <Route path="complains" element={<AdminComplain />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route
           path="/student/*"

@@ -35,17 +35,39 @@ td> button{
     color: black;
 }
 
-
-.contain{
-    width: 100%;
-}
-.classSelect{
-    gap: 10px;
-    flex-direction: row;
-}
 textarea{
     resize: none;
+    width: 100%;
 }
 .submit{
     cursor: pointer;
+}
+
+label {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    transform: translateY(-50%);
+    color: #000000;
+    pointer-events: none;
+    transition: 0.3s ease-out;
+  }
+
+  label.focused {
+    top: 0;
+    font-size: 12px;
+    color: #333;
+  }
+.selectBox{
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+.input-container{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+    position: relative;
+    margin: 20px;
 }

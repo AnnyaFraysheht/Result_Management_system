@@ -1,4 +1,5 @@
 import "./student.css"
+import oiep from "../../assets/OIP.jpeg"
 import React, { useCallback, useEffect, useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
@@ -43,7 +44,7 @@ const StudentPage = () => {
           {
             students?.map((student) => {
               return <tr key={student.student_id}>
-                <td><img src={ArrayDataToBase(student.image_data.data)} height={30} width={30} alt="profile" /></td>
+                <td><img src={student.image_name ? student.image_name : oiep} height={30} width={30} alt="profile" /></td>
                 <td>{student.fname}</td>
                 <td>{student.mname}</td>
                 <td>{student.lname}</td>
