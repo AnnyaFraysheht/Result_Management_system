@@ -98,32 +98,32 @@ const AddStudent = () => {
                 <div className='input-container'>
 
                     <label htmlFor="fname">First Name</label>
-                    <input onChange={handleChange} type="text" name="fname" required />
+                    <input onChange={handleChange} type="text" id='fname' name="fname" required />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="mname">Middle Name</label>
-                    <input onChange={handleChange} type="text" name="mname" />
+                    <input onChange={handleChange} id='mname' type="text" name="mname" />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="lname">Last Name</label>
-                    <input onChange={handleChange} type="text" name="lname" required />
+                    <input onChange={handleChange} id='lname' type="text" name="lname" required />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="email">Email</label>
-                    <input required onChange={handleChange} type="text" name="email" />
+                    <input required onChange={handleChange} id='email' type="text" name="email" />
                     {validationError.email && (<span>{validationError.email}</span>)}
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="fname">Dob</label>
-                    <input required onChange={handleChange} type="date" name="dob" />
+                    <label htmlFor="dob">Dob</label>
+                    <input required onChange={handleChange} id='dob' type="date" name="dob" />
                 </div>
                 <div className='input-container'>
                     <label htmlFor="contacts">Contact One</label>
-                    <input required onChange={handleChange} type="text" name="primaryContact" />
+                    <input required onChange={handleChange} id='contacts' type="text" name="primaryContact" />
                     {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
 
                 </div>
@@ -137,12 +137,12 @@ const AddStudent = () => {
                 <div className='input-container'>
 
                     <label htmlFor="temp_address">Temporary Address</label>
-                    <input required onChange={handleChange} type="text" name="temp_address" />
+                    <input required onChange={handleChange} id='temp_address' type="text" name="temp_address" />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="perm_address">Permanent Address</label>
-                    <input required onChange={handleChange} type="text" name="perm_address" />
+                    <input required onChange={handleChange} id='perm_address' type="text" name="perm_address" />
                 </div>
                 <div className='input-container gender'>
 

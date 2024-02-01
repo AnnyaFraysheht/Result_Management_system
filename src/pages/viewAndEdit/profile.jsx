@@ -6,24 +6,54 @@ const Profile = () => {
   return (
     <>
       <div className="image_section">
-        <img className='profile_picture' src={oip} alt="" srcSet="" />
         <label htmlFor="change_picture" className='image_edit_icon'>
 
           <FaEdit className='icon' size={50} color='green' />
         </label>
         <input className='change_pic' type="file" name="image" id="change_picture" />
+        <img className='profile_picture' src={oip} alt="" srcSet="" />
 
       </div>
-      <div className='General Info'>
-        <h1>Personal Information</h1>
-        <h3>Name:Rohan Thapa</h3>
-        <h3>DOB:2059-05-12</h3>
-        <h3>Gender:Male</h3>
-        <h3>Email:thaparohan2019@gmail.com</h3>
-        <h3>Primary Contact:9744375757</h3>
-        <h3>Secondary Contact:9808305101</h3>
-        <h3>Permanent Address:Koteshwor-32,Kathmandu</h3>
-        <h3>Temporary Address:Sanepa-02,Lalitpur</h3>
+      <div className='general_info'>
+        <div>
+          <h1>Personal Information</h1>
+
+        </div>
+        <div className="details-container">
+          <div>Name:</div>
+          <div>Rohan Thapa</div>
+
+        </div>
+        <div className="details-container">
+          <div>DOB:</div>
+          <div>2059-05-12</div>
+
+        </div>
+        <div className="details-container">
+          <div>Gender</div>
+          <div>Male</div>
+        </div>
+        <div className="details-container">
+          <div>Email</div>
+          <div>thaparohan2019@gmail.com</div>
+
+        </div>
+        <div className="details-container">
+          <div>Primary Contact</div>
+          <div>9744375757</div>
+        </div>
+        <div className="details-container">
+          <div>Secondary Contact</div>
+          <div>9808305101</div>
+        </div>
+        <div className="details-container">
+          <div>Permanent Address</div>
+          <div>Koeshwor-32,Kathmandu</div>
+        </div>
+        <div className="details-container">
+          <div>Secondary Address</div>
+          <div>Sanepa-02,Lalitpur</div>
+        </div>
 
       </div>
 
