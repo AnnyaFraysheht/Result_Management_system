@@ -1,5 +1,4 @@
 import React from 'react';
-import oip from "../assets/OIP.jpeg"
 import "./dashboardLayout.css"
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { PiExam, PiStudent } from "react-icons/pi"
@@ -8,7 +7,8 @@ import { SiBookstack } from "react-icons/si";
 import { FaSearch } from "react-icons/fa";
 import { MdAnnouncement, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
-const StudentDashboardLayout = () => {
+import NavBar from '../components/DashboardComponent/NavBar';
+const StudentDashboardLayout = ({userData}) => {
     const navigate = useNavigate();
     const handleLogout = async () => {
         await axios.post("http://localhost:8080/api/logout", null, {
@@ -42,13 +42,7 @@ const StudentDashboardLayout = () => {
                 <button className='dashboardButton' onClick={handleLogout}><MdLogout /> Logout</button>
             </aside>
             <div className='content'>
-                <nav>
-                    <ul>
-                        <li><h3>Dashboard</h3></li>
-                        <li style={{display:'flex', alignItems:'center'}}><input type="text" /><FaSearch /></li>
-                        <li><img className='profile' src={oip} alt=""  /></li>
-                    </ul>
-                </nav>
+            <NavBar userData={userData} />
                 <div className='outlet'>
 
                 <Outlet />

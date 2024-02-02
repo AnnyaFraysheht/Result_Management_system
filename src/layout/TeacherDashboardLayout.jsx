@@ -8,7 +8,8 @@ import { SiBookstack } from "react-icons/si";
 import { FaSearch } from "react-icons/fa";
 import { MdAnnouncement, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
-const TeacherDashboardLayout = () => {
+import NavBar from '../components/DashboardComponent/NavBar';
+const TeacherDashboardLayout = ({userData}) => {
     const navigate = useNavigate();
     const handleLogout = async () => {
         await axios.post("http://localhost:8080/api/logout", null, {
@@ -47,13 +48,7 @@ const TeacherDashboardLayout = () => {
                 <button className='dashboardButton' onClick={handleLogout}><MdLogout /> Logout</button>
             </aside>
             <div className='content'>
-                <nav>
-                    <ul>
-                        <li><h3>Dashboard</h3></li>
-                        <li style={{display:'flex', alignItems:'center'}}><input type="text" /><FaSearch /></li>
-                        <li><img className='profile' src={oip} alt=""  /></li>
-                    </ul>
-                </nav>
+            <NavBar userData={userData} />
                 <div className='outlet'>
 
                 <Outlet />

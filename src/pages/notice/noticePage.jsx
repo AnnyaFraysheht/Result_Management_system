@@ -10,14 +10,19 @@ const NoticePage = () => {
 
     
     const handleDelete =useCallback( async (id) =>{
-        try {
-            await axios.delete(`http://localhost:8080/api/notice/${id}`,{
-                withCredentials: true
-            })
-            getData();
-            // console.log(response)
-        } catch (error) {
-            
+        if(window.confirm("Are you sure to delete")){
+
+            try {
+                await axios.delete(`http://localhost:8080/api/notice/${id}`,{
+                    withCredentials: true
+                })
+                getData();
+                // console.log(response)
+            } catch (error) {
+                
+            }
+        }else{
+
         }
     },[]);
     const getData =async () =>{

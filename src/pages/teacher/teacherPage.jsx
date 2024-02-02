@@ -5,7 +5,6 @@ import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import { deleteUser, getTeachers } from '../../services/fetchFunction'
 import { Link } from 'react-router-dom'
-import { ArrayDataToBase } from '../../services/imgDataArrayToBase64'
 const TeacherPage = () => {
   const [teachers, setTeacher] = useState();
   const getData = async () => {
@@ -17,11 +16,13 @@ const TeacherPage = () => {
     // console.log(teachers)
   }, [])
   const handleDelete = useCallback(async (id) => {
-    try {
-      await deleteUser(id)
-      getData();
-    } catch (error) {
-      console.log(error)
+    if (window.confirm("Are you sure to Delete?")) {
+      try {
+        await deleteUser(id)
+        getData();
+      } catch (error) {
+        console.log(error)
+      }
     }
   }, []);
   return (

@@ -12,7 +12,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-
+    object-fit: cover;
 }
 .change_pic{
     position: absolute;
@@ -24,9 +24,9 @@
     position: absolute;
     /* background-color: red; */
     cursor: pointer;
-    top: 85%;
+    top: 75%;
     left: 55%;
-    z-index: 10;
+    z-index: 4;
 
 }
 .icon{
@@ -56,4 +56,81 @@
 .details-container  div:nth-child(2){
     width: 60%;
     text-align: left;
+}
+
+.change_profile,.change_password{
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(157, 157, 199, 0.418);
+    padding: 10px;
+    height: 0;
+    z-index: 9;
+    width: 350px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    opacity: 0;
+    transition: opacity .5s ease-in-out , height .5s ease-in-out;
+}
+
+.show{
+    opacity: 1;
+    height: 320px;
+}
+.submit{
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(39, 215, 71);
+    color: rgb(0, 0, 0);
+    border: none;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+.cancel{
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(210, 49, 49);
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+.uploadLabel{
+    position: relative;
+}
+.input{
+    display: grid;
+    place-content: center;
+    height: 50%;
+    margin: 25px;
+    border-radius: 15px;
+    position: relative;
+    border: 6px double rgb(61, 60, 60);
+    cursor: pointer;
+}
+
+.change-password{
+    padding: 10px;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    position: absolute;
+    left: 52%;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.passFormDiv{
+    text-align: start;
+    width: 70%;
+    /* background-color: red; */
+    margin: auto;
+}
+.submit, .cancel{
+    width: fit-content;
+    font-size: 16px;
 }

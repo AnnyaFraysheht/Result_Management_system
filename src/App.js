@@ -47,7 +47,7 @@ function App() {
         </Route>
         <Route
           path="/student/*"
-          element={<ProtectedRoute Component={<StudentDashboardLayout />} permittedRole="student" />}
+          element={<ProtectedRoute Component={<StudentDashboardLayout user={userData} />} permittedRole="student" />}
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
@@ -56,7 +56,7 @@ function App() {
         </Route>
         <Route
           path="/teacher/*"
-          element={<ProtectedRoute Component={<TeacherDashboardLayout />} permittedRole="teacher" />}
+          element={<ProtectedRoute Component={<TeacherDashboardLayout user={userData} />} permittedRole="teacher" />}
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />

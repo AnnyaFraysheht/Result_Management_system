@@ -47,7 +47,7 @@ aside > ul> li:hover, .dashboardButton:hover{
 .content{
     width: 75%;
     margin-left: 25%;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 nav{
     height: 10vh;
@@ -83,4 +83,5 @@ nav > ul{
     margin-top: 10vh;
     padding: 10px;
     border: none;
+    min-height: 90vh;
 }
