@@ -1,0 +1,27 @@
+.notice{
+    width: 90%;
+    margin: auto;
+    margin-top: 24px;
+    background-color: rgb(95, 197, 164);
+    padding: 15px;
+    border-radius: 10px;
+}
+.notices{
+    padding-top: 10px;
+}
+.heading{
+    border-bottom: 2px solid black;
+}
+.eachNotice{
+    display: flex;
+    padding: 10px 0;
+    gap: 15px;
+}
+.date{
+    width: 25%;
+    text-align: center;
+}
+.details{
+    padding-left: 4px;
+    border-left: 2px solid black;
+}

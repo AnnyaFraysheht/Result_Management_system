@@ -4,7 +4,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { PiExam, PiStudent } from "react-icons/pi"
 import { GiTeacher } from "react-icons/gi";
 import { SiBookstack } from "react-icons/si";
-import { MdAnnouncement, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
+import { MdAnnouncement,Md6FtApart, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
 import NavBar from '../components/DashboardComponent/NavBar';
 const DashboardLayout = (user) => {
@@ -40,6 +40,10 @@ const DashboardLayout = (user) => {
                     </Link>
                     <Link className='link' to={"class"}>
                         <li className='li'><MdFlightClass /> Class</li>
+
+                    </Link>
+                    <Link className='link' to={"section"}>
+                        <li className='li'><Md6FtApart /> Section</li>
 
                     </Link>
                     <Link className='link' to={"subject"}>

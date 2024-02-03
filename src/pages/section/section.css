@@ -1,0 +1,15 @@
+
+#classSelect{
+    padding: 10px;
+    margin: 5px 10px;
+    font-size: 18px;
+}
+.action{
+    width: 10%;
+}
+
+.input-container > select{
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+}

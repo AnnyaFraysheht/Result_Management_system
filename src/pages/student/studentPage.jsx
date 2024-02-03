@@ -45,14 +45,14 @@ const StudentPage = () => {
           {
             students?.map((student) => {
               return <tr key={student.student_id}>
-                <td><img src={student.image_name ? student.image_name : oiep} height={30} width={30} alt="profile" /></td>
+                <td><img src={student.image ? `http://localhost:8080/api/images/${student.image}` : oiep} height={30} width={30} alt="profile" /></td>
                 <td>{student.fname}</td>
                 <td>{student.mname}</td>
                 <td>{student.lname}</td>
                 <td>{student.class_name}</td>
                 <td>{student.section_name}</td>
-                <td><button><FaEdit size={20} color="green" /></button></td>
-                <td><button onClick={(e)=> handleDelete(student.user_id)}><MdDelete  size={20} color="red" /></button></td>
+                <td className="action"><button><FaEdit size={20} color="green" /></button></td>
+                <td className="action"><button onClick={(e)=> handleDelete(student.user_id)}><MdDelete  size={20} color="red" /></button></td>
               </tr>
             })
           }

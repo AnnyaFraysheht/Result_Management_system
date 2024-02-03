@@ -18,6 +18,9 @@ import StudentComplain from "./pages/complain/StudentComplain";
 import AdminComplain from "./pages/complain/AdminComplain";
 import { useState } from "react";
 import Profile from "./pages/viewAndEdit/profile";
+import StudentNotice from "./pages/notice/student/student.notice";
+import SectionPage from "./pages/section/sectionPage";
+import AddSection from "./pages/section/addSection";
 
 function App() {
   const [userData, setUserData] = useState();
@@ -42,6 +45,8 @@ function App() {
           <Route path="notice/add" element={<AddNotice />} />
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
+          <Route path="section" element={<SectionPage />} />
+          <Route path="section/add" element={<AddSection />} />
           <Route path="complains" element={<AdminComplain />} />
           <Route path="profile" element={<Profile />} />
         </Route>
@@ -52,7 +57,9 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="teachers" element={<TeacherPage />} />
+          <Route path="notice" element={<StudentNotice />} />
           <Route path="complains" element={<StudentComplain />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route
           path="/teacher/*"
@@ -61,6 +68,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="teachers" element={<TeacherPage />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<Navigate to={"/login"} /> } />
       </Routes>

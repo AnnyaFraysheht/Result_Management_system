@@ -7,6 +7,13 @@ export const getNotices = async () => {
     console.log(response.data.data)
     return response.data.data;
 }
+export const getClassNotice = async () => {
+    const response = await axios.get("http://localhost:8080/api/classnotice", {
+        withCredentials: true,
+    })
+    console.log(response.data.data)
+    return response.data.data;
+}
 
 export const getClass = async () => {
 
@@ -75,6 +82,15 @@ export const deleteClass = async (id) =>{
         console.log(error);
     }
 }
+export const deleteSection = async (id) =>{
+    try {
+        await axios.delete(`http://localhost:8080/api/section/${id}`,{
+            withCredentials: true,
+          });
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export const getMyDetails = async () =>{
     try {
@@ -82,6 +98,37 @@ export const getMyDetails = async () =>{
             withCredentials: true,
         })
 
+        return response.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getComplains = async () =>{
+    try {
+        const response = await axios.get(`http://localhost:8080/api/complain`,{
+            withCredentials: true,
+        })
+        return response.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const solveComplain = async (id) =>{
+    try {
+        const response = await axios.put(`http://localhost:8080/api/complain/${id}`,null,{
+            withCredentials: true,
+        })
+        return response.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getMyComplains = async () =>{
+    try {
+        const response = await axios.get(`http://localhost:8080/api/mycomplain`,{
+            withCredentials: true,
+        })
         return response.data.data;
     } catch (error) {
         console.log(error)

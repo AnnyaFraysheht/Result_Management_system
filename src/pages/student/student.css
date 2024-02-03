@@ -29,7 +29,9 @@ td> button{
     color:white;
     border: none;
 }
-
+td > img{
+    object-fit: cover;
+}
 .student_form > div > input{
     
     width: 100%;

@@ -1,0 +1,21 @@
+button{
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+    border: none;
+    margin: 2px;
+    border-radius: 5px;
+}
+.solved{
+    color: green;
+}
+.pending{
+    color: red;
+}
+.solvedBtn{
+    background-color: green;
+    cursor: not-allowed;
+}
+.pendingBtn{
+    background-color: red;
+}

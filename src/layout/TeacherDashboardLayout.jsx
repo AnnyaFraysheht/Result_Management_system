@@ -1,15 +1,13 @@
-import React from 'react';
-import oip from "../assets/OIP.jpeg"
+import React, { useState } from 'react';
 import "./dashboardLayout.css"
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { PiExam, PiStudent } from "react-icons/pi"
-import { GiTeacher } from "react-icons/gi";
-import { SiBookstack } from "react-icons/si";
-import { FaSearch } from "react-icons/fa";
+import { PiExam } from "react-icons/pi"
 import { MdAnnouncement, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
 import NavBar from '../components/DashboardComponent/NavBar';
-const TeacherDashboardLayout = ({userData}) => {
+const TeacherDashboardLayout = (user) => {
+    const [userData, setUserData] = useState(user.user);
+
     const navigate = useNavigate();
     const handleLogout = async () => {
         await axios.post("http://localhost:8080/api/logout", null, {
@@ -22,36 +20,35 @@ const TeacherDashboardLayout = ({userData}) => {
         <div className='parent'>
             <aside>
                 <ul>
-                    <li><h1>
-                        Teacher Dashboard</h1></li>
-                    <Link className='link' to={"/admin"}>
+                    <li><h1 className='headdd'>Teacher Dashboard</h1></li>
+                    <Link className='link' to={"/teacher"}>
 
-                        <li><MdDashboard />Dashboard </li>
+                        <li className='li'><MdDashboard />Dashboard </li>
                     </Link>
                     <Link className='link' to={"exam"}>
-                        <li><PiExam /> Exam</li>
+                        <li className='li'><PiExam /> Exam</li>
 
                     </Link>
                     <Link className='link' to={"class"}>
-                        <li><MdFlightClass /> Class</li>
+                        <li className='li'><MdFlightClass /> Class</li>
 
                     </Link>
                     <Link className='link' to={"notice"}>
-                        <li><MdAnnouncement /> Notice</li>
+                        <li className='li'><MdAnnouncement /> Notice</li>
 
                     </Link>
                     <Link className='link' to={"complains"}>
-                        <li><MdReportProblem /> Complains</li>
+                        <li className='li'><MdReportProblem /> Complains</li>
 
                     </Link>
                 </ul>
                 <button className='dashboardButton' onClick={handleLogout}><MdLogout /> Logout</button>
             </aside>
             <div className='content'>
-            <NavBar userData={userData} />
+                <NavBar userData={userData} />
                 <div className='outlet'>
 
-                <Outlet />
+                    <Outlet />
                 </div>
             </div>
         </div>

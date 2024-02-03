@@ -40,8 +40,8 @@ const ClassPage = () => {
                 return <tr key={_class.class_id}>
                   <td>{_class.class_name}</td>
                   <td>{_class.class}</td>
-                  <td><button><FaEdit size={20} color="green" /></button></td>
-                  <td><button onClick={(e)=> handleDelete(_class.class_id)}><MdDelete  size={20} color="red" /></button></td>
+                  <td className='action'><button><FaEdit size={20} color="green" /></button></td>
+                  <td className='action'><button onClick={(e)=> handleDelete(_class.class_id)}><MdDelete  size={20} color="red" /></button></td>
                 </tr>
               })
             }
