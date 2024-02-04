@@ -49,7 +49,7 @@ const TeacherPage = () => {
                 <td>{teacher.fname}</td>
                 <td>{teacher.mname}</td>
                 <td>{teacher.lname}</td>
-                <td>{teacher.subject}</td>
+                <td>{teacher.subject_name}</td>
                 <td className='action'><button><FaEdit size={20} color="green" /></button></td>
                 <td className='action'><button onClick={(e) => handleDelete(teacher.user_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>

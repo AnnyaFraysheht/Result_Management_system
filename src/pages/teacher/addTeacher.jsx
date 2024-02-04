@@ -3,9 +3,10 @@ import "./teacher.css"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import { getSubjects } from '../../services/fetchFunction';
 const AddTeacher = () => {
     const navigate = useNavigate();
-    // const [subjects, setSubjects] = useState()
+    const [subjects, setSubjects] = useState()
     const [validationError, setValidationError] = useState({
         email: '',
         primaryContact: '',
@@ -22,7 +23,7 @@ const AddTeacher = () => {
         secondaryContact: '',
         temp_address: '',
         perm_address: '',
-        subject : '',
+        subject_id : '',
         role: 'teacher'
 
     });
@@ -63,14 +64,14 @@ const AddTeacher = () => {
             })
         }
     }
-    // const getSubjects = async () => {
-    //     const subjectData = await getClass();
-    //     setSubjects(subjectData)
-    // }
+    const getSubjectData = async () => {
+        const data = await getSubjects();
+        setSubjects(data)
+    }
     
-    // useEffect(() => {
-    //     getSubjects();
-    // }, [])
+    useEffect(() => {
+        getSubjectData();
+    }, [])
 
     return (
         <div>
@@ -106,14 +107,14 @@ const AddTeacher = () => {
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact One</label>
-                    <input required onChange={handleChange} type="text" name="primaryContact" placeholder='Enter primary contact' />
+                    <input required onChange={handleChange} type="number" name="primaryContact" placeholder='Enter primary contact' />
                     {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact Two</label>
-                    <input required onChange={handleChange} type="text" name="secondaryContact" placeholder='Enter secondary contact' />
+                    <input required onChange={handleChange} type="number" name="secondaryContact" placeholder='Enter secondary contact' />
                     {validationError.secondaryContact && (<span>{validationError.secondaryContact}</span>)}
 
                 </div>
@@ -132,13 +133,15 @@ const AddTeacher = () => {
                 <div className='input-container'>
 
                     <label htmlFor="subject">Subjects</label>
-                    <select required className='selectBox' onChange={handleChange} name="subject" id="">
+                    <select required className='selectBox' onChange={handleChange} name="subject_id" id="">
                         <option value="">Select subject</option>
-                        <option value="operating system">Operating System</option>
-                        <option value="scripting language">scripting language</option>
-                        <option value="nm">nm</option>
-                        <option value="dbms">dbms</option>
-                        <option value="se">se</option>
+                        {
+                            subjects?.map((subject)=>{
+                                    return <option key={subject.subject_id} value={subject.subject_id}>{subject.subject_name}</option>
+                            })
+                        }
+                        
+                        
                     </select>
                 </div>
                 <button className='btn'>Submit</button>

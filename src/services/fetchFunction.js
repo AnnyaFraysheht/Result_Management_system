@@ -27,6 +27,18 @@ export const getClass = async () => {
         console.log(error)
     }
 }
+export const getExams = async () => {
+
+    try {
+        const response = await axios.get("http://localhost:8080/api/exam", {
+            withCredentials: true,
+        })
+        // console.log(response.data.data)
+        return response.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+}
 export const getSubjects = async () => {
 
     try {
@@ -109,6 +121,15 @@ export const deleteClass = async (id) =>{
 export const deleteSection = async (id) =>{
     try {
         await axios.delete(`http://localhost:8080/api/section/${id}`,{
+            withCredentials: true,
+          });
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const deleteExams = async (id) =>{
+    try {
+        await axios.delete(`http://localhost:8080/api/exam/${id}`,{
             withCredentials: true,
           });
     } catch (error) {

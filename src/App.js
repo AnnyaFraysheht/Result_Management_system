@@ -23,6 +23,8 @@ import SectionPage from "./pages/section/sectionPage";
 import AddSection from "./pages/section/addSection";
 import SubjectPage from "./pages/subject/subjectPage";
 import AddSubject from "./pages/subject/addSubject";
+import ExamPage from "./pages/exam/examPage";
+import AddExam from "./pages/exam/addExam";
 
 function App() {
     return (
@@ -43,6 +45,8 @@ function App() {
           <Route path="notice/add" element={<AddNotice />} />
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
+          <Route path="exam" element={<ExamPage />} />
+          <Route path="exam/add" element={<AddExam />} />
           <Route path="subject" element={<SubjectPage />} />
           <Route path="subject/add" element={<AddSubject />} />
           <Route path="section" element={<SectionPage />} />
