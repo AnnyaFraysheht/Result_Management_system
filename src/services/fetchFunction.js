@@ -27,6 +27,30 @@ export const getClass = async () => {
         console.log(error)
     }
 }
+export const getSubjects = async () => {
+
+    try {
+        const response = await axios.get("http://localhost:8080/api/subject", {
+            withCredentials: true,
+        })
+        // console.log(response.data.data)
+        return response.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getSubjectsByClassId = async (class_id) => {
+
+    try {
+        const response = await axios.get(`http://localhost:8080/api/subject/${class_id}`, {
+            withCredentials: true,
+        })
+        // console.log(response.data.data)
+        return response.data.data;
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const getStudents = async () =>{
     try {
@@ -85,6 +109,15 @@ export const deleteClass = async (id) =>{
 export const deleteSection = async (id) =>{
     try {
         await axios.delete(`http://localhost:8080/api/section/${id}`,{
+            withCredentials: true,
+          });
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const deleteSubject = async (id) =>{
+    try {
+        await axios.delete(`http://localhost:8080/api/subject/${id}`,{
             withCredentials: true,
           });
     } catch (error) {

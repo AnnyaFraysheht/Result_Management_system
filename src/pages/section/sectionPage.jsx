@@ -4,22 +4,15 @@ import {  deleteSection, getClass, getSectionByClass } from '../../services/fetc
 import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
+import ClassInput from '../../components/ClassInput';
 const SectionPage = () => {
-  const [classes, setClasses] = useState([]);
   const [sections, setSections] = useState([]);
   const [choosedSection, setChoosedSection] = useState();
-  const getData = async () => {
-    const data = await getClass();
-    // console.log(data)
-    setClasses(data)
-  }
-  useEffect(() => {
-    getData();
-  }, [])
+
 
   const handleDelete = useCallback(async (id) => {
     try {
-      deleteSection(id)
+      await deleteSection(id)
       getSection();
     } catch (error) {
       console.log(error)
@@ -46,14 +39,8 @@ const SectionPage = () => {
       <h2>Section</h2>
       <button className="add"><Link className="link" to={"add"}>Create Section</Link> </button>
       <br /><label htmlFor="classSelect">Class</label>
-      <select onChange={handleChange} name="class" id="classSelect">
-        <option value="">Select Class</option>
-        {
-          classes?.map((_class) => {
-            return <option key={_class.class_id} value={_class.class_id}>{_class.class_name}</option>
-          })
-        }
-      </select>
+      
+      <ClassInput handleChange={handleChange} />
       <table border={"2px"}>
         <thead>
           <tr>

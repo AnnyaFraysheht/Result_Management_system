@@ -15,7 +15,7 @@ const ClassPage = () => {
     }, [])
     const handleDelete = useCallback( async (id) => {
       try {
-       deleteClass(id)
+       await deleteClass(id)
         getData();
       } catch (error) {
         console.log(error)

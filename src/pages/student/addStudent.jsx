@@ -202,7 +202,7 @@ const AddStudent = () => {
                         <option value="japanese">Japanese</option>
                     </select>
                 </div>
-                <button>Submit</button>
+                <button className='btn'>Submit</button>
             </form>
         </div>
     )

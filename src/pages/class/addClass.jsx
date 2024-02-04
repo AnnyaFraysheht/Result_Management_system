@@ -36,7 +36,7 @@ const AddClass = () => {
     }
     return (
         <div>
-            <h1><Link className='link' to={"/admin/teachers"}> <IoMdArrowRoundBack /></Link></h1>
+            <h1><Link className='link' to={"/admin/class"}> <IoMdArrowRoundBack /></Link></h1>
             <form onSubmit={handleSubmit} className='student_form' action="">
                 <div className='input-container'>
 
@@ -48,7 +48,7 @@ const AddClass = () => {
                     <label htmlFor="_class">Class</label>
                     <input onChange={handleChange} type="text" name="_class" placeholder='Enter class' />
                 </div>
-                <button>Submit</button>
+                <button className='btn'>Submit</button>
             </form>
         </div>
     )

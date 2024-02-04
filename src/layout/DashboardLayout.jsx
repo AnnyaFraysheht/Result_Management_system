@@ -7,13 +7,13 @@ import { SiBookstack } from "react-icons/si";
 import { MdAnnouncement,Md6FtApart, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
 import NavBar from '../components/DashboardComponent/NavBar';
-const DashboardLayout = (user) => {
-    const [userData, setUserData] = useState(user.user);
+const DashboardLayout = () => {
     const navigate = useNavigate();
     const handleLogout = async () => {
         await axios.post("http://localhost:8080/api/logout", null, {
             withCredentials: true,
         })
+        localStorage.clear();
         navigate("/login");
         // console.log(resp);
     }
@@ -59,10 +59,10 @@ const DashboardLayout = (user) => {
 
                     </Link>
                 </ul>
-                <button className='dashboardButton' onClick={handleLogout}><MdLogout /> Logout</button>
+                <button className='btn dashboardButton' onClick={handleLogout}><MdLogout /> Logout</button>
             </aside>
             <div className='content'>
-                <NavBar userData={userData} />
+                <NavBar  />
                 <div className='outlet'>
 
                     <Outlet />

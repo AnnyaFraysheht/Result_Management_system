@@ -37,7 +37,7 @@ const StudentComplain = () => {
     <form onSubmit={handleSubmit} action="">
       <label htmlFor="complain" ><h1>Message</h1></label>
       <textarea onChange={handleChange} name="complain" id="complain" cols="30" rows="10"></textarea>
-      <input type="submit" value={"Submit"} />
+      <input className='btn' type="submit" value={"Submit"} />
     </form>
     <h1>My Complains</h1>
       <table>

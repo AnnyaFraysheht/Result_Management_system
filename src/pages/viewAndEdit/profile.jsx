@@ -41,6 +41,7 @@ const Profile = () => {
   const fetchUserData = async () => {
     const user = await getMyDetails();
     // console.log("user",user);
+    localStorage.setItem("image",user.image)
     setUserData(user);
   }
   const handleChange = (e) => {
@@ -167,7 +168,7 @@ const Profile = () => {
         </div>
 
       </div>
-      <button onClick={() => setChangePasswordFlag(true)} className='change-password'>Change Password</button>
+      <button  onClick={() => setChangePasswordFlag(true)} className='change-password btn'>Change Password</button>
 
     </>
   )

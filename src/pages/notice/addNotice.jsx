@@ -59,7 +59,7 @@ const AddNotice = () => {
                     <textarea onChange={handleChange} name="notice_text" id="message" cols="30" rows="10"></textarea>
 
                 </div>
-                <button >Submit</button>
+                <button className='btn'>Submit</button>
             </form>
         </>
     )

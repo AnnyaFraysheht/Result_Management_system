@@ -76,7 +76,7 @@ const AddSection = () => {
                     <label htmlFor="sch">Section Schedule</label>
                     <input onChange={handleChange} type="text" name='schedule' id="sch" placeholder='Enter class' />
                 </div>
-                <button>Submit</button>
+                <button className='btn'>Submit</button>
             </form>
         </div>
     )

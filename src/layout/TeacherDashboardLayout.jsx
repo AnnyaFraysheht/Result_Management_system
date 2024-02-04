@@ -5,14 +5,14 @@ import { PiExam } from "react-icons/pi"
 import { MdAnnouncement, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
 import NavBar from '../components/DashboardComponent/NavBar';
-const TeacherDashboardLayout = (user) => {
-    const [userData, setUserData] = useState(user.user);
+const TeacherDashboardLayout = () => {
 
     const navigate = useNavigate();
     const handleLogout = async () => {
         await axios.post("http://localhost:8080/api/logout", null, {
             withCredentials: true,
         })
+        localStorage.clear();
         navigate("/login");
         // console.log(resp);
     }
@@ -42,10 +42,10 @@ const TeacherDashboardLayout = (user) => {
 
                     </Link>
                 </ul>
-                <button className='dashboardButton' onClick={handleLogout}><MdLogout /> Logout</button>
+                <button className='dashboardButton btn' onClick={handleLogout}><MdLogout /> Logout</button>
             </aside>
             <div className='content'>
-                <NavBar userData={userData} />
+                <NavBar  />
                 <div className='outlet'>
 
                     <Outlet />

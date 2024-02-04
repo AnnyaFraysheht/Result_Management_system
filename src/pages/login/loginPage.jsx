@@ -5,13 +5,14 @@ import {  useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OpenNotice from "../../components/OpenNotice/OpenNotice";
-const LoginPage = ({onLogin}) => {
+const LoginPage = () => {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [values, setValues] = useState({
         email: '',
         password: ''
     })
+    const [loggedIn,setLoggedIn] = useState(false)
     const navigate = useNavigate();
     const handleInput = (event) => {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
@@ -29,11 +30,14 @@ const LoginPage = ({onLogin}) => {
             })
             if (response.status === 200) {
                 const data = response.data;
+                setLoggedIn(true);
                 // console.log(data.data[0].role);
                 const userRole = data.data[0].role;
                 // setIsAuthenticated(true);
                 // setRole(userRole)
-                onLogin(data.data[0])
+                localStorage.setItem("name",data.data[0].fname);
+                localStorage.setItem("image",data.data[0].image)
+
                 navigate(`/${userRole}`)
                 // window.location.href = `/${data.data[0].role}`;
             } else {
@@ -72,7 +76,7 @@ const LoginPage = ({onLogin}) => {
     }, [])
     return (
         <>
-            <div className="container">
+            <div className={`container ${loggedIn ? 'slide-up' : ''}`}>
                 <div className="logo">
                     <h1>Result Management System</h1>
                     <img src={image} alt="someimage" />

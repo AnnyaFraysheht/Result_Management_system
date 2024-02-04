@@ -5,7 +5,11 @@ body{
     height: 70vh;
     display: flex;
     align-items: center;
-    border-bottom: 1px dotted brown;
+    border-bottom: 1px dotted #a52a2a;
+    transition:  transform .5s ease-in-out;
+}
+.slide-up{
+    transform: translatY(-150%);
 }
 .logo{
     width: 60%;

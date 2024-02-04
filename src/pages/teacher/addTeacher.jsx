@@ -141,7 +141,7 @@ const AddTeacher = () => {
                         <option value="se">se</option>
                     </select>
                 </div>
-                <button>Submit</button>
+                <button className='btn'>Submit</button>
             </form>
         </div>
     )

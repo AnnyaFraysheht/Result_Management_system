@@ -21,20 +21,18 @@ import Profile from "./pages/viewAndEdit/profile";
 import StudentNotice from "./pages/notice/student/student.notice";
 import SectionPage from "./pages/section/sectionPage";
 import AddSection from "./pages/section/addSection";
+import SubjectPage from "./pages/subject/subjectPage";
+import AddSubject from "./pages/subject/addSubject";
 
 function App() {
-  const [userData, setUserData] = useState();
-  const handleLoginData = (user) =>{
-    setUserData(user)
-  }
-  return (
+    return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage onLogin={handleLoginData} />} />
+        <Route path="/login" element={<LoginPage />} />
 
         <Route
           path="/admin/*"
-          element={<ProtectedRoute Component={<DashboardLayout user={userData} />} permittedRole='admin'/>}
+          element={<ProtectedRoute Component={<DashboardLayout />} permittedRole='admin'/>}
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
@@ -45,6 +43,8 @@ function App() {
           <Route path="notice/add" element={<AddNotice />} />
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
+          <Route path="subject" element={<SubjectPage />} />
+          <Route path="subject/add" element={<AddSubject />} />
           <Route path="section" element={<SectionPage />} />
           <Route path="section/add" element={<AddSection />} />
           <Route path="complains" element={<AdminComplain />} />
@@ -52,7 +52,7 @@ function App() {
         </Route>
         <Route
           path="/student/*"
-          element={<ProtectedRoute Component={<StudentDashboardLayout user={userData} />} permittedRole="student" />}
+          element={<ProtectedRoute Component={<StudentDashboardLayout  />} permittedRole="student" />}
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
@@ -63,7 +63,7 @@ function App() {
         </Route>
         <Route
           path="/teacher/*"
-          element={<ProtectedRoute Component={<TeacherDashboardLayout user={userData} />} permittedRole="teacher" />}
+          element={<ProtectedRoute Component={<TeacherDashboardLayout  />} permittedRole="teacher" />}
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
