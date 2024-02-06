@@ -7,9 +7,6 @@ table{
 thead{
     background-color: rgb(176, 176, 165);
 }
-thead,tbody, tr,th, td{
-    border: 2px solid black;
-}
 h2{
     padding: 10px 0;
 }

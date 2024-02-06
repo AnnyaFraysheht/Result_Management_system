@@ -1,49 +1,38 @@
-body{
-    background-color: rgb(127, 239, 239);
-}
+
 .container{
-    height: 70vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     border-bottom: 1px dotted #a52a2a;
+    background-image: url("../../assets/e044ba95d0951b17bca5fb9b0b3f4e8b.jpg");
+    background-repeat: no-repeat;
+    background-position: 15% bottom;
+    background-size: cover;
     transition:  transform .5s ease-in-out;
 }
-.slide-up{
-    transform: translatY(-150%);
-}
-.logo{
-    width: 60%;
-    height: 80%;
-    /* background-color: blue; */
-    display: grid;
-    place-content: center;
-    text-align: center;
-}
-.logo > h1{
-    color: green;
-    
-}
-.logo > img{
-    width: 90%;
-    height: 90%;
-    margin: auto;
-    /* object-fit: c; */
-    /* background-color: red; */
+.scroll{
+    position: absolute;
+    bottom: 0;
 }
 .form{
-    border-left: 2px solid black;
-    width: 40%;
-    height: 80%;
-    /* background-color: red; */
-    display: grid;
+    width: 80%;
+    height: 55%;
+    border-radius: 15px;
+    background-color: rgba(146, 141, 141, 0.46);
+    backdrop-filter: blur(10px);
+    margin: auto;
     place-content: center;
 }
-h3{
+h1{
     text-align: center;
-    padding: 4px;
-
+    padding: 15px;
+    color: rgb(37, 53, 40);
+    
 }
 form{
+    /* background-color: red; */
+    margin: 30px 0;
+    padding: 15px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,11 +44,16 @@ label{
     font-weight: 500;
 }
 input{
-    padding: 6px;
+    padding: 10px;
     margin: 2px;
     font-size: 18px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: none;
+    width: 100%;
+    outline: none;
+    
+    box-shadow: 2px 2px 5px rgba(55, 55, 55, 0.514);
+
     
 }
 form > div{
@@ -78,9 +72,46 @@ form > button{
 .reset{
     color: rgb(27, 27, 76);
     padding-top: 10px;
+    text-align: center;
 }
 
 .loginBtn{
-    color: black;
+    color: rgb(11, 60, 11);
+    padding: 8px 15px;
+
+    box-shadow: 2px 2px 5px rgba(48, 48, 48, 0.48);
 }
 /* notice section  */
+
+@media screen and (min-width: 600px ) and (max-width: 767px) {
+    /* tablets */
+    .container{
+        background-position: left bottom;
+    }
+}
+@media  screen and (min-width: 768px) and (max-width: 1023px ) {
+    /* laptops and big device */
+    .form{
+        width: 70%;
+        height: 55%;
+    }
+    h1{
+        font-size: 50px;
+    }
+}
+@media  screen and (min-width: 1024px) {
+    /* desktopa */
+    h1{
+        color: rgb(95, 160, 21);
+    }
+    .form{
+        width: 30%;
+
+        backdrop-filter: none;
+        background-color:transparent;
+        float: right;
+        position: relative;
+        left: 30%;
+    }
+
+}

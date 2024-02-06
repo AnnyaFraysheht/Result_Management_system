@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
 import LoginPage from "./pages/login/loginPage";
 import Dashboard from "./pages/dashboard/dashboard";
 import DashboardLayout from "./layout/DashboardLayout";
@@ -16,7 +15,6 @@ import StudentDashboardLayout from "./layout/StudentDashboardLayout";
 import TeacherDashboardLayout from "./layout/TeacherDashboardLayout";
 import StudentComplain from "./pages/complain/StudentComplain";
 import AdminComplain from "./pages/complain/AdminComplain";
-import { useState } from "react";
 import Profile from "./pages/viewAndEdit/profile";
 import StudentNotice from "./pages/notice/student/student.notice";
 import SectionPage from "./pages/section/sectionPage";
@@ -71,6 +69,8 @@ function App() {
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
+          <Route path="notice" element={<NoticePage />} />
+          <Route path="notice/add" element={<AddNotice />} />
           <Route path="teachers" element={<TeacherPage />} />
           <Route path="profile" element={<Profile />} />
         </Route>

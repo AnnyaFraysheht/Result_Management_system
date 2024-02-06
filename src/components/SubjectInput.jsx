@@ -14,7 +14,7 @@ const SubjectInput = ({ handleChange }) => {
     return (
         <select className='selectBox' name="subject_id" id="class" onChange={handleChange}>
 
-            <option value={''}>Choose Class</option>
+            <option value={''}>Choose Subject</option>
             {
                 subjects?.map((subject) => {
                     return <option key={subject.subject_id} value={subject.subject_id}>{subject.subject_name}</option>

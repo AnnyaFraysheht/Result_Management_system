@@ -41,7 +41,7 @@ const SectionPage = () => {
       <br /><label htmlFor="classSelect">Class</label>
       
       <ClassInput handleChange={handleChange} />
-      <table border={"2px"}>
+      <table>
         <thead>
           <tr>
             <th>Section</th>

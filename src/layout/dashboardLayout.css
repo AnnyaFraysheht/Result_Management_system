@@ -2,9 +2,11 @@
     display: flex;
 }
 aside{
-    height: 100vh;;
-    background-color: rgb(154, 212, 206);
-    width: 25%;
+    height: 95vh;;
+    background-color: #87d3a8;
+    width: 20%;
+    border-radius: 25px;
+    margin: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -17,24 +19,29 @@ ul{
 .link{
     text-decoration: none;
 }
-.li{
-    padding: 15px 25px;
+.link > .li{
+    padding: 15px 50px;
     width: 100%;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     cursor: pointer;
     color: black;
 
+
 }
-aside > ul> li:hover, .dashboardButton:hover{
-    background-color: rgb(103, 180, 122);
+.link > li:hover, .dashboardButton:hover{
+    background-color: #449969;
+}
+.active > .li{
+    background-color: #449969;
 }
 .dashboardButton{
     width: 100%;
     /* background: red; */
-    padding: 15px 25px;
+    padding: 15px 50px;
+    font-weight: 600;
     margin-bottom: 35px;
-    font-size: 18px;
+    font-size: 20px;
     font-family: 600;
     background: none;
     border: none;
@@ -51,7 +58,6 @@ aside > ul> li:hover, .dashboardButton:hover{
 }
 nav{
     height: 10vh;
-    background-color: rgb(152, 220, 213);
     display: flex;
     width: 75%;
     position: fixed;
@@ -61,13 +67,12 @@ nav{
     padding: 0 25px;
 }
 .headdd{
-    font-size: 30px;
-    padding: 10px;
-    margin: 10px 25px;
+    font-size: 25px;
 }
 nav > ul{
     display: flex;
     align-items: center;
+    font-size: 24px;
     justify-content: space-between;
     width: 100%;
 }
@@ -77,6 +82,7 @@ nav > ul{
     width: 50px;
     object-fit: cover;
     border-radius: 50%;
+    border: 2px solid rgba(99, 99, 99, 0.487);
 }
 
 .outlet{
@@ -84,4 +90,32 @@ nav > ul{
     padding: 10px;
     border: none;
     min-height: 90vh;
+    background-color: #bfd0c7;
+}
+
+.icons{
+    margin-right: 15px;
+}
+
+
+
+.sidemenu{
+    display: none;
+}
+
+@media screen and (min-width: 600px ) and (max-width: 767px) {
+    /* tablets */
+}
+@media  screen and (min-width: 768px) and (max-width: 1023px ) {
+    /* laptops and big device */
+    .sidemenu{
+        display:inline;
+    }
+
+}
+@media  screen and (min-width: 1024px) {
+    /* desktopa */
+    .sidemenu{
+        display:inline;
+    }
 }

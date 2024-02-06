@@ -1,10 +1,11 @@
 import "./loginPage.css"
 
 import image from "../../assets/sms image.png"
-import {  useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OpenNotice from "../../components/OpenNotice/OpenNotice";
+import ScrollingNotice from "../../components/OpenNotice/ScrollingNotice/ScrollingNotice";
 const LoginPage = () => {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
@@ -12,7 +13,7 @@ const LoginPage = () => {
         email: '',
         password: ''
     })
-    const [loggedIn,setLoggedIn] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
     const navigate = useNavigate();
     const handleInput = (event) => {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
@@ -35,8 +36,8 @@ const LoginPage = () => {
                 const userRole = data.data[0].role;
                 // setIsAuthenticated(true);
                 // setRole(userRole)
-                localStorage.setItem("name",data.data[0].fname);
-                localStorage.setItem("image",data.data[0].image)
+                localStorage.setItem("name", data.data[0].fname);
+                localStorage.setItem("image", data.data[0].image)
 
                 navigate(`/${userRole}`)
                 // window.location.href = `/${data.data[0].role}`;
@@ -71,18 +72,15 @@ const LoginPage = () => {
             }
         };
         checkAuthStatus();
-        
+
         // eslint-disable-next-line
     }, [])
     return (
         <>
             <div className={`container ${loggedIn ? 'slide-up' : ''}`}>
-                <div className="logo">
-                    <h1>Result Management System</h1>
-                    <img src={image} alt="someimage" />
-                </div>
+
                 <div className="form">
-                    <h3>LOGIN</h3>
+                    <h1>User Login</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="input-container">
 
@@ -100,8 +98,11 @@ const LoginPage = () => {
                     </form>
                     <p className="reset"><i>Contact College Admin to reset password</i> </p>
                 </div>
+                {/* <span className="scroll">
+
+                    <ScrollingNotice />
+                </span> */}
             </div>
-            <OpenNotice />
         </>
     )
 }

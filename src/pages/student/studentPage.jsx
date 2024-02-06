@@ -14,8 +14,8 @@ const StudentPage = () => {
   useEffect(() => {
     getData();
   }, [])
-  const handleDelete = useCallback( async (id) => {
-    if(window.confirm("Are you sure to Delete?")){
+  const handleDelete = useCallback(async (id) => {
+    if (window.confirm("Are you sure to Delete?")) {
       try {
         await deleteUser(id);
         getData();
@@ -26,9 +26,9 @@ const StudentPage = () => {
   }, []);
   return (
     <>
-      <h2>Students</h2>
-      <button className="add"><Link className="link" to={"add"}>Add Student</Link> </button>
-      <table border={"2px"}>
+      <h2 className="headings">Students</h2>
+      <button className="add"><Link className="link add" to={"add"}>Add Student</Link> </button>
+      <table>
         <thead>
           <tr>
             <td></td>
@@ -43,16 +43,16 @@ const StudentPage = () => {
         </thead>
         <tbody>
           {
-            students?.map((student) => {
-              return <tr key={student.student_id}>
-                <td><img src={student.image ? `http://localhost:8080/api/images/${student.image}` : oiep} height={30} width={30} alt="profile" /></td>
+            students?.map((student, index) => {
+              return <tr className={index % 2 == 0 ? "even" : "odd"} key={student.student_id}>
+                <td><img src={student.image ? `http://localhost:8080/api/images/${student.image}` : oiep} height={50} width={50} alt="profile" /></td>
                 <td>{student.fname}</td>
                 <td>{student.mname}</td>
                 <td>{student.lname}</td>
                 <td>{student.class_name}</td>
                 <td>{student.section_name}</td>
                 <td className="action"><button><FaEdit size={20} color="green" /></button></td>
-                <td className="action"><button onClick={(e)=> handleDelete(student.user_id)}><MdDelete  size={20} color="red" /></button></td>
+                <td className="action"><button onClick={(e) => handleDelete(student.user_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>
             })
           }

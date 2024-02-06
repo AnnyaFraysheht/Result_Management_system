@@ -31,7 +31,7 @@ const ExamPage = () => {
             <h2>Exams</h2>
             <button className="add"><Link className="link" to={"add"}>Create Exam</Link> </button>
 
-            <table border={"2px"}>
+            <table>
                 <thead>
                     <tr>
                         <th>Exam Name</th>
@@ -44,8 +44,8 @@ const ExamPage = () => {
                 </thead>
                 <tbody>
                     {
-                        exams?.map((exam) => {
-                            return <tr key={exam.exam_id}>
+                        exams?.map((exam, index) => {
+                            return <tr key={exam.exam_id} className={index % 2 == 0 ? "even" : "odd"}>
                                 <td>{exam.exam_name}</td>
                                 <td>{exam.class_name}</td>
                                 <td>{exam.subject_name}</td>

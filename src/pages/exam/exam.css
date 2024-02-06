@@ -1,0 +1,31 @@
+table{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+thead{
+    background-color: rgb(176, 176, 165);
+    padding: 5px;
+    
+}
+.odd{
+    background-color: rgb(140, 226, 142);
+}
+.even{
+    background-color: rgb(104, 200, 195);
+}
+th{
+    padding: 15px;
+    font-size: 19px;
+}
+h2{
+    padding: 10px 0;
+}
+td{
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+}
+.headings{
+    font-size: 40px;
+}

@@ -36,7 +36,7 @@ const NoticePage = () => {
         <>
             <h2>Notices</h2>
             <button className="add"><Link className='link' to={"add"}>Add Notices</Link></button>
-            <table border={"2px"}>
+            <table >
                 <thead>
                     <tr>
                         <th>For</th>

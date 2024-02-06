@@ -25,7 +25,7 @@ const ClassPage = () => {
       <>
         <h2>Class</h2>
         <button className="add"><Link className="link" to={"add"}>Create Class</Link> </button>
-        <table border={"2px"}>
+        <table >
           <thead>
             <tr>
               <th>Class Name</th>

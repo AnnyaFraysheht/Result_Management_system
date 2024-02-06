@@ -1,0 +1,23 @@
+.marquee{
+    width: 100%;
+    /* background-color: green; */
+    display: flex;
+    text-align: center;
+}
+
+.scrolling-container{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    /* background-color: red; */
+    background-color: rgba(136, 135, 135, 0.208);
+    backdrop-filter: blue(10px);
+    height: 5vh;
+    align-items: center;
+}
+
+.notices{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0 50px;
+}
