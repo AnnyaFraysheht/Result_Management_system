@@ -29,6 +29,9 @@ td{
     text-align: left;
     padding: 5px;
 }
+tbody tr:hover {
+    background-color: rgb(136, 179, 180);
+}
 .headings{
     font-size: 40px;
 }
