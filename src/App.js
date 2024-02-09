@@ -34,7 +34,7 @@ function App() {
           path="/admin/*"
           element={<ProtectedRoute Component={<DashboardLayout />} permittedRole='admin'/>}
         >
-          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="students/add" element={<AddStudent />} />
           <Route path="teachers" element={<TeacherPage />} />

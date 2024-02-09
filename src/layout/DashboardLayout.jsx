@@ -26,12 +26,12 @@ const DashboardLayout = () => {
         <div className='parent'>
             <aside>
                 <ul>
-                    <li className='headdd'><h1 >RMS</h1></li>
-                    <NavLink className={`link`} to={"/admin"}>
+                    <li className='headdd'>RMS</li>
+                    <NavLink className={`link`} exact to={"dashboard"}>
 
                         <li className='li '><MdDashboard className='icons' /><span className="sidemenu">Dashboard</span> </li>
                     </NavLink>
-                    <NavLink className={`link `} to={"students"}>
+                    <NavLink className={`link `} exact to={"students"}>
 
                         <li className='li'><PiStudent className='icons' /> <span className="sidemenu">Student</span></li>
                     </NavLink>
@@ -64,7 +64,7 @@ const DashboardLayout = () => {
 
                     </NavLink>
                 </ul>
-                <button className='btn dashboardButton' onClick={handleLogout}><MdLogout className='icons' /> Logout</button>
+                <button className='btn dashboardButton' onClick={handleLogout}><MdLogout className='icons' /> <span className="sidemenu">Logout</span></button>
             </aside>
             <div className='content'>
                 <NavBar />

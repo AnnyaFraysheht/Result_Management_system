@@ -22,7 +22,7 @@ const Dashboard = () => {
             <div className="countContainer">
                 {
                     roleCount?.map((role)=>{
-                        return <div className="studentCount">
+                        return <div className="count">
                         <h3>No of {role.role}</h3>
                         <h1>{role.no_of_user}</h1>
                     </div>

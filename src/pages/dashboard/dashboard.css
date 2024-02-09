@@ -1,16 +1,35 @@
 .countContainer{
-    display: flex;
+    /* display: flex; */
     gap: 10px;
     width: 100%;
     margin: 10px;
     justify-content: center;
 }
 .countContainer > div{
-    background-color: aquamarine;
+    background-color: #87d3a8;
      text-align: center;
+     margin: auto;
+     margin-bottom: 15px;
      padding: 20px;
+     width: 30%;
+     height: 150px;
      border-radius: 10px;
+     box-shadow: 4px 4px 8px rgba(106, 104, 104, 0.291);
 }
 .countContainer > div > h3{
     color: rgb(58, 56, 56);
+    font-size: 28px;
+}
+.count > h1{
+    color: rgb(36, 67, 46);
+    font-size: 44px;
+}
+
+@media screen and (min-width:600px) {
+    .countContainer{
+        display: flex;
+    }
+    .countContainer > div{
+        margin: 0;
+    }
 }

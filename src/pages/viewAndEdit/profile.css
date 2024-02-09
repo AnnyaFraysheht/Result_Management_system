@@ -2,8 +2,11 @@
     width: 100%;
     height: 30vh;
     position: relative;
+    margin: auto;
 }
-
+.profileparent{
+    position: relative;
+}
 .profile_picture{
     width: 200px;
     height: 200px;
@@ -25,7 +28,7 @@
     /* background-color: red; */
     cursor: pointer;
     top: 75%;
-    left: 55%;
+    left: 54%;
     z-index: 4;
 
 }
@@ -38,10 +41,15 @@
 }
 .general_info{
     text-align: center;
+    width: 100%;
+}
+.general_info > div{
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .details-container{
-    width: 80%;
+    width: 60%;
     margin: 10px auto;
     display: flex;
     justify-content: space-between;
@@ -57,11 +65,10 @@
     width: 60%;
     text-align: left;
 }
-
 .change_profile,.change_password{
     position: absolute;
     top: 50%;
-    left: 60%;
+    left: 50%;
     transform: translate(-50%,-50%);
     background-color: rgba(157, 157, 199, 0.418);
     padding: 10px;
@@ -119,7 +126,8 @@
     border-radius: 5px;
     color: white;
     position: absolute;
-    left: 52%;
+    left: 50%;
+    transform: translateX(-50%);
     margin: 15px;
     cursor: pointer;
 }

@@ -73,7 +73,7 @@ const Profile = () => {
     fetchUserData();
   },[])
   return (
-    <>
+    <div className='profileparent'>
       {
         flag ? <div className={`change_profile ${flag ? "show" : ''}`}>
           <input onChange={handleChange} className='change_pic' type="file" name="image" id="change_picture" />
@@ -170,7 +170,7 @@ const Profile = () => {
       </div>
       <button  onClick={() => setChangePasswordFlag(true)} className='change-password btn'>Change Password</button>
 
-    </>
+    </div>
   )
 }
 
