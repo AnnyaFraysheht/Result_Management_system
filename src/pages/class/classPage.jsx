@@ -36,8 +36,8 @@ const ClassPage = () => {
           </thead>
           <tbody>
             {
-              classes?.map((_class) => {
-                return <tr key={_class.class_id}>
+              classes?.map((_class,index) => {
+                return <tr key={_class.class_id} className={index % 2 == 0 ? "even" : "odd"}>
                   <td>{_class.class_name}</td>
                   <td>{_class.class}</td>
                   <td className='action'><button><FaEdit size={20} color="green" /></button></td>

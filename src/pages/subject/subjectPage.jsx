@@ -41,8 +41,8 @@ const SubjectPage = () => {
                 </thead>
                 <tbody>
                     {
-                        subjects?.map((subject) => {
-                            return <tr key={subject.subject_id}>
+                        subjects?.map((subject, index) => {
+                            return <tr key={subject.subject_id} className={index % 2 == 0 ? "even" : "odd"}>
                                 <td>{subject.subject_name}</td>
                                 <td>{subject.subject_code}</td>
                                 <td>{subject.class_name}</td>

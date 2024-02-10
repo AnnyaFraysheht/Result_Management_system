@@ -1,4 +1,11 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  redirect,
+} from "react-router-dom";
 import LoginPage from "./pages/login/loginPage";
 import Dashboard from "./pages/dashboard/dashboard";
 import DashboardLayout from "./layout/DashboardLayout";
@@ -23,16 +30,23 @@ import SubjectPage from "./pages/subject/subjectPage";
 import AddSubject from "./pages/subject/addSubject";
 import ExamPage from "./pages/exam/examPage";
 import AddExam from "./pages/exam/addExam";
+import MarkPage from "./pages/mark/markPage";
+import AddMark from "./pages/mark/addMark";
 
 function App() {
-    return (
+  return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
 
         <Route
           path="/admin/*"
-          element={<ProtectedRoute Component={<DashboardLayout />} permittedRole='admin'/>}
+          element={
+            <ProtectedRoute
+              Component={<DashboardLayout />}
+              permittedRole="admin"
+            />
+          }
         >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
@@ -47,6 +61,8 @@ function App() {
           <Route path="exam/add" element={<AddExam />} />
           <Route path="subject" element={<SubjectPage />} />
           <Route path="subject/add" element={<AddSubject />} />
+          <Route path="mark" element={<MarkPage />} />
+          <Route path="mark/add" element={<AddMark />} />
           <Route path="section" element={<SectionPage />} />
           <Route path="section/add" element={<AddSection />} />
           <Route path="complains" element={<AdminComplain />} />
@@ -54,7 +70,12 @@ function App() {
         </Route>
         <Route
           path="/student/*"
-          element={<ProtectedRoute Component={<StudentDashboardLayout  />} permittedRole="student" />}
+          element={
+            <ProtectedRoute
+              Component={<StudentDashboardLayout />}
+              permittedRole="student"
+            />
+          }
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
@@ -65,7 +86,12 @@ function App() {
         </Route>
         <Route
           path="/teacher/*"
-          element={<ProtectedRoute Component={<TeacherDashboardLayout  />} permittedRole="teacher" />}
+          element={
+            <ProtectedRoute
+              Component={<TeacherDashboardLayout />}
+              permittedRole="teacher"
+            />
+          }
         >
           <Route index element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
@@ -74,7 +100,7 @@ function App() {
           <Route path="teachers" element={<TeacherPage />} />
           <Route path="profile" element={<Profile />} />
         </Route>
-        <Route path="*" element={<Navigate to={"/login"} /> } />
+        <Route path="*" element={<Navigate to={"/login"} />} />
       </Routes>
     </BrowserRouter>
   );

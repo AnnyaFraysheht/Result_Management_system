@@ -19,3 +19,6 @@ button{
 .pendingBtn{
     background-color: red;
 }
+.red{
+    background-color: rgb(223, 82, 82);
+}

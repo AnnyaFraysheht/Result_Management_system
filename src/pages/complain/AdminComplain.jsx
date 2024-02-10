@@ -34,8 +34,8 @@ const AdminComplain = () => {
         </thead>
         <tbody>
           {
-            complains?.map((complain) => {
-              return <tr key={complain.complain_id}>
+            complains?.map((complain , index) => {
+              return <tr key={complain.complain_id} className={complain.status ? index % 2 == 0 ? "even" : "odd" : 'red'}>
 
                 <td>{complain.created_at}</td>
                 <td>{complain.fname} {complain.lname}</td>

@@ -39,7 +39,7 @@ const LoginPage = () => {
                 localStorage.setItem("name", data.data[0].fname);
                 localStorage.setItem("image", data.data[0].image)
 
-                navigate(`/${userRole}`)
+                navigate(`/${userRole}/dashboard`)
                 // window.location.href = `/${data.data[0].role}`;
             } else {
                 console.log("Login Failed");
@@ -64,7 +64,7 @@ const LoginPage = () => {
                 const response = await axios.get("http://localhost:8080/api/check-auth", { withCredentials: true });
 
                 if (response.data.authenticated) {
-                    navigate(`/${response.data.role}`);
+                    navigate(`/${response.data.role}/dashboard`);
                 }
             } catch (error) {
 
@@ -86,22 +86,22 @@ const LoginPage = () => {
 
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" onChange={handleInput} placeholder="Enter your email" />
-                            <section>{emailError}</section>
+                            <span>{emailError}</span>
                         </div>
                         <div className="input-container">
 
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" onChange={handleInput} placeholder="Enter your password" />
-                            <section>{passwordError}</section>
+                            <span>{passwordError}</span>
                         </div>
                         <button className="loginBtn">Submit</button>
                     </form>
                     <p className="reset"><i>Contact College Admin to reset password</i> </p>
                 </div>
-                {/* <span className="scroll">
+                <span className="scroll">
 
                     <ScrollingNotice />
-                </span> */}
+                </span>
             </div>
         </>
     )

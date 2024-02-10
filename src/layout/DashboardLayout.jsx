@@ -4,7 +4,8 @@ import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-rout
 import { PiExam, PiStudent } from "react-icons/pi"
 import { GiTeacher } from "react-icons/gi";
 import { SiBookstack } from "react-icons/si";
-import { MdAnnouncement, Md6FtApart, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
+import {FaXmarksLines} from "react-icons/fa6"
+import { MdAnnouncement,MdAdminPanelSettings, Md6FtApart, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
 import NavBar from '../components/DashboardComponent/NavBar';
 const DashboardLayout = () => {
@@ -27,11 +28,15 @@ const DashboardLayout = () => {
             <aside>
                 <ul>
                     <li className='headdd'>RMS</li>
-                    <NavLink className={`link`} exact to={"dashboard"}>
+                    <NavLink className={`link`} to={"dashboard"}>
 
                         <li className='li '><MdDashboard className='icons' /><span className="sidemenu">Dashboard</span> </li>
                     </NavLink>
-                    <NavLink className={`link `} exact to={"students"}>
+                    <NavLink className={`link `} to={"admins"}>
+
+                        <li className='li'><MdAdminPanelSettings className='icons' /> <span className="sidemenu">Admin</span></li>
+                    </NavLink>
+                    <NavLink className={`link `} to={"students"}>
 
                         <li className='li'><PiStudent className='icons' /> <span className="sidemenu">Student</span></li>
                     </NavLink>
@@ -53,6 +58,10 @@ const DashboardLayout = () => {
                     </NavLink>
                     <NavLink className={`link`} to={"subject"}>
                         <li className='li'><SiBookstack className='icons' /> <span className="sidemenu">Subject</span></li>
+
+                    </NavLink>
+                    <NavLink className={`link`} to={"mark"}>
+                        <li className='li'><FaXmarksLines className='icons' /> <span className="sidemenu">Marks</span></li>
 
                     </NavLink>
                     <NavLink className={`link`} to={"notice"}>

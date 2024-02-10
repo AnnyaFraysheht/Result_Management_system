@@ -8,25 +8,25 @@ import { getNotices } from '../../services/fetchFunction'
 const NoticePage = () => {
     const [notices, setNotices] = useState()
 
-    
-    const handleDelete =useCallback( async (id) =>{
-        if(window.confirm("Are you sure to delete")){
+
+    const handleDelete = useCallback(async (id) => {
+        if (window.confirm("Are you sure to delete")) {
 
             try {
-                await axios.delete(`http://localhost:8080/api/notice/${id}`,{
+                await axios.delete(`http://localhost:8080/api/notice/${id}`, {
                     withCredentials: true
                 })
                 getData();
                 // console.log(response)
             } catch (error) {
-                
+
             }
-        }else{
+        } else {
 
         }
-    },[]);
-    const getData =async () =>{
-        const data= await getNotices();
+    }, []);
+    const getData = async () => {
+        const data = await getNotices();
         setNotices(data)
     }
     useEffect(() => {
@@ -48,13 +48,13 @@ const NoticePage = () => {
                 </thead>
                 <tbody>
                     {
-                        notices?.map((notice) => {
-                            return <tr key={notice.notice_id}>
+                        notices?.map((notice, index) => {
+                            return <tr key={notice.notice_id} className={index % 2 == 0 ? "even" : "odd"}>
                                 <td>{notice.class_id ? notice.class_name : "Open Notice"}</td>
                                 <td>{notice.notice_text}</td>
                                 <td>{notice.date_posted}</td>
                                 <td><button><FaEdit size={20} color="green" /></button></td>
-                                <td><button onClick={(e) =>handleDelete(notice.notice_id)}><MdDelete size={20} color="red" /></button></td>
+                                <td><button onClick={(e) => handleDelete(notice.notice_id)}><MdDelete size={20} color="red" /></button></td>
                             </tr>
                         })
                     }

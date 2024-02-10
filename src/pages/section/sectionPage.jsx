@@ -52,8 +52,8 @@ const SectionPage = () => {
         </thead>
         <tbody>
           {
-            sections?.map((section) => {
-              return <tr key={section.section_id}>
+            sections?.map((section, index) => {
+              return <tr key={section.section_id} className={index % 2 == 0 ? "even" : "odd"}>
                 <td>{section.section_name}</td>
                 <td>{section.section_capacity}</td>
                 <td className='action'><button><FaEdit size={20} color="green" /></button></td>
