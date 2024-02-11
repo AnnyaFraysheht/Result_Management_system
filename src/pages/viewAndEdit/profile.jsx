@@ -77,7 +77,7 @@ const Profile = () => {
       {
         flag ? <div className={`change_profile ${flag ? "show" : ''}`}>
           <input onChange={handleChange} className='change_pic' type="file" name="image" id="change_picture" />
-          <h1>Change Picture</h1>
+          <h1 className='topic'>Change Picture</h1>
           <label className='uploadLabel' htmlFor="change_picture">
             <div className='input'>
               <LuUploadCloud size={50} color='green' style={{ margin: 'auto' }} />
@@ -90,7 +90,7 @@ const Profile = () => {
       }
       {
         changePasswordFlag ? <form onSubmit={handleSubmit}> <div className={`change_password ${changePasswordFlag ? "show" : ''}`}>
-          <h1>Change Password</h1>
+          <h1 className='topic'>Change Password</h1>
           <div className='passFormDiv'>
           <label htmlFor="oldPwd" className='passLabel'>
             Old Password
