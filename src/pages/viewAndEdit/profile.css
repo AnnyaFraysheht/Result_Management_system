@@ -6,6 +6,7 @@
 }
 .profileparent{
     position: relative;
+    margin: auto;
 }
 .profile_picture{
     width: 200px;
@@ -41,7 +42,7 @@
 }
 .general_info{
     text-align: center;
-    width: 100%;
+    margin: auto;
 }
 .general_info > div{
     margin: auto;

@@ -168,7 +168,7 @@ const Profile = () => {
         </div>
 
       </div>
-      <button  onClick={() => setChangePasswordFlag(true)} className='change-password btn'>Change Password</button>
+      <button  onClick={() => setChangePasswordFlag(true)} className='change-password'>Change Password</button>
 
     </div>
   )

@@ -32,6 +32,8 @@ import ExamPage from "./pages/exam/examPage";
 import AddExam from "./pages/exam/addExam";
 import MarkPage from "./pages/mark/markPage";
 import AddMark from "./pages/mark/addMark";
+import AdminPage from "./pages/admin/adminPage";
+import AddAdmin from "./pages/admin/addAdmin";
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
           }
         >
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="admins" element={<AdminPage />} />
+          <Route path="admins/add" element={<AddAdmin />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="students/add" element={<AddStudent />} />
           <Route path="teachers" element={<TeacherPage />} />

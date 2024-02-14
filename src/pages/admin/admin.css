@@ -1,0 +1,45 @@
+table{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+thead{
+    background-color: rgb(176, 176, 165);
+    padding: 5px;
+    border-radius: 15px 15px  0 0;
+    
+}
+.odd{
+    background-color: rgb(140, 226, 142);
+}
+.even{
+    background-color: rgb(104, 200, 195);
+}
+th{
+    padding: 0 15px;
+    font-size: 19px;
+}
+h2{
+    padding: 10px 0;
+}
+td{
+    font-size: 18px;
+    font-weight: 500;
+}
+td> button{
+    width: 100%;
+    background: none;
+    padding: 2px;
+    border: none;
+    cursor: pointer;
+}
+
+.add{
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgb(12, 132, 231);
+    color:white;
+    border: none;
+}
