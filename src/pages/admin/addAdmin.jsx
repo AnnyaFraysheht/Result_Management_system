@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import "./admin.css"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
-import { getSubjects } from '../../services/fetchFunction';
 const AddAdmin = () => {
     const navigate = useNavigate();
     const [validationError, setValidationError] = useState({
@@ -62,12 +61,12 @@ const AddAdmin = () => {
             })
         }
     }
-   
+
 
     return (
         <div>
-            <h1 style={{textAlign: 'center'}}>Adding Teacher</h1>
-            <h1><Link className='link' to={"/admin/teachers"}> <IoMdArrowRoundBack /></Link></h1>
+            <h1 style={{ textAlign: 'center' }}>Adding Teacher</h1>
+            <h1><Link className='link' to={"/admin/admins"}> <IoMdArrowRoundBack /></Link></h1>
             <form onSubmit={handleSubmit} className='student_form' action="">
                 <div className='input-container'>
 
@@ -119,9 +118,9 @@ const AddAdmin = () => {
                     <label htmlFor="perm_address">Permanent Address</label>
                     <input required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
                 </div>
-                
-                
-               
+
+
+
                 <button className='btn'>Submit</button>
             </form>
         </div>
