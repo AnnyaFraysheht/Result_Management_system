@@ -5,6 +5,7 @@ import { PiExam } from "react-icons/pi"
 import { MdAnnouncement, MdDashboard, MdFlightClass, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
 import NavBar from '../components/DashboardComponent/NavBar';
+import { FaXmarksLines } from 'react-icons/fa6';
 const TeacherDashboardLayout = () => {
 
     const navigate = useNavigate();
@@ -31,6 +32,10 @@ const TeacherDashboardLayout = () => {
                     </NavLink>
                     <NavLink className='link' to={"class"}>
                         <li className='li'><MdFlightClass className='icons'/> <span className="sidemenu">Class</span></li>
+
+                    </NavLink>
+                    <NavLink className='link' to={"mark"}>
+                        <li className='li'><FaXmarksLines className='icons'/> <span className="sidemenu">Marks</span></li>
 
                     </NavLink>
                     <NavLink className='link' to={"notice"}>

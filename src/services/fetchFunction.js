@@ -48,6 +48,17 @@ export const getMarksByClass = async (id) => {
     console.log(error);
   }
 };
+export const getExamForTeacher = async () => {
+  try {
+    const response = await axios.get(`http://localhost:8080/api/examforteacher`, {
+      withCredentials: true,
+    });
+    // console.log(response.data.data)
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getExamByClass = async (id) => {
   try {
     const response = await axios.get(`http://localhost:8080/api/exam/${id}`, {

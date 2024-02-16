@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getClass, getExamByClass, getMarksByClass, getSectionByClass } from '../../services/fetchFunction';
+import { getClass, getExamByClass, getMarksByClass, getSectionByClass } from '../../../services/fetchFunction';
 
 const MarkPage = () => {
   const [classes, setClasses] = useState();

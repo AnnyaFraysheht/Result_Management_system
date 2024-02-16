@@ -1,9 +1,9 @@
 import React from 'react'
 
-const AddMark = () => {
+const TeacherAddMark = () => {
   return (
     <div>AddMark</div>
   )
 }
 
-export default AddMark
+export default TeacherAddMark

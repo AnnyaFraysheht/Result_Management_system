@@ -30,10 +30,13 @@ import SubjectPage from "./pages/subject/subjectPage";
 import AddSubject from "./pages/subject/addSubject";
 import ExamPage from "./pages/exam/examPage";
 import AddExam from "./pages/exam/addExam";
-import MarkPage from "./pages/mark/markPage";
-import AddMark from "./pages/mark/addMark";
+import MarkPage from "./pages/mark/admin/markPage";
+import AddMark from "./pages/mark/teacher/addMark";
 import AdminPage from "./pages/admin/adminPage";
 import AddAdmin from "./pages/admin/addAdmin";
+import TeacherExamPage from "./pages/exam/teacher/examPage";
+import TeacherMarkPage from "./pages/mark/teacher/markPage";
+import TeacherAddMark from "./pages/mark/teacher/addMark";
 
 function App() {
   return (
@@ -66,7 +69,6 @@ function App() {
           <Route path="subject" element={<SubjectPage />} />
           <Route path="subject/add" element={<AddSubject />} />
           <Route path="mark" element={<MarkPage />} />
-          <Route path="mark/add" element={<AddMark />} />
           <Route path="section" element={<SectionPage />} />
           <Route path="section/add" element={<AddSection />} />
           <Route path="complains" element={<AdminComplain />} />
@@ -99,6 +101,9 @@ function App() {
         >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
+          <Route path="exam" element={<TeacherExamPage />} />
+          <Route path="mark" element={<TeacherMarkPage />} />
+          <Route path="mark/add" element={<TeacherAddMark />} />
           <Route path="notice" element={<NoticePage />} />
           <Route path="notice/add" element={<AddNotice role="teacher" />} />
           <Route path="teachers" element={<TeacherPage />} />
