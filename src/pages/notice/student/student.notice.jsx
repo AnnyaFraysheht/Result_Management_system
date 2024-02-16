@@ -3,28 +3,34 @@ import OpenNotice from '../../../components/OpenNotice/OpenNotice'
 import { getClassNotice } from '../../../services/fetchFunction';
 
 const StudentNotice = () => {
-  const [classNotice,setClassNotice] = useState();
-  const getClassNoticeData = async () =>{
+  const [classNotice, setClassNotice] = useState();
+  const getClassNoticeData = async () => {
     const data = await getClassNotice();
     console.log(data)
     setClassNotice(data);
   }
-  useEffect(()=>{
+  useEffect(() => {
     getClassNoticeData();
-  },[])
+  }, [])
   return (
     <>
-    
-    <OpenNotice />
-    <h1>Class Notice</h1>
-    {
-      classNotice?.map((notice)=>{
-        return <>
-        <h1>{notice.date_posted}</h1>
-          <h1>{notice.notice_text}</h1>
-        </>
-      })
-    }
+
+      <OpenNotice />
+      <div className="notice">
+
+        <h3 className='heading'>Class Notice</h3>
+        <div className="notices">
+
+          {
+            classNotice?.map((notice) => {
+              return <div className='eachNotice'>
+                <div className='date'>{notice.date_posted.slice(0, 10)}</div>
+                <div className='details'>{notice.notice_text}</div>
+              </div>
+            })
+          }
+        </div>
+      </div>
     </>
   )
 }

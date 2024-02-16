@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import oip from "../../assets/OIP.jpeg";
 import "./profile.css";
 import { FaEdit } from 'react-icons/fa';
@@ -10,28 +10,28 @@ const Profile = () => {
   const navigate = useNavigate()
   const [userData, setUserData] = useState();
   const [flag, setFlag] = useState(false);
-  const [error,setError] = useState("")
+  const [error, setError] = useState("")
   const [password, setPassword] = useState({
-    currentPassword : '',
-    newPassword : '',
+    currentPassword: '',
+    newPassword: '',
     confirmPassword: '',
   })
-  const handlePassChange = (e) =>{
-    setPassword(prev => ({...prev,[e.target.name]: e.target.value}))
+  const handlePassChange = (e) => {
+    setPassword(prev => ({ ...prev, [e.target.name]: e.target.value }))
     console.log(password)
   }
-  const handleSubmit = async (e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(password.newPassword !== password.confirmPassword){
+    if (password.newPassword !== password.confirmPassword) {
       setError("Passsword Doesnot Match")
       return;
     }
-    await axios.post("http://localhost:8080/api/changepassword",password,{
+    await axios.post("http://localhost:8080/api/changepassword", password, {
       withCredentials: true,
-    }).then((response)=>{
+    }).then((response) => {
       // console.log(response)
       navigate("/login")
-    }).catch((error)=>{
+    }).catch((error) => {
       console.log(error)
       setError(error.response.data.message)
     })
@@ -41,7 +41,7 @@ const Profile = () => {
   const fetchUserData = async () => {
     const user = await getMyDetails();
     // console.log("user",user);
-    localStorage.setItem("image",user.image)
+    localStorage.setItem("image", user.image)
     setUserData(user);
   }
   const handleChange = (e) => {
@@ -49,7 +49,7 @@ const Profile = () => {
     setFile(e.target.files[0]);
 
   }
-  const handleUpload =  () => {
+  const handleUpload = () => {
     if (!file) {
       console.log("Select File");
       return;
@@ -71,53 +71,57 @@ const Profile = () => {
   }
   useEffect(() => {
     fetchUserData();
-  },[])
+  }, [])
   return (
     <div className='profileparent'>
       {
         flag ? <div className={`change_profile ${flag ? "show" : ''}`}>
           <input onChange={handleChange} className='change_pic' type="file" name="image" id="change_picture" />
-          <h1 className='topic'>Change Picture</h1>
+          <h3 className='topic'>Change Picture</h3>
           <label className='uploadLabel' htmlFor="change_picture">
             <div className='input'>
+              { file && <img src={URL.createObjectURL(file)} className='previewImage' /> }
               <LuUploadCloud size={50} color='green' style={{ margin: 'auto' }} />
               <p>{file?.name}</p>
             </div>
           </label>
-          <button className='submit' onClick={handleUpload}>Upload</button>
-          <button className='cancel' onClick={() => setFlag(false)}>Cancel</button>
+          <div className=''>
+            <button className='submit' onClick={handleUpload}>Upload</button>
+            <button className='cancel' onClick={() => setFlag(false)}>Cancel</button>
+          </div>
         </div> : ""
       }
       {
-        changePasswordFlag ? <form onSubmit={handleSubmit}> <div className={`change_password ${changePasswordFlag ? "show" : ''}`}>
-          <h1 className='topic'>Change Password</h1>
-          <div className='passFormDiv'>
-          <label htmlFor="oldPwd" className='passLabel'>
-            Old Password
-          </label>
-          <input onChange={handlePassChange} type="password" name="currentPassword" id="oldPwd" />
+        changePasswordFlag ? <div className={`change_password ${changePasswordFlag ? "show" : ''}`}>
+          <form className='foram' onSubmit={handleSubmit}>
+            <h4 className='topic'>Change Password</h4>
+            <div className='passFormDiv'>
+              <label htmlFor="oldPwd" className='passLabel'>
+                Old Password
+              </label>
+              <input onChange={handlePassChange} type="password" name="currentPassword" id="oldPwd" />
 
-          </div>
-          <div className='passFormDiv'>
-          <label className='passLabel' htmlFor="newpwd">
-            New Password
-          </label>
-          <input onChange={handlePassChange} type="password" name="newPassword" id="newpwd" />
+            </div>
+            <div className='passFormDiv'>
+              <label className='passLabel' htmlFor="newpwd">
+                New Password
+              </label>
+              <input onChange={handlePassChange} type="password" name="newPassword" id="newpwd" />
 
-          </div>
-          <div className='passFormDiv'>
-          <label className='passLabel' htmlFor="cpwd">
-            Confirm Password
-          </label>
-          <input onChange={handlePassChange} type="password" name="confirmPassword" id="cpwd" />
-          <span  style={{color: 'red'}}>{error}</span>
-          </div>
-          <div className="buttons">
-
-          <input type='submit' className='submit'/>
-          <button className='cancel' onClick={() => setChangePasswordFlag(false)}>Cancel</button>
-          </div>
-        </div> </form>: ""
+            </div>
+            <div className='passFormDiv'>
+              <label className='passLabel' htmlFor="cpwd">
+                Confirm Password
+              </label>
+              <input onChange={handlePassChange} type="password" name="confirmPassword" id="cpwd" />
+              <span style={{ color: 'red' }}>{error}</span>
+            </div>
+            <div className="btncollection">
+              <button type='submit' className='submit' >Submit</button>
+              <button className='cancel' onClick={() => setChangePasswordFlag(false)}>Cancel</button>
+            </div>
+          </form>
+        </div> : ""
       }
       <div className="image_section">
         <div onClick={(e) => setFlag(true)} className='image_edit_icon'>
@@ -168,7 +172,7 @@ const Profile = () => {
         </div>
 
       </div>
-      <button  onClick={() => setChangePasswordFlag(true)} className='change-password'>Change Password</button>
+      <button onClick={() => setChangePasswordFlag(true)} className='change-password'>Change Password</button>
 
     </div>
   )

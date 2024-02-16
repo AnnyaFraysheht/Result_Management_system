@@ -22,3 +22,31 @@ button{
 .red{
     background-color: rgb(223, 82, 82);
 }
+
+#complain{
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 18px;
+}
+#complain :focus{
+    outline: none;
+}
+.complainform{
+    position: relative;
+    width: 70%;
+    margin: auto;
+}
+
+.complainbtn{
+    width: fit-content;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+
+}
+.label{
+    text-align: left;
+}

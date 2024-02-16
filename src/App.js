@@ -58,7 +58,7 @@ function App() {
           <Route path="teachers" element={<TeacherPage />} />
           <Route path="teachers/add" element={<AddTeacher />} />
           <Route path="notice" element={<NoticePage />} />
-          <Route path="notice/add" element={<AddNotice />} />
+          <Route path="notice/add" element={<AddNotice role="admin" />} />
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
           <Route path="exam" element={<ExamPage />} />
@@ -81,7 +81,7 @@ function App() {
             />
           }
         >
-          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="teachers" element={<TeacherPage />} />
           <Route path="notice" element={<StudentNotice />} />
@@ -97,10 +97,10 @@ function App() {
             />
           }
         >
-          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="notice" element={<NoticePage />} />
-          <Route path="notice/add" element={<AddNotice />} />
+          <Route path="notice/add" element={<AddNotice role="teacher" />} />
           <Route path="teachers" element={<TeacherPage />} />
           <Route path="profile" element={<Profile />} />
         </Route>

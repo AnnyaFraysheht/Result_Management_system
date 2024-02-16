@@ -12,13 +12,13 @@ const OpenNotice = () => {
     },[])
   return (
     <div className="notice">
-                <div className="heading"><h1>Public Notice</h1></div>
+                <div className="heading"><h3>Public Notice</h3></div>
                 <div className="notices">
                     {
                         notices?.map((notice) => {
                             return <div key={notice.notice_id} className="eachNotice">
-                                <div className="date"><h2>{notice.date_posted.slice(0, 10)}</h2></div>
-                                <div className="details"><h2>{notice.notice_text}</h2></div>
+                                <div className="date">{notice.date_posted.slice(0, 10)}</div>
+                                <div className="details">{notice.notice_text}</div>
                             </div>
                         })
                     }

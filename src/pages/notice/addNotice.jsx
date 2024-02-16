@@ -3,7 +3,7 @@ import "./notice.css"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { getClass } from '../../services/fetchFunction';
-const AddNotice = () => {
+const AddNotice = ({role}) => {
     const [classes, setClasses] = useState();
     const [noticeData, setNoticeData] = useState({
         class_id: null,
@@ -26,7 +26,7 @@ const AddNotice = () => {
                 withCredentials: true,
             })
             if(response.status === 200){
-                navigate("/admin/notice")
+                navigate(`/${role}/notice`)
             }
         } catch (error) {
             console.log(error)

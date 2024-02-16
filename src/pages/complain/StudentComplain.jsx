@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {  getMyComplains } from '../../services/fetchFunction';
 import "./complain.css"
 import axios from 'axios';
+import { IoMdSend } from 'react-icons/io';
 const StudentComplain = () => {
   const [complains, setComplains] = useState();
   const [complainData, setComplainData] = useState({
@@ -22,6 +23,7 @@ const StudentComplain = () => {
         withCredentials: true,
       }).then((response)=>{
         console.log(response);
+        setComplainData({message : ''})
         getMyComplainData();
       }).catch((error)=>{
         console.log(error);
@@ -33,11 +35,10 @@ const StudentComplain = () => {
   }
   return (
     <>
-    <h1>Add Complain</h1>
-    <form onSubmit={handleSubmit} action="">
-      <label htmlFor="complain" ><h1>Message</h1></label>
-      <textarea onChange={handleChange} name="complain" id="complain" cols="30" rows="10"></textarea>
-      <input className='btn' type="submit" value={"Submit"} />
+    <h2 className='topic'>Add Complain</h2>
+    <form onSubmit={handleSubmit} className='complainform'>
+      <textarea onChange={handleChange} value={complainData.message} name="complain" id="complain" cols="20" rows="13"></textarea>
+      <button className='btn complainbtn' type="submit"  ><IoMdSend size={35} color='gray' /></button>
     </form>
     <h1>My Complains</h1>
       <table>

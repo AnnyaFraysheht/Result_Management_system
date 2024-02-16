@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./dashboardLayout.css"
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import {  NavLink, Outlet, useNavigate } from 'react-router-dom'
 import {  PiStudent } from "react-icons/pi"
 import { MdAnnouncement, MdDashboard, MdLogout, MdReportProblem } from "react-icons/md";
 import axios from 'axios';
@@ -20,25 +20,25 @@ const StudentDashboardLayout = () => {
         <div className='parent'>
             <aside>
                 <ul>
-                    <li><h1 className='headdd'>Student Dashboard</h1></li>
-                    <Link className='link' to={"/student"}>
+                    <li className='headdd'>Student Dashboard</li>
+                    <NavLink className='link' to={"/student/dashboard"}>
 
-                        <li className='li'><MdDashboard />Dashboard </li>
-                    </Link>
-                    <Link className='link' to={"result"}>
+                        <li className='li'><MdDashboard   className='icons'/><span className="sidemenu">Dashboard</span> </li>
+                    </NavLink>
+                    <NavLink className='link' to={"result"}>
 
-                        <li className='li'><PiStudent /> Result</li>
-                    </Link>
-                    <Link className='link' to={"notice"}>
-                        <li className='li'><MdAnnouncement /> Notice</li>
+                        <li className='li'><PiStudent  className='icons' /> <span className="sidemenu">Result</span></li>
+                    </NavLink>
+                    <NavLink className='link' to={"notice"}>
+                        <li className='li'><MdAnnouncement className='icons' /> <span className="sidemenu">Notice</span></li>
 
-                    </Link>
-                    <Link className='link' to={"complains"}>
-                        <li className='li'><MdReportProblem /> Complains</li>
+                    </NavLink>
+                    <NavLink className='link' to={"complains"}>
+                        <li className='li'><MdReportProblem className='icons' /> <span className="sidemenu">Complains</span></li>
 
-                    </Link>
+                    </NavLink>
                 </ul>
-                <button className='dashboardButton btn' onClick={handleLogout}><MdLogout /> Logout</button>
+                <button className='dashboardButton btn' onClick={handleLogout}><MdLogout /> <span className="sidemenu">Logout</span></button>
             </aside>
             <div className='content'>
             <NavBar  />

@@ -2,7 +2,7 @@
     width: 90%;
     margin: auto;
     margin-top: 24px;
-    background-color: rgb(95, 197, 164);
+    background-color: #87d3a8;
     padding: 15px;
     border-radius: 10px;
 }
@@ -11,6 +11,7 @@
 }
 .heading{
     border-bottom: 2px solid black;
+    padding: 5px;
 }
 .eachNotice{
     display: flex;
@@ -18,10 +19,12 @@
     gap: 15px;
 }
 .date{
-    width: 25%;
     text-align: center;
+    width: 12%;
+    padding: 3px;
+    margin-right: 10px;
 }
 .details{
-    padding-left: 4px;
+    padding-left: 15px;
     border-left: 2px solid black;
 }
