@@ -70,6 +70,8 @@ const TeacherMarkPage = () => {
               </option>
             ))
           }
+
+          {/* //literally nothing */}
         </select>
       </div>
       <br />
