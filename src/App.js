@@ -37,6 +37,7 @@ import AddAdmin from "./pages/admin/addAdmin";
 import TeacherExamPage from "./pages/exam/teacher/examPage";
 import TeacherMarkPage from "./pages/mark/teacher/markPage";
 import TeacherAddMark from "./pages/mark/teacher/addMark";
+import ResultPage from "./pages/result/student/result";
 
 function App() {
   return (
@@ -84,8 +85,7 @@ function App() {
           }
         >
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="students" element={<StudentPage />} />
-          <Route path="teachers" element={<TeacherPage />} />
+          <Route path="result" element={<ResultPage />} />
           <Route path="notice" element={<StudentNotice />} />
           <Route path="complains" element={<StudentComplain />} />
           <Route path="profile" element={<Profile />} />

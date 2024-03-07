@@ -37,9 +37,12 @@ export const getExams = async () => {
     console.log(error);
   }
 };
-export const getMarksByClass = async (id) => {
+export const getMarksOfClassByExam = async (class_id,exam_id) => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/mark/${id}`, {
+    const response = await axios.get(`http://localhost:8080/api/studentMark`, {
+      params: {class_id: class_id,
+      exam_id: exam_id,
+    } ,
       withCredentials: true,
     });
     // console.log(response.data.data)
@@ -238,6 +241,7 @@ export const getMyComplains = async () => {
     console.log(error);
   }
 };
+
 
 // export const getSubjects = async () =>{
 //     try {

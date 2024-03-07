@@ -11,7 +11,8 @@ const AddExam = () => {
         exam_name: '',
         class_id: '',
         subject_id: '',
-        exam_date: ''
+        exam_date: '',
+        term: '',
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,17 +38,27 @@ const AddExam = () => {
 
     return (
         <div>
-            <h1><Link className='link' to={"/admin/section"}> <IoMdArrowRoundBack /></Link></h1>
+            <h1><Link className='link' to={"/admin/exam"}> <IoMdArrowRoundBack /></Link></h1>
             <form onSubmit={handleSubmit} className='student_form' action="">
                 <div className='input-container'>
 
                     <label htmlFor="exam_nm">Exam Name</label>
-                    <input id='exam_nm' onChange={handleChange} type="text" name="exam_name" placeholder='Enter class name' required />
+                    <input id='exam_nm' onChange={handleChange} type="text" name="exam_name" placeholder='Enter exam name' required />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="_class">Class</label>
                     <ClassInput handleChange={handleChange} />
+                </div>
+                <div className='input-container'>
+
+                    <label htmlFor="_class">Term</label>
+                    <select onChange={handleChange} name="term" id="">
+                        <option value="">Select Term</option>
+                        <option value="1">1st Term</option>
+                        <option value="2">Mid Term</option>
+                        <option value="3">Final Term</option>
+                    </select>
                 </div>
                 <div className='input-container'>
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getClass, getExamByClass, getMarksByClass, getSectionByClass } from '../../../services/fetchFunction';
-import { NavLink } from 'react-router-dom';
+import { getClass, getExamByClass,  getMarksOfClassByExam, getSectionByClass } from '../../../services/fetchFunction';
 
 const TeacherMarkPage = () => {
   const [classes, setClasses] = useState();
@@ -8,6 +7,7 @@ const TeacherMarkPage = () => {
   const [studentMarks, setStudentMarks] = useState([])
   const [sections, setSections] = useState();
   const [selectedClass, setSelectedClass] = useState();
+  const [selectedExam, setSelectedExam] = useState();
   const getClassData = async () => {
     const classData = await getClass();
     setClasses(classData);
@@ -24,7 +24,7 @@ const TeacherMarkPage = () => {
   }
 
   const getMarksOfClass = async () => {
-    const studentMarksData = await getMarksByClass(selectedClass);
+    const studentMarksData = await getMarksOfClassByExam(selectedClass,selectedExam);
     console.log(studentMarksData)
     setStudentMarks(studentMarksData);
     // console.log(studentMarks)
@@ -41,7 +41,6 @@ const TeacherMarkPage = () => {
   }, [selectedClass])
   return (
     <div>
-      <button><NavLink to={"add"}>Add Mark</NavLink></button>
       <input type="search" name="searchmark" id="" placeholder='Search Student Name' />
       <div>
         <select onChange={(e) => setSelectedClass(e.target.value)} name="class" id="">
@@ -60,18 +59,13 @@ const TeacherMarkPage = () => {
             })
           }
         </select>
-        <select name="exam" id="">
+        <select onChange={(e)=>{setSelectedExam(e.target.value)}} name="exam" id="">
           <option value="">select exam</option>
           {
-
-            [...new Set(exams?.map((exam) => exam.exam_name))].map((uniqueExamName) => (
-              <option key={uniqueExamName} value={uniqueExamName}>
-                {uniqueExamName}
-              </option>
-            ))
+            exams?.map((exam) => {
+              return <option key={exam.exam_id} value={exam.exam_id}>{exam.exam_name} {exam.subject_name}</option>
+            })
           }
-
-          {/* //literally nothing */}
         </select>
       </div>
       <br />
