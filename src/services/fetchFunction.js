@@ -1,18 +1,26 @@
 import axios from "axios";
 
 export const getNotices = async () => {
-  const response = await axios.get("http://localhost:8080/api/notice", {
-    withCredentials: true,
-  });
-  console.log(response.data.data);
-  return response.data.data;
+  try {
+    const response = await axios.get("http://localhost:8080/api/notice", {
+      withCredentials: true,
+    });
+    console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 export const getClassNotice = async () => {
-  const response = await axios.get("http://localhost:8080/api/classnotice", {
-    withCredentials: true,
-  });
-  console.log(response.data.data);
-  return response.data.data;
+  try {
+    const response = await axios.get("http://localhost:8080/api/classnotice", {
+      withCredentials: true,
+    });
+    console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getClass = async () => {
@@ -37,12 +45,10 @@ export const getExams = async () => {
     console.log(error);
   }
 };
-export const getMarksOfClassByExam = async (class_id,exam_id) => {
+export const getMarksOfClassByExam = async (class_id, exam_id) => {
   try {
     const response = await axios.get(`http://localhost:8080/api/studentMark`, {
-      params: {class_id: class_id,
-      exam_id: exam_id,
-    } ,
+      params: { class_id: class_id, exam_id: exam_id },
       withCredentials: true,
     });
     // console.log(response.data.data)
@@ -53,9 +59,12 @@ export const getMarksOfClassByExam = async (class_id,exam_id) => {
 };
 export const getExamForTeacher = async () => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/examforteacher`, {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      `http://localhost:8080/api/examforteacher`,
+      {
+        withCredentials: true,
+      }
+    );
     // console.log(response.data.data)
     return response.data.data;
   } catch (error) {
@@ -241,7 +250,6 @@ export const getMyComplains = async () => {
     console.log(error);
   }
 };
-
 
 // export const getSubjects = async () =>{
 //     try {

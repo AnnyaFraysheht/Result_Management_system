@@ -38,6 +38,7 @@ import TeacherExamPage from "./pages/exam/teacher/examPage";
 import TeacherMarkPage from "./pages/mark/teacher/markPage";
 import TeacherAddMark from "./pages/mark/teacher/addMark";
 import ResultPage from "./pages/result/student/result";
+import StudentDashboard from "./pages/dashboard/student/student_dashboard";
 
 function App() {
   return (
@@ -84,7 +85,7 @@ function App() {
             />
           }
         >
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<StudentDashboard />} />
           <Route path="result" element={<ResultPage />} />
           <Route path="notice" element={<StudentNotice />} />
           <Route path="complains" element={<StudentComplain />} />

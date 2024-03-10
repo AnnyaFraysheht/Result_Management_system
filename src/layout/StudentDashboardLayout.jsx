@@ -43,7 +43,6 @@ const StudentDashboardLayout = () => {
             <div className='content'>
             <NavBar  />
                 <div className='outlet'>
-
                 <Outlet />
                 </div>
             </div>

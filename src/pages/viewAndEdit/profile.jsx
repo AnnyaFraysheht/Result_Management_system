@@ -137,7 +137,7 @@ const Profile = () => {
         </div>
         <div className="details-container">
           <div>Name:</div>
-          <div>{userData?.fname}  {userData?.name}  {userData?.lname}</div>
+          <div>{userData?.fname}  {userData?.mname}  {userData?.lname}</div>
 
         </div>
         <div className="details-container">

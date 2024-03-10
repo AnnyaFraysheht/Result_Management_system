@@ -23,7 +23,7 @@ const StudentNotice = () => {
 
           {
             classNotice?.map((notice) => {
-              return <div className='eachNotice'>
+              return <div className='eachNotice' key={notice.notice_id}>
                 <div className='date'>{notice.date_posted.slice(0, 10)}</div>
                 <div className='details'>{notice.notice_text}</div>
               </div>

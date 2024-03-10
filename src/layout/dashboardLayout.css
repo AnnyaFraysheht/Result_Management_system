@@ -104,6 +104,7 @@ nav > ul{
     border: none;
     min-height: 90vh;
     background-color: #bfd0c7;
+    position: relative;
 }
 
 .icons{
@@ -122,8 +123,6 @@ nav > ul{
 }
 @media  screen and (min-width: 768px) and (max-width: 1023px ) {
     /* laptops and big device */
-    
-
 }
 @media  screen and (min-width: 1024px) {
     /* desktopa */
@@ -148,5 +147,11 @@ nav > ul{
     }
     nav{
         width: 73%;
+    }
+}
+
+@media print {
+    aside, nav{
+        display: none;
     }
 }

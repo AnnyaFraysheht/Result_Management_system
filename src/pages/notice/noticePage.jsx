@@ -26,8 +26,12 @@ const NoticePage = () => {
         }
     }, []);
     const getData = async () => {
-        const data = await getNotices();
-        setNotices(data)
+        try {
+            const data = await getNotices();
+            setNotices(data)
+        } catch (error) {
+            console.log(error)
+        }
     }
     useEffect(() => {
         getData()

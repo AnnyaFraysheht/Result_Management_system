@@ -1,9 +1,34 @@
 .marksheet{
     background-color: rgb(143, 137, 137);
     width: 100%;
-    height: 75vh;
+    min-height: 75vh;
+    
     padding: 10px;
     margin-top: 10px;
     border: 6px double gray;
     text-align: center;
 }
+
+.term{
+    border: 2px solid black;
+}
+
+.detail{
+    text-align: left;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.detail > span{
+    padding-right: 50px;
+}
+
+@media print {
+    
+    select, button{
+        display: none;
+    }
+    .marksheet{
+      visibility: visible;
+    }
+  }
