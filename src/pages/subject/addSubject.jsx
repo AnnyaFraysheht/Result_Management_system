@@ -44,7 +44,14 @@ const AddSubject = () => {
     }
     return (
         <div>
-            <h1><Link className='link' to={"/admin/subject"}> <IoMdArrowRoundBack /></Link></h1>
+            <div className='backmenu'>
+                <h1 className='back'>
+
+                    <Link className='link' to={`/admin/subject`}> <IoMdArrowRoundBack /></Link>
+                </h1>
+
+                <h1 style={{ textAlign: 'center' }}>Add Subject</h1>
+            </div>
             <form onSubmit={handleSubmit} className='student_form' action="">
                 <div className='input-container'>
 

@@ -1,0 +1,9 @@
+.backmenu{
+    /* background-color: red; */
+    text-align: center;
+    position: relative;
+}
+.back{
+    position: absolute;
+    left: 10%;
+}

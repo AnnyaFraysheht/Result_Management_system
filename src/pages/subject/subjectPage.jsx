@@ -27,6 +27,7 @@ const SubjectPage = () => {
     }, []);
     return (
         <>
+            
             <div className='heading_edit'>
 
             <h1>Subjects</h1>
