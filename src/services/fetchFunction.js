@@ -200,6 +200,9 @@ export const deleteSubject = async (id) => {
       withCredentials: true,
     });
   } catch (error) {
+    if (error.response.data.error.sqlState === "23000") {
+      window.alert("This subject cannot be deleted");
+    }
     console.log(error);
   }
 };
