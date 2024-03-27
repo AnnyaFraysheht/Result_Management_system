@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const getNotices = async () => {
   try {
@@ -212,7 +213,7 @@ export const deleteSubject = async (id) => {
     });
   } catch (error) {
     if (error.response.data.error.sqlState === "23000") {
-      window.alert("This subject cannot be deleted");
+      toast.error("This subject cannot be deleted");
     }
     console.log(error);
   }

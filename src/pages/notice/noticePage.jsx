@@ -5,10 +5,11 @@ import "./notice.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { getNotices } from '../../services/fetchFunction'
+import { toast } from 'react-toastify'
 const NoticePage = () => {
     const [notices, setNotices] = useState();
 
-    
+
 
     const handleDelete = useCallback(async (id) => {
         if (window.confirm("Are you sure to delete")) {
@@ -17,10 +18,13 @@ const NoticePage = () => {
                 await axios.delete(`http://localhost:8080/api/notice/${id}`, {
                     withCredentials: true
                 })
+                toast.warn("Deleted Successfully")
                 getData();
+
                 // console.log(response)
             } catch (error) {
-
+                toast.error("Error deleting")
+                console.log(error);
             }
         } else {
 
@@ -41,15 +45,15 @@ const NoticePage = () => {
         <>
             <div className='heading_edit'>
 
-            <h2>Notices</h2>
-            <button className="add"><Link className='link btn' to={"add"}>Add Notices</Link></button>
+                <h2>Notices</h2>
+                <button className="add"><Link className='link btn' to={"add"}>Add Notices</Link></button>
             </div>
             <table >
                 <thead>
                     <tr>
                         <th>For</th>
                         <th>Notice</th>
-                        <th>Date</th>
+                        <th>Created At</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -61,7 +65,7 @@ const NoticePage = () => {
                                 <td>{notice.class_id ? notice.class_name : "Open Notice"}</td>
                                 <td>{notice.notice_text}</td>
                                 <td>{notice.date_posted}</td>
-                                <td><Link className={"link"}  to={`edit/${notice.notice_id}`}><FaEdit size={20} color="green" /></Link> </td>
+                                <td><Link className={"link"} to={`edit/${notice.notice_id}`}><FaEdit size={20} color="green" /></Link> </td>
                                 <td><button onClick={(e) => handleDelete(notice.notice_id)}><MdDelete size={20} color="red" /></button></td>
                             </tr>
                         })

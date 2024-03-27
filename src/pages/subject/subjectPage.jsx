@@ -27,8 +27,11 @@ const SubjectPage = () => {
     }, []);
     return (
         <>
-            <h1 className='heading'>Subjects</h1>
+            <div className='heading_edit'>
+
+            <h1>Subjects</h1>
             <button className="add"><Link className="link" to={"add"}>Add New Subject</Link> </button>
+            </div>
             <table >
                 <thead>
                     <tr>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import "./notice.css"
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getClass } from '../../services/fetchFunction';
-const AddNotice = ({role}) => {
+import { toast } from 'react-toastify';
+import { IoMdArrowRoundBack } from "react-icons/io"
+const AddNotice = ({ role }) => {
     const [classes, setClasses] = useState();
     const [noticeData, setNoticeData] = useState({
         class_id: null,
@@ -25,7 +27,8 @@ const AddNotice = ({role}) => {
             const response = await axios.post("http://localhost:8080/api/notice", noticeData, {
                 withCredentials: true,
             })
-            if(response.status === 200){
+            toast.success("Notice Added Succussfully")
+            if (response.status === 200) {
                 navigate(`/${role}/notice`)
             }
         } catch (error) {
@@ -38,7 +41,14 @@ const AddNotice = ({role}) => {
     }
     return (
         <>
-            <h1 style={{textAlign: 'center'}}>Add Notice</h1>
+            <div className='backmenu'>
+                <h1 className='back'>
+
+                    <Link className='link' to={`/${role}/notice`}> <IoMdArrowRoundBack /></Link>
+                </h1>
+
+                <h1 style={{ textAlign: 'center' }}>Add Notice</h1>
+            </div>
             <form onSubmit={submitNotice} >
                 <div className="contain input-container classSelect">
 

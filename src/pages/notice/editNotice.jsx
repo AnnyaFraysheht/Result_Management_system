@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "./notice.css"
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getClass, getNoticeById } from '../../services/fetchFunction';
+import { toast } from 'react-toastify';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 const EditNotice = ({ role }) => {
     const { id } = useParams();
     const [classes, setClasses] = useState();
@@ -31,9 +33,11 @@ const EditNotice = ({ role }) => {
                 withCredentials: true,
             })
             if (response.status === 200) {
+                toast.success("Notice updated Successfully")
                 navigate(`/${role}/notice`)
             }
         } catch (error) {
+            toast.error("Error updating notice");
             console.log(error)
         }
     }
@@ -43,7 +47,14 @@ const EditNotice = ({ role }) => {
     }
     return (
         <>
-            <h1 style={{ textAlign: 'center' }}>Edit Notice</h1>
+            <div className='backmenu'>
+                <h1 className='back'>
+
+                    <Link className='link' to={`/${role}/notice`}> <IoMdArrowRoundBack /></Link>
+                </h1>
+
+                <h1 style={{ textAlign: 'center' }}>Update Notice</h1>
+            </div>
             <form onSubmit={updateNotice} >
                 <div className="contain input-container classSelect">
 
