@@ -39,6 +39,7 @@ import TeacherMarkPage from "./pages/mark/teacher/markPage";
 import TeacherAddMark from "./pages/mark/teacher/addMark";
 import ResultPage from "./pages/result/student/result";
 import StudentDashboard from "./pages/dashboard/student/student_dashboard";
+import EditNotice from "./pages/notice/editNotice";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
           <Route path="teachers/add" element={<AddTeacher />} />
           <Route path="notice" element={<NoticePage />} />
           <Route path="notice/add" element={<AddNotice role="admin" />} />
+          <Route path="notice/edit/:id" element={<EditNotice role="admin" />} />
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
           <Route path="exam" element={<ExamPage />} />

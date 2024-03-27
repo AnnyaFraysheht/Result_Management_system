@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { getNotices } from '../../services/fetchFunction'
 const NoticePage = () => {
-    const [notices, setNotices] = useState()
+    const [notices, setNotices] = useState();
 
+    
 
     const handleDelete = useCallback(async (id) => {
         if (window.confirm("Are you sure to delete")) {
@@ -38,8 +39,11 @@ const NoticePage = () => {
     }, [handleDelete])
     return (
         <>
+            <div className='heading_edit'>
+
             <h2>Notices</h2>
-            <button className="add"><Link className='link' to={"add"}>Add Notices</Link></button>
+            <button className="add"><Link className='link btn' to={"add"}>Add Notices</Link></button>
+            </div>
             <table >
                 <thead>
                     <tr>
@@ -57,7 +61,7 @@ const NoticePage = () => {
                                 <td>{notice.class_id ? notice.class_name : "Open Notice"}</td>
                                 <td>{notice.notice_text}</td>
                                 <td>{notice.date_posted}</td>
-                                <td><button><FaEdit size={20} color="green" /></button></td>
+                                <td><Link className={"link"}  to={`edit/${notice.notice_id}`}><FaEdit size={20} color="green" /></Link> </td>
                                 <td><button onClick={(e) => handleDelete(notice.notice_id)}><MdDelete size={20} color="red" /></button></td>
                             </tr>
                         })

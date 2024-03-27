@@ -1,3 +1,9 @@
+.heading_edit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
 table{
     width: 100%;
     margin: auto;
@@ -18,6 +24,11 @@ td> button{
     cursor: pointer;
 }
 
+
+.link{
+    text-decoration: none;
+    color: black;
+}
 .add{
     padding: 10px;
     cursor: pointer;
@@ -27,11 +38,6 @@ td> button{
     color:white;
     border: none;
 }
-.link{
-    text-decoration: none;
-    color: black;
-}
-
 textarea{
     resize: none;
     width: 100%;
