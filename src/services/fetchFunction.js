@@ -46,6 +46,20 @@ export const getClass = async () => {
     console.log(error);
   }
 };
+
+export const getClassById = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/api/class/${id}`, {
+      withCredentials: true,
+    });
+    // console.log(response.data.data)
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 export const getExams = async () => {
   try {
     const response = await axios.get("http://localhost:8080/api/exam", {
@@ -85,10 +99,21 @@ export const getExamForTeacher = async () => {
 };
 export const getExamByClass = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/exam/${id}`, {
+    const response = await axios.get(`http://localhost:8080/api/exambyclass/${id}`, {
       withCredentials: true,
     });
     console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getExamById = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/api/exam/${id}`, {
+      withCredentials: true,
+    });
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.log(error);
@@ -108,7 +133,22 @@ export const getSubjects = async () => {
 export const getSubjectsByClassId = async (class_id) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/subject/${class_id}`,
+      `http://localhost:8080/api/subjectbyclass/${class_id}`,
+      {
+        withCredentials: true,
+      }
+
+    );
+    // console.log(response.data.data)
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getSubjectsById = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/api/subject/${id}`,
       {
         withCredentials: true,
       }
@@ -119,7 +159,6 @@ export const getSubjectsByClassId = async (class_id) => {
     console.log(error);
   }
 };
-
 export const getStudents = async () => {
   try {
     const response = await axios.get("http://localhost:8080/api/students", {

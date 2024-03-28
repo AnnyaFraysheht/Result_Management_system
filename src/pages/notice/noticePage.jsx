@@ -46,7 +46,7 @@ const NoticePage = () => {
             <div className='heading_edit'>
 
                 <h2>Notices</h2>
-                <button className="add"><Link className='link btn' to={"add"}>Add Notices</Link></button>
+                <Link className='link btn' to={"add"}><button className="add">Add Notices</button></Link>
             </div>
             <table >
                 <thead>

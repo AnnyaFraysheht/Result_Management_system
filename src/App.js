@@ -40,6 +40,9 @@ import TeacherAddMark from "./pages/mark/teacher/addMark";
 import ResultPage from "./pages/result/student/result";
 import StudentDashboard from "./pages/dashboard/student/student_dashboard";
 import EditNotice from "./pages/notice/editNotice";
+import EditSubject from "./pages/subject/editSubject";
+import EditExam from "./pages/exam/editExam";
+import EditClass from "./pages/class/editClass";
 
 function App() {
   return (
@@ -68,10 +71,13 @@ function App() {
           <Route path="notice/edit/:id" element={<EditNotice role="admin" />} />
           <Route path="class" element={<ClassPage />} />
           <Route path="class/add" element={<AddClass />} />
+          <Route path="class/edit/:id" element={<EditClass />} />
           <Route path="exam" element={<ExamPage />} />
           <Route path="exam/add" element={<AddExam />} />
+          <Route path="exam/edit/:id" element={<EditExam />} />
           <Route path="subject" element={<SubjectPage />} />
           <Route path="subject/add" element={<AddSubject />} />
+          <Route path="subject/edit/:id" element={<EditSubject />} />
           <Route path="mark" element={<MarkPage />} />
           <Route path="section" element={<SectionPage />} />
           <Route path="section/add" element={<AddSection />} />

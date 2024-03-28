@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getClass, getSubjects } from '../services/fetchFunction';
 
-const SubjectInput = ({ handleChange }) => {
+const SubjectInput = ({ value, handleChange }) => {
     const [subjects, setSubjects] = useState();
     const getData = async () => {
 
@@ -12,7 +12,7 @@ const SubjectInput = ({ handleChange }) => {
         getData();
     }, [])
     return (
-        <select className='selectBox' name="subject_id" id="class" onChange={handleChange}>
+        <select value={value} className='selectBox' name="subject_id" id="class" onChange={handleChange}>
 
             <option value={''}>Choose Subject</option>
             {

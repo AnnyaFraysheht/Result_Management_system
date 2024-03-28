@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import "./section.css"
-import {  deleteSection, getClass, getSectionByClass } from '../../services/fetchFunction';
+import { deleteSection, getClass, getSectionByClass } from '../../services/fetchFunction';
 import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import ClassInput from '../../components/ClassInput';
+import { toast } from 'react-toastify';
 const SectionPage = () => {
   const [sections, setSections] = useState([]);
   const [choosedSection, setChoosedSection] = useState();
@@ -12,8 +13,12 @@ const SectionPage = () => {
 
   const handleDelete = useCallback(async (id) => {
     try {
-      await deleteSection(id)
-      getSection();
+      if(window.confirm("Are you sure to delete")){
+
+        await deleteSection(id)
+        toast.warn("Section Deleted Successfully")
+        getSection();
+      }
     } catch (error) {
       console.log(error)
     }
@@ -36,11 +41,17 @@ const SectionPage = () => {
   }, [choosedSection])
   return (
     <>
-      <h2>Section</h2>
-      <button className="add"><Link className="link" to={"add"}>Create Section</Link> </button>
-      <br /><label htmlFor="classSelect">Class</label>
-      
-      <ClassInput handleChange={handleChange} />
+      <div className='heading_edit'>
+
+        <h2>Section</h2>
+        <Link className="link" to={"add"}><button className="add">Create Section</button></Link> 
+      </div>
+      <br />
+      <div className='heading_edit'>
+
+        <label htmlFor="classSelect">Class</label>
+        <ClassInput handleChange={handleChange} />
+      </div>
       <table>
         <thead>
           <tr>

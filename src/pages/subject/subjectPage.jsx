@@ -4,6 +4,7 @@ import { deleteSubject, getSubjects } from '../../services/fetchFunction';
 import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
+import { toast } from 'react-toastify';
 const SubjectPage = () => {
     const [subjects, setSubjects] = useState();
     const getData = async () => {
@@ -18,7 +19,8 @@ const SubjectPage = () => {
         try {
             if (window.confirm("Are you sure to delete Subject?")) {
 
-                await deleteSubject(id)
+                await deleteSubject(id);
+                toast.warning("Subject Deleted Successfully");
                 getData();
             }
         } catch (error) {
@@ -31,7 +33,7 @@ const SubjectPage = () => {
             <div className='heading_edit'>
 
             <h1>Subjects</h1>
-            <button className="add"><Link className="link" to={"add"}>Add New Subject</Link> </button>
+            <Link className="link" to={"add"}><button className="add">Add New Subject</button></Link> 
             </div>
             <table >
                 <thead>
@@ -50,7 +52,7 @@ const SubjectPage = () => {
                                 <td>{subject.subject_name}</td>
                                 <td>{subject.subject_code}</td>
                                 <td>{subject.class_name}</td>
-                                <td className='action'><button><FaEdit size={20} color="green" /></button></td>
+                                <td className='action'><Link to={`edit/${subject.subject_id}`}><FaEdit size={20} color="green" /></Link></td>
                                 <td className='action'><button onClick={(e) => handleDelete(subject.subject_id)}><MdDelete size={20} color="red" /></button></td>
                             </tr>
                         })

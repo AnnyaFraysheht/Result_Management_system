@@ -5,13 +5,18 @@ import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import ClassInput from '../../components/ClassInput';
+import { toast } from 'react-toastify';
 const ExamPage = () => {
     const [exams, setExams] = useState([]);
 
 
     const handleDelete = useCallback(async (id) => {
         try {
-            await deleteExams(id)
+            if (window.confirm("Are you sure you want to delete")) {
+                await deleteExams(id)
+
+                toast.warning("Exam deleted Successfully")
+            }
             getExamData();
         } catch (error) {
             console.log(error)
@@ -28,8 +33,11 @@ const ExamPage = () => {
     }, [])
     return (
         <>
-            <h2>Exams</h2>
-            <button className="add"><Link className="link" to={"add"}>Create Exam</Link> </button>
+            <div className='heading_edit'>
+
+                <h2>Exams</h2>
+                <Link className="link" to={"add"}><button className="add">Create Exam</button></Link>
+            </div>
 
             <table>
                 <thead>
@@ -50,7 +58,7 @@ const ExamPage = () => {
                                 <td>{exam.class_name}</td>
                                 <td>{exam.subject_name}</td>
                                 <td>{exam.exam_date}</td>
-                                <td className='action'><button><FaEdit size={20} color="green" /></button></td>
+                                <td className='action'><Link to={`edit/${exam.exam_id}`}><FaEdit size={20} color="green" /></Link></td>
                                 <td className='action'><button onClick={(e) => handleDelete(exam.exam_id)}><MdDelete size={20} color="red" /></button></td>
                             </tr>
                         })

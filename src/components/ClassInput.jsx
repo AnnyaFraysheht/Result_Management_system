@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getClass } from '../services/fetchFunction';
 
-const ClassInput = ({ handleChange }) => {
+const ClassInput = ({ value,  handleChange }) => {
     const [classes, setClasses] = useState();
     const getData = async () => {
 
@@ -12,9 +12,9 @@ const ClassInput = ({ handleChange }) => {
         getData();
     }, [])
     return (
-        <select className='selectBox' name="class_id" id="class" onChange={handleChange}>
+        <select value={value} className='selectBox' name="class_id" id="class" onChange={handleChange}>
 
-            <option value={''}>Choose Class</option>
+            <option className='selectOption' value={''}>Choose Class</option>
             {
                 classes?.map((_class) => {
                     return <option key={_class.class_id} value={_class.class_id}>{_class.class_name}</option>
