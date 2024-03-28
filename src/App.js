@@ -43,6 +43,7 @@ import EditNotice from "./pages/notice/editNotice";
 import EditSubject from "./pages/subject/editSubject";
 import EditExam from "./pages/exam/editExam";
 import EditClass from "./pages/class/editClass";
+import EditSection from "./pages/section/editSection";
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
           <Route path="mark" element={<MarkPage />} />
           <Route path="section" element={<SectionPage />} />
           <Route path="section/add" element={<AddSection />} />
+          <Route path="section/edit/:id" element={<EditSection />} />
           <Route path="complains" element={<AdminComplain />} />
           <Route path="profile" element={<Profile />} />
         </Route>

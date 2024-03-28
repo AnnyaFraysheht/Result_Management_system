@@ -67,7 +67,7 @@ const SectionPage = () => {
               return <tr key={section.section_id} className={index % 2 == 0 ? "even" : "odd"}>
                 <td>{section.section_name}</td>
                 <td>{section.section_capacity}</td>
-                <td className='action'><button><FaEdit size={20} color="green" /></button></td>
+                <td className='action'><Link to={`edit/${section.section_id}`}><FaEdit size={20} color="green" /></Link></td>
                 <td className='action'><button onClick={(e) => handleDelete(section.section_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>
             })

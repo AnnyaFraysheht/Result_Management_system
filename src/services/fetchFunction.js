@@ -195,6 +195,21 @@ export const getTeachers = async () => {
 export const getSectionByClass = async (id) => {
   try {
     const response = await axios.get(
+      `http://localhost:8080/api/sectionbyclass/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+    // console.log(response.data.data)
+    return response.data.data;
+  } catch (error) {
+    console.log("Error fetching sections:", error);
+    throw error;
+  }
+};
+export const getSectionByID = async (id) => {
+  try {
+    const response = await axios.get(
       `http://localhost:8080/api/section/${id}`,
       {
         withCredentials: true,
