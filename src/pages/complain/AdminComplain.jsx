@@ -40,8 +40,8 @@ const AdminComplain = () => {
                 <td>{complain.created_at}</td>
                 <td>{complain.fname} {complain.lname}</td>
                 <td>{complain.message}</td>
-                <th>{complain.status ? <span className='solved'>Solved</span> : <span className='pending'>Pending</span> }</th>
-                <th>{complain.status ? <button className='solvedBtn' disabled>Solved</button > : <button onClick={() => handleResolve(complain.complain_id)} className='pendingBtn' >Resolve</button>}</th>
+                <td>{complain.status ? <span className='solved'>Solved</span> : <span className='pending'>Pending</span> }</td>
+                <td>{complain.status ? <button className='solvedBtn' disabled>Solved</button > : <button onClick={() => handleResolve(complain.complain_id)} className='pendingBtn' >Resolve</button>}</td>
               </tr>
 
             })

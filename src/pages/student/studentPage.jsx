@@ -26,8 +26,11 @@ const StudentPage = () => {
   }, []);
   return (
     <>
-      <h2 className="headings">Students</h2>
-      <button className="add"><Link className="link add" to={"add"}>Add Student</Link> </button>
+      <div className='heading_edit'>
+        <h2>Students</h2>
+        <Link className="link" to={"add"}><button className="add">Add Student</button></Link>
+      </div>
+      
       <table>
         <thead>
           <tr>
@@ -51,7 +54,7 @@ const StudentPage = () => {
                 <td>{student.lname}</td>
                 <td>{student.class_name}</td>
                 <td>{student.section_name}</td>
-                <td className="action"><button><FaEdit size={20} color="green" /></button></td>
+                <td className="action"><Link to={`edit/${student.student_id}`}><FaEdit size={20} color="green" /></Link></td>
                 <td className="action"><button onClick={(e) => handleDelete(student.user_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>
             })

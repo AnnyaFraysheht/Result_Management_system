@@ -14,20 +14,7 @@ const EditTeacher = () => {
         secondaryContact: ''
 
     });
-    const [teacherData, setTeacherData] = useState({
-        fname: '',
-        mname: '',
-        lname: '',
-        email: '',
-        dob: '',
-        primaryContact: '',
-        secondaryContact: '',
-        temp_address: '',
-        perm_address: '',
-        subject_id: '',
-        role: 'teacher'
-
-    });
+    const [teacherData, setTeacherData] = useState();
     const regexPatterns = {
 
         email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -66,26 +53,29 @@ const EditTeacher = () => {
         }
     }
     useEffect(() => {
-    const getData = async () => {
-        const result = await getTeacherById(id);
-        console.log(result)
-        const filteredData = {
-            fname: result[0].fname,
-            mname: result[0].mname,
-            lname: result[0].lname,
-            email: result[0].email,
-            dob: result[0].dob,
-            primaryContact: result[0].primarycontact,
-            secondaryContact: result[0].secondarycontact,
-            temp_address: result[0].temp_address,
-            perm_address: result[0].perm_address,
-            subject_id: result[0].subject_id,
-            role: 'teacher'
-    
+        const getData = async () => {
+            const result = await getTeacherById(id);
+            console.log(result)
+            const filteredData = {
+                fname: result[0].fname,
+                mname: result[0].mname,
+                lname: result[0].lname,
+                dob: result[0].dob,
+                gender: result[0].gender,
+                primaryContact: result[0].primary_contact,
+                secondaryContact: result[0].secondary_contact,
+                temp_address: result[0].temporary_address,
+                perm_address: result[0].permanent_address,
+                email: result[0].email,
+                subject_id: result[0].subject_id,
+                role: 'teacher',
+                teacher_id: id,
+                user_id: result[0].user_id
+
+            }
+            setTeacherData(filteredData);
+            // setSubjects(data)
         }
-        setTeacherData(filteredData);
-        // setSubjects(data)
-    }
         getData();
     }, [])
 
@@ -118,13 +108,20 @@ const EditTeacher = () => {
                 <div className='input-container'>
 
                     <label htmlFor="email">Email</label>
-                    <input value={teacherData?.email} required onChange={handleChange} type="text" name="email" placeholder='Enter your email' />
+                    <input disabled value={teacherData?.email} required onChange={handleChange} type="text" name="email" placeholder='Enter your email' />
                     {validationError.email && (<span>{validationError.email}</span>)}
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="dob">Dob</label>
                     <input value={teacherData?.dob} required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
+                </div>
+                <div className='input-container gender'>
+
+                    <label htmlFor="gender">Gender</label>
+                    <input checked={teacherData?.gender === "M"} required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                    <input checked={teacherData?.gender === "F"} required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                    <input checked={teacherData?.gender === "O"} required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
                 </div>
                 <div className='input-container'>
 

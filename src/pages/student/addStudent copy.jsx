@@ -4,7 +4,7 @@ import { getClass, getSectionByClass } from '../../services/fetchFunction';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
-const AddStudent = () => {
+const EditStudent = () => {
     const navigate = useNavigate();
     const [classes, setClasses] = useState();
     const [section, setSection] = useState();
@@ -29,7 +29,9 @@ const AddStudent = () => {
         blood_group: '',
         nationality: '',
         role: 'student',
-        gender: ''
+        gender: '',
+        student_id: '',
+        user_id : ''
 
     });
     const regexPatterns = {
@@ -214,4 +216,4 @@ const AddStudent = () => {
     )
 }
 
-export default AddStudent
+export default EditStudent

@@ -19,6 +19,7 @@ const AddTeacher = () => {
         lname: '',
         email: '',
         dob: '',
+        gender: '',
         primaryContact: '',
         secondaryContact: '',
         temp_address: '',
@@ -103,6 +104,13 @@ const AddTeacher = () => {
 
                     <label htmlFor="dob">Dob</label>
                     <input required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
+                </div>
+                <div className='input-container gender'>
+
+                    <label htmlFor="gender">Gender</label>
+                    <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                    <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                    <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
                 </div>
                 <div className='input-container'>
 
