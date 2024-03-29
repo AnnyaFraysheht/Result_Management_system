@@ -6,6 +6,7 @@ import { getMyDetails } from '../../services/fetchFunction';
 import axios from 'axios';
 import { LuUploadCloud } from "react-icons/lu"
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const Profile = () => {
   const navigate = useNavigate()
   const [userData, setUserData] = useState();
@@ -59,9 +60,12 @@ const Profile = () => {
     axios.post("http://localhost:8080/api/changeprofile", fd, {
       withCredentials: true,
     }).then((response) => {
+      toast.success("Image uploaded successfully")
       console.log(response)
     }).catch((error) => {
-      alert(error.response.data.error)
+      toast.error(error.response.data.error);
+      // alert(error.response.data.error)
+      console.log(error.response)
     }).finally(() => {
       setFlag(false);
       fetchUserData();
@@ -132,7 +136,7 @@ const Profile = () => {
       </div>
       <div className='general_info'>
         <div>
-          <h1>Personal Information</h1>
+          <h1 className='head'>Personal Information</h1>
 
         </div>
         <div className="details-container">

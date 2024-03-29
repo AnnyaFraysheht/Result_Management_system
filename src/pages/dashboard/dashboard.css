@@ -1,35 +1,45 @@
 .countContainer{
     /* display: flex; */
-    gap: 10px;
-    width: 100%;
+    width: calc(100% - 20px);
     margin: 10px;
     justify-content: center;
+    /* background-color: red; */
+
 }
 .countContainer > div{
-    background-color: #87d3a8;
+    background-color: rgba(171, 168, 168, 0.395);
      text-align: center;
+     padding: 20px;
+     width: 80%;
      margin: auto;
      margin-bottom: 15px;
-     padding: 20px;
-     width: 30%;
-     height: 150px;
      border-radius: 10px;
-     box-shadow: 4px 4px 8px rgba(106, 104, 104, 0.291);
+     border-right: 1px solid white;
+     border-bottom: 1px solid white;
+     box-shadow: 4px 4px 15px 8px rgba(0, 0, 0, 0.291);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
 }
 .countContainer > div > h3{
-    color: rgb(58, 56, 56);
+    color: rgb(223, 217, 217);
     font-size: 28px;
 }
 .count > h1{
-    color: rgb(36, 67, 46);
-    font-size: 44px;
+    color: rgb(79, 46, 102);
+    font-size: 64px;
 }
 
-@media screen and (min-width:600px) {
+
+@media screen and (min-width:768px) {
     .countContainer{
         display: flex;
+        gap: 10px;
     }
     .countContainer > div{
         margin: 0;
+        width: 30%;
+        height: 180px;
     }
 }

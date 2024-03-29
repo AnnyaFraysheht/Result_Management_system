@@ -32,7 +32,7 @@ const AdminComplain = () => {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='tbody'>
           {
             complains?.map((complain , index) => {
               return <tr key={complain.complain_id} className={complain.status ? index % 2 == 0 ? "even" : "odd" : 'red'}>

@@ -18,10 +18,11 @@
     width: 80%;
     height: 55%;
     border-radius: 15px;
-    background-color: rgba(146, 141, 141, 0.46);
+    background: linear-gradient(135  , rgba(255,255, 255, 0.1 , rgba(255, 255, 255, 0))) ;
     backdrop-filter: blur(10px);
     margin: auto;
     place-content: center;
+    box-shadow: 0px 8px 32px 5px rgba(0,0,0,0.37) ;
 }
 h1{
     text-align: center;
@@ -52,10 +53,9 @@ input{
     width: 100%;
     outline: none;
     
-    box-shadow: 2px 2px 5px rgba(55, 55, 55, 0.514);
-
-    
+    /* box-shadow: 2px 2px 5px rgba(55, 55, 55, 0.514);     */
 }
+
 form > div{
     display: flex;
     flex-direction: column;
@@ -78,7 +78,6 @@ form > button{
 .loginBtn{
     color: rgb(11, 60, 11);
     padding: 8px 15px;
-
     box-shadow: 2px 2px 5px rgba(48, 48, 48, 0.48);
 }
 /* notice section  */
@@ -106,12 +105,22 @@ form > button{
     }
     .form{
         width: 30%;
-
         backdrop-filter: none;
-        background-color:transparent;
+        background:transparent;
         float: right;
+        box-shadow: none;
         position: relative;
         left: 30%;
+    }
+    .loginInput:focus, .loginInput:active{
+        background-color: transparent;
+        background: linear-gradient(135  , rgba(255,255, 255, 0.1 , rgba(255, 255, 255, 0)));
+    }
+    .loginInput{
+        fill: none;
+        background: linear-gradient(135  , rgba(255,255, 255, 0.1 , rgba(255, 255, 255, 0)));
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 8px 32px 5px rgba(0,0,0,0.37) ;
     }
 
 }

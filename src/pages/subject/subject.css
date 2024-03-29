@@ -7,3 +7,23 @@
     position: absolute;
     left: 10%;
 }
+table{
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+thead{
+    background-color: rgba(224, 224, 221, 0.508);
+    color: rgb(41, 39, 39);
+}
+.even{
+    background-color: #3741569b;
+    color: rgb(216, 203, 203);
+}
+.odd{
+    background-color: #b33b3b8e;
+    color: rgb(0, 0, 0);
+}

@@ -31,7 +31,7 @@ const StudentPage = () => {
       <table>
         <thead>
           <tr>
-            <td></td>
+            <th></th>
             <th>Fname</th>
             <th>Mname</th>
             <th>Lname</th>

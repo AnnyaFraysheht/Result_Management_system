@@ -27,8 +27,10 @@ const TeacherPage = () => {
   }, []);
   return (
     <>
-      <h2>Teacher</h2>
-      <button className="add"><Link className="link" to={"add"}>Add Teacher</Link> </button>
+      <div className='heading_edit'>
+        <h2>Teacher</h2>
+        <Link className="link" to={"add"}><button className="add">Add Teacher</button></Link>
+      </div>
       <table >
         <thead>
           <tr>
@@ -44,13 +46,13 @@ const TeacherPage = () => {
         <tbody>
           {
             teachers?.map((teacher, index) => {
-              return <tr className={index % 2 == 0 ? "even" : "odd"}  key={teacher.teacher_id}>
+              return <tr className={index % 2 == 0 ? "even" : "odd"} key={teacher.teacher_id}>
                 <td><img src={teacher.image ? `http://localhost:8080/api/images/${teacher.image}` : oip} height={50} width={50} alt="profile" /></td>
                 <td>{teacher.fname}</td>
                 <td>{teacher.mname}</td>
                 <td>{teacher.lname}</td>
                 <td>{teacher.subject_name}</td>
-                <td className='action'><button><FaEdit size={20} color="green" /></button></td>
+                <td className='action'><Link to={`edit/${teacher.teacher_id}`}><FaEdit size={20} color="green" /></Link></td>
                 <td className='action'><button onClick={(e) => handleDelete(teacher.user_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>
             })

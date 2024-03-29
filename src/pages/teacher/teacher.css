@@ -1,19 +1,22 @@
 table{
     width: 100%;
     margin: auto;
+    border-collapse: collapse;
     text-align: center;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 thead{
-    background-color: rgb(176, 176, 165);
-    padding: 5px;
-    border-radius: 15px 15px  0 0;
-    
-}
-.odd{
-    background-color: rgb(140, 226, 142);
+    background-color: rgba(224, 224, 221, 0.508);
+    color: rgb(41, 39, 39);
 }
 .even{
-    background-color: rgb(104, 200, 195);
+    background-color: #3741569b;
+    color: rgb(216, 203, 203);
+}
+.odd{
+    background-color: #b33b3b8e;
+    color: rgb(0, 0, 0);
 }
 th{
     padding: 0 15px;

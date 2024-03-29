@@ -7,6 +7,8 @@
 .profileparent{
     position: relative;
     margin: auto;
+
+    transition: opacity .5s ease-in-out , height .5s ease-in-out;
 }
 .profile_picture{
     width: 200px;
@@ -42,6 +44,7 @@
 .general_info{
     text-align: center;
     margin: auto;
+    /* background-color: rgba(0, 0, 0, 0.208); */
 }
 .general_info > div{
     margin: auto;
@@ -59,7 +62,7 @@
 .details-container div:nth-child(1){
     width: 40%;
     text-align: left;
-    color: rgb(52, 51, 51);
+    color: rgb(255, 255, 255);
 }
 .details-container  div:nth-child(2){
     width: 60%;
@@ -70,15 +73,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-color: rgba(157, 157, 199, 0.418);
     padding: 10px;
     padding-bottom: 10px;
-    z-index: 9;
+    z-index: 10;
     width: 350px;
     border-radius: 10px;
-    backdrop-filter: blur(10px);
     text-align: center;
-    transition: opacity .5s ease-in-out , height .5s ease-in-out;
 }
 .foram{
     margin: 0;
@@ -91,6 +91,10 @@
 .show{
     opacity: 1;
     height: 340px;
+
+    background-color: rgba(112, 103, 103, 0.773);
+    /* background-color: red; */
+    backdrop-filter: blur(15px);
 }
 .submit{
     padding: 8px;
@@ -160,4 +164,9 @@
 }
 .topic{
     font-size: 25px;
+    color: black;
+}
+
+.head{
+    color: black;
 }

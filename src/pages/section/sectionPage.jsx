@@ -46,7 +46,6 @@ const SectionPage = () => {
         <h2>Section</h2>
         <Link className="link" to={"add"}><button className="add">Create Section</button></Link> 
       </div>
-      <br />
       <div className='heading_edit'>
 
         <label htmlFor="classSelect">Class</label>

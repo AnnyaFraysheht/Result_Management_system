@@ -1,12 +1,13 @@
-import React, {  useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./teacher.css"
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import { getSubjects, getTeacherById } from '../../services/fetchFunction';
 import SubjectInput from '../../components/SubjectInput';
-import { toast } from 'react-toastify';
-const AddTeacher = () => {
+const EditTeacher = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [validationError, setValidationError] = useState({
         email: '',
         primaryContact: '',
@@ -23,7 +24,7 @@ const AddTeacher = () => {
         secondaryContact: '',
         temp_address: '',
         perm_address: '',
-        subject_id : '',
+        subject_id: '',
         role: 'teacher'
 
     });
@@ -51,11 +52,10 @@ const AddTeacher = () => {
             console.log(teacherData)
             // alert("Form can be submitted")
 
-            axios.post("http://localhost:8080/api/register", teacherData, {
+            axios.patch("http://localhost:8080/api/update/", teacherData, {
                 withCredentials: true,
             }).then(response => {
                 console.log(response.data)
-                toast.success("Teacher Added Successfully")
                 navigate("/admin/teachers");
             }).catch(error => {
                 if (error.response) {
@@ -65,75 +65,98 @@ const AddTeacher = () => {
             })
         }
     }
-   
+    useEffect(() => {
+    const getData = async () => {
+        const result = await getTeacherById(id);
+        console.log(result)
+        const filteredData = {
+            fname: result[0].fname,
+            mname: result[0].mname,
+            lname: result[0].lname,
+            email: result[0].email,
+            dob: result[0].dob,
+            primaryContact: result[0].primarycontact,
+            secondaryContact: result[0].secondarycontact,
+            temp_address: result[0].temp_address,
+            perm_address: result[0].perm_address,
+            subject_id: result[0].subject_id,
+            role: 'teacher'
+    
+        }
+        setTeacherData(filteredData);
+        // setSubjects(data)
+    }
+        getData();
+    }, [])
 
     return (
         <div>
-             <div className='backmenu'>
+            <div className='backmenu'>
                 <h1 className='back'>
 
                     <Link className='link' to={`/admin/teachers`}> <IoMdArrowRoundBack /></Link>
                 </h1>
 
-                <h1 style={{ textAlign: 'center' }}>Add Teacher</h1>
+                <h1 style={{ textAlign: 'center' }}>Edit Teacher</h1>
             </div>
             <form onSubmit={handleSubmit} className='student_form' action="">
                 <div className='input-container'>
 
                     <label htmlFor="fname">First Name</label>
-                    <input onChange={handleChange} type="text" name="fname" placeholder='Enter first name' required />
+                    <input value={teacherData?.fname} onChange={handleChange} type="text" name="fname" placeholder='Enter first name' required />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="mname">Middle Name</label>
-                    <input onChange={handleChange} type="text" name="mname" placeholder='Enter middle name' />
+                    <input value={teacherData?.mname} onChange={handleChange} type="text" name="mname" placeholder='Enter middle name' />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="lname">Last Name</label>
-                    <input onChange={handleChange} type="text" name="lname" placeholder='Enter last name' required />
+                    <input value={teacherData?.lname} onChange={handleChange} type="text" name="lname" placeholder='Enter last name' required />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="email">Email</label>
-                    <input required onChange={handleChange} type="text" name="email" placeholder='Enter your email' />
+                    <input value={teacherData?.email} required onChange={handleChange} type="text" name="email" placeholder='Enter your email' />
                     {validationError.email && (<span>{validationError.email}</span>)}
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="dob">Dob</label>
-                    <input required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
+                    <input value={teacherData?.dob} required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact One</label>
-                    <input required onChange={handleChange} type="number" name="primaryContact" placeholder='Enter primary contact' />
+                    <input value={teacherData?.primaryContact} required onChange={handleChange} type="number" name="primaryContact" placeholder='Enter primary contact' />
                     {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact Two</label>
-                    <input required onChange={handleChange} type="number" name="secondaryContact" placeholder='Enter secondary contact' />
+                    <input value={teacherData?.secondaryContact} required onChange={handleChange} type="number" name="secondaryContact" placeholder='Enter secondary contact' />
                     {validationError.secondaryContact && (<span>{validationError.secondaryContact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="temp_address">Temporary Address</label>
-                    <input required onChange={handleChange} type="text" name="temp_address" placeholder='Enter your Permanent Address' />
+                    <input value={teacherData?.temp_address} required onChange={handleChange} type="text" name="temp_address" placeholder='Enter your Permanent Address' />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="perm_address">Permanent Address</label>
-                    <input required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
+                    <input value={teacherData?.perm_address} required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
                 </div>
-                
-                
+
+
                 <div className='input-container'>
 
                     <label htmlFor="subject">Subjects</label>
-                    <SubjectInput handleChange={handleChange} />
+                    <SubjectInput value={teacherData?.subject_id} handleChange={handleChange} />
+
                 </div>
                 <button className='btn'>Submit</button>
             </form>
@@ -141,4 +164,4 @@ const AddTeacher = () => {
     )
 }
 
-export default AddTeacher
+export default EditTeacher
