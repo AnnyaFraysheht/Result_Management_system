@@ -45,7 +45,7 @@ import EditExam from "./pages/exam/editExam";
 import EditClass from "./pages/class/editClass";
 import EditSection from "./pages/section/editSection";
 import EditTeacher from "./pages/teacher/editTeacher";
-import EditStudent from "./pages/student/addStudent copy";
+import EditStudent from "./pages/student/editStudent";
 
 function App() {
   return (

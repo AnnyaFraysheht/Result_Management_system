@@ -17,7 +17,7 @@ export const getNoticeById = async (id) => {
     const response = await axios.get(`http://localhost:8080/api/notice/${id}`, {
       withCredentials: true,
     });
-    console.log("response of getNotice by ID",response.data.data);
+    console.log("response of getNotice by ID", response.data.data);
     return response.data.data;
   } catch (error) {
     console.log(error);
@@ -59,7 +59,6 @@ export const getClassById = async (id) => {
   }
 };
 
-
 export const getExams = async () => {
   try {
     const response = await axios.get("http://localhost:8080/api/exam", {
@@ -99,9 +98,12 @@ export const getExamForTeacher = async () => {
 };
 export const getExamByClass = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/exambyclass/${id}`, {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      `http://localhost:8080/api/exambyclass/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
     console.log(response.data.data);
     return response.data.data;
   } catch (error) {
@@ -137,7 +139,6 @@ export const getSubjectsByClassId = async (class_id) => {
       {
         withCredentials: true,
       }
-
     );
     // console.log(response.data.data)
     return response.data.data;
@@ -170,6 +171,20 @@ export const getStudents = async () => {
     console.log(error);
   }
 };
+export const getStudentById = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/api/students/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+    // console.log(response.data.data)
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getAdmins = async () => {
   try {
     const response = await axios.get("http://localhost:8080/api/admins", {
@@ -194,9 +209,12 @@ export const getTeachers = async () => {
 };
 export const getTeacherById = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/teachers/${id}`, {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      `http://localhost:8080/api/teachers/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
     // console.log(response.data.data)
     return response.data.data;
   } catch (error) {
@@ -237,10 +255,18 @@ export const getSectionByID = async (id) => {
 export const deleteUser = async (id) => {
   try {
     console.log("deleting user id is" + id);
-    await axios.delete(`http://localhost:8080/api/users/${id}`, {
-      withCredentials: true,
-    });
+    await axios
+      .delete(`http://localhost:8080/api/users/${id}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response);
+      });
   } catch (error) {
+    if (error.response.data.code === '1434'){
+
+      toast.error("You are the last here ! Dont vanish yourself");
+    }
     console.log(error);
   }
 };

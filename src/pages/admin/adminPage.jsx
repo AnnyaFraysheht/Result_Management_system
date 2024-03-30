@@ -5,6 +5,7 @@ import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import { deleteUser, getAdmins } from '../../services/fetchFunction'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const AdminPage
   = () => {
     const [admins, setAdmins] = useState();
@@ -20,7 +21,8 @@ const AdminPage
     const handleDelete = useCallback(async (id) => {
       if (window.confirm("Are you sure to Delete?")) {
         try {
-          await deleteUser(id)
+          await deleteUser(id);
+          toast.warn("Admin deleted successfully");
           getData();
         } catch (error) {
           console.log(error)
@@ -29,9 +31,14 @@ const AdminPage
     }, []);
     return (
       <>
-        <h2>Admin</h2>
-        <p><i>(NOTE: Admins are like god so add them carefully)</i></p>
-        <button className="add"><Link className="link" to={"add"}>Add New Admin</Link> </button>
+        <div className='heading_edit'>
+          <div>
+
+          <h2>Admins</h2>
+          <p><i>(NOTE: Admins are like god so add them carefully)</i></p>
+          </div>
+          <Link className="link" to={"add"}><button className="add">Add Admin</button></Link>
+        </div>
         <table >
           <thead>
             <tr>

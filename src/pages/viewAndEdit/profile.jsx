@@ -41,7 +41,7 @@ const Profile = () => {
   const [file, setFile] = useState()
   const fetchUserData = async () => {
     const user = await getMyDetails();
-    // console.log("user",user);
+    console.log("user", user);
     localStorage.setItem("image", user.image)
     setUserData(user);
   }
@@ -84,7 +84,7 @@ const Profile = () => {
           <h3 className='topic'>Change Picture</h3>
           <label className='uploadLabel' htmlFor="change_picture">
             <div className='input'>
-              { file && <img src={URL.createObjectURL(file)} className='previewImage' /> }
+              {file && <img src={URL.createObjectURL(file)} className='previewImage' />}
               <LuUploadCloud size={50} color='green' style={{ margin: 'auto' }} />
               <p>{file?.name}</p>
             </div>
@@ -141,7 +141,7 @@ const Profile = () => {
         </div>
         <div className="details-container">
           <div>Name:</div>
-          <div>{userData?.fname}  {userData?.mname}  {userData?.lname}</div>
+          <div>{userData?.fname}  {userData?.mname}  {userData?.lname} ({userData?.role})</div>
 
         </div>
         <div className="details-container">
@@ -151,7 +151,7 @@ const Profile = () => {
         </div>
         <div className="details-container">
           <div>Gender</div>
-          <div>{userData?.gender === 'M' ? "Male" : userData?.gender === 'F' ? "Female" : "Other"}</div>
+          <div>{userData?.gender === 'M' ? "Male" : userData?.gender === 'F' ? "Female" : userData?.gender === 'O' ? "Other" : 'NULL'}</div>
         </div>
         <div className="details-container">
           <div>Email</div>
@@ -160,11 +160,11 @@ const Profile = () => {
         </div>
         <div className="details-container">
           <div>Primary Contact</div>
-          <div>{userData?.contacts[0]}</div>
+          <div>{userData?.primary_contact}</div>
         </div>
         <div className="details-container">
           <div>Secondary Contact</div>
-          <div>{userData?.contacts[1]}</div>
+          <div>{userData?.secondary_contact}</div>
         </div>
         <div className="details-container">
           <div>Permanent Address</div>
@@ -172,7 +172,7 @@ const Profile = () => {
         </div>
         <div className="details-container">
           <div>Secondary Address</div>
-          <div>{userData?.temp_address}</div>
+          <div>{userData?.temporary_address}</div>
         </div>
 
       </div>

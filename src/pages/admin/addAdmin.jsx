@@ -3,12 +3,13 @@ import "./admin.css"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import { toast } from 'react-toastify';
 const AddAdmin = () => {
     const navigate = useNavigate();
     const [validationError, setValidationError] = useState({
         email: '',
-        primaryContact: '',
-        secondaryContact: ''
+        primary_contact: '',
+        secondary_contact: ''
 
     });
     const [adminData, setAdminData] = useState({
@@ -17,18 +18,19 @@ const AddAdmin = () => {
         lname: '',
         email: '',
         dob: '',
-        primaryContact: '',
-        secondaryContact: '',
-        temp_address: '',
-        perm_address: '',
+        gender:'',
+        primary_contact: '',
+        secondary_contact: '',
+        temporary_address: '',
+        permanent_address: '',
         role: 'admin'
 
     });
     const regexPatterns = {
 
         email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        primaryContact: /^\d{10}$/,
-        secondaryContact: /^\d{10}$/,
+        primary_contact: /^\d{10}$/,
+        secondary_contact: /^\d{10}$/,
 
     };
     const handleChange = (e) => {
@@ -52,11 +54,13 @@ const AddAdmin = () => {
                 withCredentials: true,
             }).then(response => {
                 console.log(response.data)
+                toast.success("Admin created successfully")
                 navigate("/admin/admins");
             }).catch(error => {
                 if (error.response) {
                     console.log(error.response)
-                    alert(error.response.data.error)
+                    toast.error(error.response.data.error)
+                    // alert(error.response.data.error)
                 }
             })
         }
@@ -65,8 +69,14 @@ const AddAdmin = () => {
 
     return (
         <div>
-            <h1 style={{ textAlign: 'center' }}>Adding Teacher</h1>
-            <h1><Link className='link' to={"/admin/admins"}> <IoMdArrowRoundBack /></Link></h1>
+            <div className='backmenu'>
+                <h1 className='back'>
+
+                    <Link className='link' to={`/admin/admins`}> <IoMdArrowRoundBack /></Link>
+                </h1>
+
+                <h1 style={{ textAlign: 'center' }}>Add Admin</h1>
+            </div>
             <form onSubmit={handleSubmit} className='student_form' action="">
                 <div className='input-container'>
 
@@ -94,29 +104,36 @@ const AddAdmin = () => {
                     <label htmlFor="dob">Dob</label>
                     <input required onChange={handleChange} type="date" name="dob" placeholder='Enter your dob' />
                 </div>
+                <div className='input-container gender'>
+
+                    <label htmlFor="gender">Gender</label>
+                    <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                    <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                    <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                </div>
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact One</label>
-                    <input required onChange={handleChange} type="number" name="primaryContact" placeholder='Enter primary contact' />
-                    {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
+                    <input required onChange={handleChange} type="number" name="primary_contact" placeholder='Enter primary contact' />
+                    {validationError.primary_contact && (<span>{validationError.primary_contact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact Two</label>
-                    <input required onChange={handleChange} type="number" name="secondaryContact" placeholder='Enter secondary contact' />
-                    {validationError.secondaryContact && (<span>{validationError.secondaryContact}</span>)}
+                    <input required onChange={handleChange} type="number" name="secondary_contact" placeholder='Enter secondary contact' />
+                    {validationError.secondary_contact && (<span>{validationError.secondary_contact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="temp_address">Temporary Address</label>
-                    <input required onChange={handleChange} type="text" name="temp_address" placeholder='Enter your Permanent Address' />
+                    <label htmlFor="temporary_address">Temporary Address</label>
+                    <input required onChange={handleChange} type="text" name="temporary_address" placeholder='Enter your Permanent Address' />
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="perm_address">Permanent Address</label>
-                    <input required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
+                    <label htmlFor="permanent_address">Permanent Address</label>
+                    <input required onChange={handleChange} type="text" name="permanent_address" placeholder='Enter your secondary address' />
                 </div>
 
 

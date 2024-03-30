@@ -4,14 +4,15 @@ import { getClass, getSectionByClass } from '../../services/fetchFunction';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import { toast } from 'react-toastify';
 const AddStudent = () => {
     const navigate = useNavigate();
     const [classes, setClasses] = useState();
     const [section, setSection] = useState();
     const [validationError, setValidationError] = useState({
         email: '',
-        primaryContact: '',
-        secondaryContact: ''
+        primary_contact: '',
+        secondary_contact: ''
 
     });
     const [studentData, setStudentData] = useState({
@@ -20,10 +21,10 @@ const AddStudent = () => {
         lname: '',
         email: '',
         dob: '',
-        primaryContact: '',
-        secondaryContact: '',
-        temp_address: '',
-        perm_address: '',
+        primary_contact: '',
+        secondary_contact: '',
+        temporary_address: '',
+        permanent_address: '',
         class_id: '',
         section_id: '',
         blood_group: '',
@@ -35,8 +36,8 @@ const AddStudent = () => {
     const regexPatterns = {
 
         email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        primaryContact: /^\d{10}$/,
-        secondaryContact: /^\d{10}$/,
+        primary_contact: /^\d{10}$/,
+        secondary_contact: /^\d{10}$/,
 
     };
     const handleChange = (e) => {
@@ -52,7 +53,7 @@ const AddStudent = () => {
 
         const hasErrors = Object.values(validationError).some((error) => error);
         if (hasErrors) {
-            alert("Fill form correctly")
+            toast.warning("Fill form correctly")
         } else {
             console.log(studentData)
             // alert("Form can be submitted")
@@ -61,10 +62,12 @@ const AddStudent = () => {
                 withCredentials: true,
             }).then(response => {
                 console.log(response.data)
+                toast.success("Student Added Successfully")
                 navigate("/admin/students");
             }).catch(error => {
                 if (error.response) {
-                    console.log(error.response)
+                    console.log(error.response);
+                    toast.error(error.response.data.error)
                     alert(error.response.data.error)
                 }
             })
@@ -129,26 +132,26 @@ const AddStudent = () => {
                 </div>
                 <div className='input-container'>
                     <label htmlFor="contacts">Contact One</label>
-                    <input required onChange={handleChange} id='contacts' type="text" name="primaryContact" />
-                    {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
+                    <input required onChange={handleChange} id='contacts' type="text" name="primary_contact" />
+                    {validationError.primary_contact && (<span>{validationError.primary_contact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact Two</label>
-                    <input required onChange={handleChange} type="text" name="secondaryContact" />
-                    {validationError.secondaryContact && (<span>{validationError.secondaryContact}</span>)}
+                    <input required onChange={handleChange} type="text" name="secondary_contact" />
+                    {validationError.secondary_contact && (<span>{validationError.secondary_contact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="temp_address">Temporary Address</label>
-                    <input required onChange={handleChange} id='temp_address' type="text" name="temp_address" />
+                    <label htmlFor="temporary_address">Temporary Address</label>
+                    <input required onChange={handleChange} id='temporary_address' type="text" name="temporary_address" />
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="perm_address">Permanent Address</label>
-                    <input required onChange={handleChange} id='perm_address' type="text" name="perm_address" />
+                    <label htmlFor="permanent_address">Permanent Address</label>
+                    <input required onChange={handleChange} id='permanent_address' type="text" name="permanent_address" />
                 </div>
                 <div className='input-container gender'>
 
@@ -197,8 +200,7 @@ const AddStudent = () => {
                     </select>
                 </div>
                 <div className='input-container'>
-
-                    <label htmlFor="nationality">Nationaligy</label>
+                    <label htmlFor="nationality">Nationality</label>
                     <select required className='selectBox' onChange={handleChange} name="nationality" id="">
                         <option value="">Select Nationality</option>
                         <option value="nepali">Nepali</option>

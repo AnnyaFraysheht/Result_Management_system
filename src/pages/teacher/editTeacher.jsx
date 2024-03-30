@@ -5,21 +5,22 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { getSubjects, getTeacherById } from '../../services/fetchFunction';
 import SubjectInput from '../../components/SubjectInput';
+import { toast } from 'react-toastify';
 const EditTeacher = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [validationError, setValidationError] = useState({
         email: '',
-        primaryContact: '',
-        secondaryContact: ''
+        primary_contact: '',
+        secondary_contact: ''
 
     });
     const [teacherData, setTeacherData] = useState();
     const regexPatterns = {
 
         email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        primaryContact: /^\d{10}$/,
-        secondaryContact: /^\d{10}$/,
+        primary_contact: /^\d{10}$/,
+        secondary_contact: /^\d{10}$/,
 
     };
     const handleChange = (e) => {
@@ -34,7 +35,8 @@ const EditTeacher = () => {
         e.preventDefault();
         const hasErrors = Object.values(validationError).some((error) => error);
         if (hasErrors) {
-            alert("Fill form correctly")
+            // alert("Fill form correctly")
+            toast.warn("Fill form correctly")
         } else {
             console.log(teacherData)
             // alert("Form can be submitted")
@@ -43,11 +45,13 @@ const EditTeacher = () => {
                 withCredentials: true,
             }).then(response => {
                 console.log(response.data)
+                toast.success("Teacher edited Successfully")
                 navigate("/admin/teachers");
             }).catch(error => {
                 if (error.response) {
                     console.log(error.response)
-                    alert(error.response.data.error)
+                    // alert(error.response.data.error)
+                    toast.error(error.response.data.error)
                 }
             })
         }
@@ -62,10 +66,10 @@ const EditTeacher = () => {
                 lname: result[0].lname,
                 dob: result[0].dob,
                 gender: result[0].gender,
-                primaryContact: result[0].primary_contact,
-                secondaryContact: result[0].secondary_contact,
-                temp_address: result[0].temporary_address,
-                perm_address: result[0].permanent_address,
+                primary_contact: result[0].primary_contact,
+                secondary_contact: result[0].secondary_contact,
+                temporary_address: result[0].temporary_address,
+                permanent_address: result[0].permanent_address,
                 email: result[0].email,
                 subject_id: result[0].subject_id,
                 role: 'teacher',
@@ -126,26 +130,26 @@ const EditTeacher = () => {
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact One</label>
-                    <input value={teacherData?.primaryContact} required onChange={handleChange} type="number" name="primaryContact" placeholder='Enter primary contact' />
-                    {validationError.primaryContact && (<span>{validationError.primaryContact}</span>)}
+                    <input value={teacherData?.primary_contact} required onChange={handleChange} type="number" name="primary_contact" placeholder='Enter primary contact' />
+                    {validationError.primary_contact && (<span>{validationError.primary_contact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="contacts">Contact Two</label>
-                    <input value={teacherData?.secondaryContact} required onChange={handleChange} type="number" name="secondaryContact" placeholder='Enter secondary contact' />
-                    {validationError.secondaryContact && (<span>{validationError.secondaryContact}</span>)}
+                    <input value={teacherData?.secondary_contact} required onChange={handleChange} type="number" name="secondary_contact" placeholder='Enter secondary contact' />
+                    {validationError.secondary_contact && (<span>{validationError.secondary_contact}</span>)}
 
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="temp_address">Temporary Address</label>
-                    <input value={teacherData?.temp_address} required onChange={handleChange} type="text" name="temp_address" placeholder='Enter your Permanent Address' />
+                    <label htmlFor="temporary_address">Temporary Address</label>
+                    <input value={teacherData?.temporary_address} required onChange={handleChange} type="text" name="temporary_address" placeholder='Enter your Permanent Address' />
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="perm_address">Permanent Address</label>
-                    <input value={teacherData?.perm_address} required onChange={handleChange} type="text" name="perm_address" placeholder='Enter your secondary address' />
+                    <label htmlFor="permanent_address">Permanent Address</label>
+                    <input value={teacherData?.permanent_address} required onChange={handleChange} type="text" name="permanent_address" placeholder='Enter your secondary address' />
                 </div>
 
 
