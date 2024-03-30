@@ -60,7 +60,7 @@ const AdminPage
                   <td>{admin.mname}</td>
                   <td>{admin.lname}</td>
                   <td>{admin.email}</td>
-                  <td className='action'><button><FaEdit size={20} color="green" /></button></td>
+                  <td className='action'><Link to={`edit/${admin.admin_id}`}><FaEdit size={20} color="green" /></Link></td>
                   <td className='action'><button onClick={(e) => handleDelete(admin.user_id)}><MdDelete size={20} color="red" /></button></td>
                 </tr>
               })

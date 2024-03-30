@@ -46,6 +46,7 @@ import EditClass from "./pages/class/editClass";
 import EditSection from "./pages/section/editSection";
 import EditTeacher from "./pages/teacher/editTeacher";
 import EditStudent from "./pages/student/editStudent";
+import EditAdmin from "./pages/admin/editAdmin";
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="admins" element={<AdminPage />} />
           <Route path="admins/add" element={<AddAdmin />} />
+          <Route path="admins/edit/:id" element={<EditAdmin />} />
           <Route path="students" element={<StudentPage />} />
           <Route path="students/add" element={<AddStudent />} />
           <Route path="students/edit/:id" element={<EditStudent />} />

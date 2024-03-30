@@ -196,6 +196,17 @@ export const getAdmins = async () => {
     console.log(error);
   }
 };
+export const getAdminById = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/api/admin/${id}`, {
+      withCredentials: true,
+    });
+    // console.log(response.data.data)
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getTeachers = async () => {
   try {
     const response = await axios.get("http://localhost:8080/api/teachers", {
