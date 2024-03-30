@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { getClass, getExamByClass, getMarksOfClassByExam, getSectionByClass } from '../../../services/fetchFunction';
 import axios from 'axios';
-
+import "../markpage.css"
+import { toast } from 'react-toastify';
 const MarkPage = () => {
   const [classes, setClasses] = useState();
   const [exams, setExams] = useState();
   const [studentMarks, setStudentMarks] = useState([])
-  const [sections, setSections] = useState();
   const [selectedClass, setSelectedClass] = useState();
   const [selectedExam, setSelectedExam] = useState();
-  const [result, setResult] = useState([
-  ]);
+  const [result, setResult] = useState();
 
   const getClassData = async () => {
     const classData = await getClass();
@@ -20,11 +19,6 @@ const MarkPage = () => {
     console.log(selectedClass)
     const examData = await getExamByClass(selectedClass);
     setExams(examData);
-  }
-  const getSectionData = async () => {
-    const sectionData = await getSectionByClass(selectedClass);
-    // console.log(sectionData)
-    setSections(sectionData);
   }
 
   const handleResultChange = (event, student_id) => {
@@ -86,7 +80,8 @@ const MarkPage = () => {
           withCredentials: true,
         });
         if(response.status == 200){
-          window.alert("Successfully inserted marks");
+          // window.alert("Successfully inserted marks");
+          toast.success("Marks inserted successfully");
         }
         // console.log(response.status)
         return response.data.data;
@@ -99,7 +94,6 @@ const MarkPage = () => {
     getClassData();
   }, [])
   useEffect(() => {
-    getSectionData();
     getExamData();
     getMarksOfClass();
   }, [selectedClass, selectedExam])
@@ -115,14 +109,7 @@ const MarkPage = () => {
             })
           }
         </select>
-        <select name="section" id="">
-          <option value="">select section</option>
-          {
-            sections?.map((section) => {
-              return <option key={section.section_id} value={section.section_id}>{section.section_name}</option>
-            })
-          }
-        </select>
+        
         <select onChange={(e) => { setSelectedExam(e.target.value) }} name="exam" id="">
           <option value="">select exam</option>
           {
@@ -171,7 +158,9 @@ const MarkPage = () => {
 
         </tbody>
       </table>
-          <button onClick={insertMark}>Insert Marks</button>
+      {
+        result ? <button className='submitmarks' onClick={insertMark}>Insert Marks</button> : "" 
+      }
 
 
 

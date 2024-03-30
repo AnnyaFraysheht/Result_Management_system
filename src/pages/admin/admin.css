@@ -61,7 +61,7 @@ td> button{
     border: none;
 }
 
-input{
+input , select{
     
     background-color: #c2c4c9bf;
     color: black;

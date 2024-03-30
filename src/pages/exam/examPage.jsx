@@ -25,7 +25,7 @@ const ExamPage = () => {
 
     const getExamData = async () => {
         const data = await getExams();
-        // console.log(data)
+        console.log(data)
         setExams(data)
     }
     useEffect(() => {
@@ -45,6 +45,7 @@ const ExamPage = () => {
                         <th>Exam Name</th>
                         <th>Class </th>
                         <th>Subject</th>
+                        <th>Term</th>
                         <th>Date</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -57,6 +58,7 @@ const ExamPage = () => {
                                 <td>{exam.exam_name}</td>
                                 <td>{exam.class_name}</td>
                                 <td>{exam.subject_name}</td>
+                                <td>{exam.term === "1" ? "First Term" : exam.term === "2" ? "Mid Term" : "Final Term"}</td>
                                 <td>{exam.exam_date}</td>
                                 <td className='action'><Link to={`edit/${exam.exam_id}`}><FaEdit size={20} color="green" /></Link></td>
                                 <td className='action'><button onClick={(e) => handleDelete(exam.exam_id)}><MdDelete size={20} color="red" /></button></td>

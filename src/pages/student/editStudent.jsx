@@ -164,6 +164,11 @@ const EditStudent = () => {
                     </select>
                 </div>
                 <div className='input-container'>
+                    <label htmlFor="roll_no">Roll No</label>
+                    <input value={studentData?.roll_no} required onChange={handleChange} id='roll_no' type="number" name="roll_no" />
+
+                </div>
+                <div className='input-container'>
 
                     <label htmlFor="blood_group">Blood Group</label>
                     <select value={studentData?.blood_group} required className='selectBox' onChange={handleChange} name="blood_group" id="">

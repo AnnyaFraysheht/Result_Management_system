@@ -27,6 +27,7 @@ const AddStudent = () => {
         permanent_address: '',
         class_id: '',
         section_id: '',
+        roll_no: '',
         blood_group: '',
         nationality: '',
         role: 'student',
@@ -183,6 +184,11 @@ const AddStudent = () => {
                             })
                         }
                     </select>
+                </div>
+                <div className='input-container'>
+                    <label htmlFor="roll_no">Roll No</label>
+                    <input required onChange={handleChange} id='roll_no' type="number" name="roll_no" />
+
                 </div>
                 <div className='input-container'>
 

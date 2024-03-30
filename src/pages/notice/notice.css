@@ -71,10 +71,13 @@ textarea{
 
 .selectBox{
     margin: auto;
+    /* margin-left: 0; */
     width: 100%;
+    /* background-color: red; */
     padding: 10px;
 }
 .input-container{
+    /* background-color: blue; */
     display: flex;
     flex-direction: row;
     width: 80%;

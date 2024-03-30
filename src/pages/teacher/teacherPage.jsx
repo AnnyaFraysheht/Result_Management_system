@@ -5,6 +5,7 @@ import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import { deleteUser, getTeachers } from '../../services/fetchFunction'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const TeacherPage = () => {
   const [teachers, setTeacher] = useState();
   const getData = async () => {
@@ -18,7 +19,8 @@ const TeacherPage = () => {
   const handleDelete = useCallback(async (id) => {
     if (window.confirm("Are you sure to Delete?")) {
       try {
-        await deleteUser(id)
+        await deleteUser(id);
+        toast.warning("Teacher deleted successfully")
         getData();
       } catch (error) {
         console.log(error)

@@ -48,7 +48,7 @@ const SectionPage = () => {
       </div>
       <div className='heading_edit'>
 
-        <label htmlFor="classSelect">Class</label>
+        <label htmlFor="classSelect" className='classSelect'>Class</label>
         <ClassInput handleChange={handleChange} />
       </div>
       <table>

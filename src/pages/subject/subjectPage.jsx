@@ -18,9 +18,7 @@ const SubjectPage = () => {
     const handleDelete = useCallback(async (id) => {
         try {
             if (window.confirm("Are you sure to delete Subject?")) {
-
                 await deleteSubject(id);
-                toast.warning("Subject Deleted Successfully");
                 getData();
             }
         } catch (error) {

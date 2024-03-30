@@ -274,8 +274,7 @@ export const deleteUser = async (id) => {
         console.log(response);
       });
   } catch (error) {
-    if (error.response.data.code === '1434'){
-
+    if (error.response.data.code === "1434") {
       toast.error("You are the last here ! Dont vanish yourself");
     }
     console.log(error);
@@ -313,10 +312,13 @@ export const deleteSubject = async (id) => {
     await axios.delete(`http://localhost:8080/api/subject/${id}`, {
       withCredentials: true,
     });
+
+    toast.warning("Subject Deleted Successfully");
   } catch (error) {
     if (error.response.data.error.sqlState === "23000") {
       toast.error("This subject cannot be deleted");
     }
+    return error;
     console.log(error);
   }
 };

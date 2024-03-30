@@ -23,3 +23,9 @@ li{
 body{
   background-color: #bfd0c7;
 }
+
+/* toastify-glass.css */
+
+:root{
+  --toastify-color-light: #a694944f;
+}
