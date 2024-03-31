@@ -38,7 +38,7 @@ const StudentDashboardLayout = () => {
 
                     </NavLink>
                 </ul>
-                <button className='dashboardButton btn' onClick={handleLogout}><MdLogout /> <span className="sidemenu">Logout</span></button>
+                <button className='dashboardButton btn' onClick={handleLogout}><MdLogout className='icons' /> <span className="sidemenu">Logout</span></button>
             </aside>
             <div className='content'>
             <NavBar  />

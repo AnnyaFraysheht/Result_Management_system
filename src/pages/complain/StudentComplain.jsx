@@ -3,14 +3,18 @@ import { getMyComplains } from '../../services/fetchFunction';
 import "./complain.css"
 import axios from 'axios';
 import { IoMdSend } from 'react-icons/io';
+import Spinner from '../../components/loader/Spinner';
 const StudentComplain = () => {
   const [complains, setComplains] = useState();
+  const [loading, setLoading] = useState(false)
   const [complainData, setComplainData] = useState({
     message: ''
   });
   const getMyComplainData = async () => {
+    setLoading(true)
     const data = await getMyComplains();
     setComplains(data)
+    setLoading(false)
   }
   useEffect(() => {
     getMyComplainData();
@@ -41,31 +45,34 @@ const StudentComplain = () => {
         <button className='btn complainbtn' type="submit"  ><IoMdSend size={35} color='white' /></button>
       </form>
       <h1>My Complains</h1>
-      <table>
-        <thead>
-          <tr>
+      {
+        loading ? <Spinner /> : <table>
+          <thead>
+            <tr>
 
-            <th>Date Added</th>
-            <th>Complain</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody className='tbody'>
-          {
-            complains?.map((complain , index) => {
-              return <tr key={complain.complain_id} className={complain.status ? index % 2 == 0 ? "even" : "odd" : 'red'}>
+              <th>Date Added</th>
+              <th>Complain</th>
+              <th>Status</th>
+            </tr>
+          </thead>
 
-                <td>{complain.created_at}</td>
-                <td>{complain.message}</td>
-                <td>{complain.status ? <span className='solved'>Solved</span> : <span className='pending'>Pending</span>}</td>
-              </tr>
+          <tbody className='tbody'>
+            {
+              complains?.map((complain, index) => {
+                return <tr key={complain.complain_id} className={complain.status ? index % 2 == 0 ? "even" : "odd" : 'red'}>
 
-            })
-          }
+                  <td>{complain.created_at}</td>
+                  <td>{complain.message}</td>
+                  <td>{complain.status ? <span className='solved'>Solved</span> : <span className='pending'>Pending</span>}</td>
+                </tr>
 
-        </tbody>
-      </table>
+              })
+            }
 
+          </tbody>
+        </table>
+
+      }
     </>
   )
 }

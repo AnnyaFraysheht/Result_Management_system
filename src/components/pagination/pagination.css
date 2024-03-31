@@ -1,0 +1,26 @@
+.pagination{
+    /* background-color: red; */
+    /* height: 20px; */
+    width: fit-content;
+
+    margin: 10px auto;
+    padding: 5px;
+    text-align: center;
+}
+
+
+.paginationinside{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.paginationinside > button{
+    /* background-color: blue; */
+    padding: 4px 10px;
+    font-size: 16px;
+    width: fit-content;
+    margin: 10px;
+    border: 2px solid rgb(100, 95, 95);
+    background-color: rgba(43, 42, 42, 0.248);
+    cursor: pointer;
+}
