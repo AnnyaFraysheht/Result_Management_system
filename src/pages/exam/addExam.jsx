@@ -35,6 +35,9 @@ const AddExam = () => {
         })
 
     }
+    useEffect(() => {
+        console.log("rerender")
+    }, [examData.class_id])
 
     return (
         <div>
@@ -70,7 +73,7 @@ const AddExam = () => {
                 <div className='input-container'>
 
                     <label htmlFor="_class">Exam Subject </label>
-                    <SubjectInput handleChange={handleChange} />
+                    <SubjectInput class_id={examData?.class_id} handleChange={handleChange} />
                 </div>
                 <div className='input-container'>
 

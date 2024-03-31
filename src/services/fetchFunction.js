@@ -121,13 +121,23 @@ export const getExamById = async (id) => {
     console.log(error);
   }
 };
-export const getSubjects = async () => {
+export const getSubjects = async (id) => {
   try {
-    const response = await axios.get("http://localhost:8080/api/subject", {
-      withCredentials: true,
-    });
-    // console.log(response.data.data)
-    return response.data.data;
+    if(id){
+      const response = await axios.get(`http://localhost:8080/api/subject/?class_id=${id}`, {
+        withCredentials: true,
+      });
+      // console.log(response.data.data)
+      return response.data.data;
+      
+    }else{
+      
+      const response = await axios.get("http://localhost:8080/api/subject", {
+        withCredentials: true,
+      });
+      // console.log(response.data.data)
+      return response.data.data;
+    }
   } catch (error) {
     console.log(error);
   }

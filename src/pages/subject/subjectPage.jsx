@@ -4,17 +4,32 @@ import { deleteSubject, getSubjects } from '../../services/fetchFunction';
 import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
-import { toast } from 'react-toastify';
+import ClassInput from '../../components/ClassInput';
+// import { toast } from 'react-toastify';//ddone when fetching !!!
 const SubjectPage = () => {
     const [subjects, setSubjects] = useState();
+    const [_class, setClass] = useState();
     const getData = async () => {
-        const data = await getSubjects();
-        console.log(data)
-        setSubjects(data)
+        if(_class){
+            // console.log(_class)
+            const data = await getSubjects(_class);
+            console.log(data)
+            setSubjects(data)
+            
+        }else{
+            // console.log(_class)
+            const data = await getSubjects();
+            console.log(data)
+            setSubjects(data)
+
+        }
     }
+    // useEffect(()=>{
+    //     getData
+    // })
     useEffect(() => {
         getData();
-    }, []);
+    }, [_class]);
     const handleDelete = useCallback(async (id) => {
         try {
             if (window.confirm("Are you sure to delete Subject?")) {
@@ -25,13 +40,18 @@ const SubjectPage = () => {
             console.log(error)
         }
     }, []);
+    const handleChange = (e) =>{
+        console.log(e.target.value)
+        setClass(e.target.value)
+    }
     return (
         <>
-            
+
             <div className='heading_edit'>
 
-            <h1>Subjects</h1>
-            <Link className="link" to={"add"}><button className="add">Add New Subject</button></Link> 
+                <h1>Subjects</h1>
+                <ClassInput handleChange={handleChange} small={true} />
+                <Link className="link" to={"add"}><button className="add">Add New Subject</button></Link>
             </div>
             <table >
                 <thead>
