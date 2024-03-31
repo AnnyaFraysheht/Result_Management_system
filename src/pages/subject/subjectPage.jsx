@@ -5,22 +5,54 @@ import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import ClassInput from '../../components/ClassInput';
+import Pagination from '../../components/pagination/Pagination';
 // import { toast } from 'react-toastify';//ddone when fetching !!!
 const SubjectPage = () => {
     const [subjects, setSubjects] = useState();
     const [_class, setClass] = useState();
-    const getData = async () => {
-        if(_class){
+
+    const [limit, setLimit] = useState(12);
+    const [totalPages, setTotalPage] = useState(2);
+    const [offset, setOffset] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const getPrevPage = () => {
+        const prevPage = currentPage - 1;
+        if (prevPage >= 1) {
+            const newOffset = (prevPage - 1) * limit;
+            setOffset(newOffset);
+            setCurrentPage(prevPage);
+            getData(_class, limit, newOffset);
+        }
+    };
+
+    const getNextPage = () => {
+        const nextPage = currentPage + 1;
+        console.log(totalPages)
+        if (nextPage <= totalPages) {
+
+            const newOffset = currentPage * limit;
+            setOffset(newOffset);
+            setCurrentPage(nextPage);
+            getData(_class, limit, newOffset);
+        }
+    };
+
+
+    const getData = async (_class, limit, offset) => {
+        if (_class) {
             // console.log(_class)
-            const data = await getSubjects(_class);
+            const data = await getSubjects(_class, limit, offset);
             console.log(data)
-            setSubjects(data)
-            
-        }else{
+            setSubjects(data.result)
+            setTotalPage(data.totalPage)
+
+        } else {
             // console.log(_class)
-            const data = await getSubjects();
+            const data = await getSubjects(null, limit, offset);
             console.log(data)
-            setSubjects(data)
+            setSubjects(data.result)
+            setTotalPage(data.totalPage)
 
         }
     }
@@ -28,7 +60,7 @@ const SubjectPage = () => {
     //     getData
     // })
     useEffect(() => {
-        getData();
+        getData(_class, limit, offset);
     }, [_class]);
     const handleDelete = useCallback(async (id) => {
         try {
@@ -40,8 +72,10 @@ const SubjectPage = () => {
             console.log(error)
         }
     }, []);
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         console.log(e.target.value)
+        setCurrentPage(1);
+        setOffset(0);
         setClass(e.target.value)
     }
     return (
@@ -77,6 +111,9 @@ const SubjectPage = () => {
                     }
                 </tbody>
             </table>
+            <div className="paginationPart">
+                <Pagination getNextPage={getNextPage} getPrevPage={getPrevPage} currentPage={currentPage} totalPage={totalPages} />
+            </div>
         </>
     )
 }

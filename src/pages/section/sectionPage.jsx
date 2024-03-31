@@ -110,8 +110,8 @@ const SectionPage = () => {
           }
         </tbody>
       </table>
-      <div className="patinationPart">
-        <Pagination currentPage={currentPage} getPrevPage={getPrevPage} getNextPage={getNextPage} totalPage={100} />
+      <div className="paginationPart">
+        <Pagination currentPage={currentPage} getPrevPage={getPrevPage} getNextPage={getNextPage} totalPage={totalPages} />
       </div>
     </>
   )
