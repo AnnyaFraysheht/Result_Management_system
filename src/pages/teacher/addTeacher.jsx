@@ -5,8 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import SubjectInput from '../../components/SubjectInput';
 import { toast } from 'react-toastify';
+import MultipleSubject from '../../components/MultipleSubject';
 const AddTeacher = () => {
     const navigate = useNavigate();
+    const [selectedOptions, setSelectedOptions] = useState();
     const [validationError, setValidationError] = useState({
         email: '',
         primary_contact: '',
@@ -24,7 +26,7 @@ const AddTeacher = () => {
         secondary_contact: '',
         temporary_address: '',
         permanent_address: '',
-        subject_id : '',
+        subjects : [],
         role: 'teacher'
 
     });
@@ -42,6 +44,11 @@ const AddTeacher = () => {
         setTeacherData(prev => ({ ...prev, [name]: value }));
         console.log(teacherData)
         setValidationError((prev) => ({ ...prev, [name]: ifValid ? '' : `Invalid ` }))
+    }
+    const handleChangeSubject = (selectedOptions) =>{
+        setSelectedOptions(selectedOptions);
+        console.log(selectedOptions)
+        setTeacherData(prev => ({ ...prev, subjects: selectedOptions }));
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -143,7 +150,8 @@ const AddTeacher = () => {
                 <div className='input-container'>
 
                     <label htmlFor="subject">Subjects</label>
-                    <SubjectInput handleChange={handleChange} />
+                    {/* <SubjectInput handleChange={handleChange} /> */}
+                    <MultipleSubject handleChangeSubject={handleChangeSubject} selectedOptions={selectedOptions} />
                 </div>
                 <button className='btn'>Submit</button>
             </form>

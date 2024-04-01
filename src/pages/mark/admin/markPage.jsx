@@ -99,7 +99,7 @@ const MarkPage = () => {
   }, [selectedClass, selectedExam])
   return (
     <div>
-      <input type="search" name="searchmark" id="" placeholder='Search Student Name' />
+      {/* <input type="search" name="searchmark" id="" placeholder='Search Student Name' /> */}
       <div>
         <select onChange={(e) => setSelectedClass(e.target.value)} name="class" id="">
           <option value="">select class</option>

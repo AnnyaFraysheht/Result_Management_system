@@ -12,7 +12,7 @@ const EditSubject = () => {
     const [subjectData, setSubjectData] = useState({
         subject_name: '',
         subject_code: '',
-        class_id: '',
+        desc: '',
         subject_id: id,
 
     });
@@ -78,17 +78,17 @@ const EditSubject = () => {
                 <div className='input-container'>
 
                     <label htmlFor="sub_name">Subject Name</label>
-                    <input value={subjectData.subject_name} onChange={handleChange} type="text" id='sub_name' name="subject_name" placeholder='Enter class name' required />
+                    <input value={subjectData.subject_name} onChange={handleChange} type="text" id='sub_name' name="subject_name" placeholder='Enter subclassject name' required />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="sCode">Subject Code</label>
-                    <input value={subjectData.subject_code} onChange={handleChange} id='sCode' type="text" name="subject_code" placeholder='Enter class' />
+                    <input value={subjectData.subject_code} onChange={handleChange} id='sCode' type="text" name="subject_code" placeholder='Enter subject code' />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="cid">Class</label>
-                    <ClassInput value={subjectData.class_id} handleChange={handleChange} />
+                    <input value={subjectData.desc} onChange={handleChange} id='desc' type="text" name="desc" placeholder='Enter description' />
                 </div>
                 <button className='btn'>Submit</button>
             </form>
