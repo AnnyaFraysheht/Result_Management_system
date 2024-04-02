@@ -30,5 +30,16 @@
     }
     .marksheet{
       visibility: visible;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
+
+.filterResult{
+    display: flex;
+}
+.filterResult > button{
+    color: black;
+
+}

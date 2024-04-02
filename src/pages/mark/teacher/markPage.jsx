@@ -3,6 +3,7 @@ import { getClass, getExamByClass, getMarksOfClassByExam, getSectionByClass } fr
 import axios from 'axios';
 import "../markpage.css"
 import { toast } from 'react-toastify';
+import { getClassAssignedToTeacher } from '../../../services/FetchFunctions/Class/ClassFetch';
 const TeacherMarkPage = () => {
   const [classes, setClasses] = useState();
   const [exams, setExams] = useState();
@@ -12,13 +13,16 @@ const TeacherMarkPage = () => {
   const [result, setResult] = useState();
 
   const getClassData = async () => {
-    const classData = await getClass();
+    const classData = await getClassAssignedToTeacher();
     setClasses(classData);
   }
   const getExamData = async () => {
     console.log(selectedClass)
-    const examData = await getExamByClass(selectedClass);
-    setExams(examData);
+    if (selectedClass) {
+
+      const examData = await getExamByClass(selectedClass);
+      setExams(examData);
+    }
   }
 
   const handleResultChange = (event, student_id) => {
@@ -27,32 +31,32 @@ const TeacherMarkPage = () => {
       Number(value);
       let grade, remarks;
       console.log(value)
-      if (value > 90){
+      if (value > 90) {
         remarks = "Distinction"
-        grade  = "A"
-      } else if( value > 80){
+        grade = "A"
+      } else if (value > 80) {
         remarks = "Very Good"
-        grade  = "A-"
-      } else if( value > 70){
+        grade = "A-"
+      } else if (value > 70) {
         remarks = "First Division"
-        grade  = "B+"
-      } else if( value > 60){
+        grade = "B+"
+      } else if (value > 60) {
         remarks = "Second Division"
-        grade  = "B"
-      } else if( value >= 50){
+        grade = "B"
+      } else if (value >= 50) {
         remarks = "Pass"
-        grade  = "B-"
-      } else if( value < 50){
+        grade = "B-"
+      } else if (value < 50) {
         remarks = "Fail"
-        grade  = "F"
+        grade = "F"
       }
       setResult(prev => prev.map((student) => {
         return student.student_id == student_id ? { ...student, [name]: value, grade: grade, remarks: remarks } : student;
       }))
     }
-    
+
     setResult(prev => prev.map((student) => {
-      return student.student_id == student_id ? { ...student, [name]: value} : student;
+      return student.student_id == student_id ? { ...student, [name]: value } : student;
     }))
     console.log(result)
   }
@@ -74,12 +78,12 @@ const TeacherMarkPage = () => {
   }
   const insertMark = async () => {
     try {
-      if(window.confirm("Confirm your marks")){
+      if (window.confirm("Confirm your marks")) {
 
         const response = await axios.post(`http://localhost:8080/api/insertMarks`, result, {
           withCredentials: true,
         });
-        if(response.status == 200){
+        if (response.status == 200) {
           // window.alert("Successfully inserted marks");
           toast.success("Marks inserted successfully");
         }
@@ -109,7 +113,7 @@ const TeacherMarkPage = () => {
             })
           }
         </select>
-        
+
         <select onChange={(e) => { setSelectedExam(e.target.value) }} name="exam" id="">
           <option value="">select exam</option>
           {
@@ -159,7 +163,7 @@ const TeacherMarkPage = () => {
         </tbody>
       </table>
       {
-        result ? <button className='submitmarks' onClick={insertMark}>Insert Marks</button> : "" 
+        result ? <button className='submitmarks' onClick={insertMark}>Insert Marks</button> : ""
       }
 
 
