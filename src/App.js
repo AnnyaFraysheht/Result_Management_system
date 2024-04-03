@@ -91,6 +91,7 @@ function App() {
           <Route path="section/edit/:id" element={<EditSection />} />
           <Route path="complains" element={<AdminComplain />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="*" element={<Navigate to={"/login"} />} />
         </Route>
         <Route
           path="/student/*"
