@@ -191,9 +191,21 @@ nav > ul{
 }
 
 @media print {
-    aside, nav{
-        display: none;
+    body{
+        visibility: hidden;
     }
+    aside, nav{
+        visibility: hidden;
+    }
+
+    .marksheet{
+        visibility: visible;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+      }
 }
 
 

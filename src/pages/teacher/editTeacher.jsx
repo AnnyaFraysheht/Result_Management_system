@@ -6,9 +6,11 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import { getSubjects, getTeacherById } from '../../services/fetchFunction';
 import SubjectInput from '../../components/SubjectInput';
 import { toast } from 'react-toastify';
+import MultipleSubject from '../../components/MultipleSubject';
 const EditTeacher = () => {
     const navigate = useNavigate();
     const { id } = useParams();
+    const [selectedOptions , setSelectedOptions] = useState()
     const [validationError, setValidationError] = useState({
         email: '',
         primary_contact: '',
@@ -30,6 +32,11 @@ const EditTeacher = () => {
         setTeacherData(prev => ({ ...prev, [name]: value }));
         console.log(teacherData)
         setValidationError((prev) => ({ ...prev, [name]: ifValid ? '' : `Invalid ` }))
+    }
+    const handleChangeSubject = (selectedOptions) =>{
+        setSelectedOptions(selectedOptions);
+        console.log(selectedOptions)
+        setTeacherData(prev => ({ ...prev, subjects: selectedOptions }));
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -59,7 +66,7 @@ const EditTeacher = () => {
     useEffect(() => {
         const getData = async () => {
             const result = await getTeacherById(id);
-            console.log(result)
+            console.log("result",result)
             const filteredData = {
                 fname: result[0].fname,
                 mname: result[0].mname,
@@ -71,12 +78,13 @@ const EditTeacher = () => {
                 temporary_address: result[0].temporary_address,
                 permanent_address: result[0].permanent_address,
                 email: result[0].email,
-                subject_id: result[0].subject_id,
+                subjects: result[0].subjects,
                 role: 'teacher',
                 teacher_id: id,
                 user_id: result[0].user_id
 
             }
+            setSelectedOptions(result[0].subjects)
             setTeacherData(filteredData);
             // setSubjects(data)
         }
@@ -156,7 +164,9 @@ const EditTeacher = () => {
                 <div className='input-container'>
 
                     <label htmlFor="subject">Subjects</label>
-                    <SubjectInput value={teacherData?.subject_id} handleChange={handleChange} />
+                    {/* <SubjectInput value={teacherData?.subject_id} handleChange={handleChange} /> */}
+                    <MultipleSubject handleChangeSubject={handleChangeSubject} selectedOptions={selectedOptions} />
+
 
                 </div>
                 <button className='btn'>Submit</button>

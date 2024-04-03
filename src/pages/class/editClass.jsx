@@ -5,18 +5,16 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { getClassById } from '../../services/fetchFunction';
 import { toast } from 'react-toastify';
+import MultipleSubject from '../../components/MultipleSubject';
 const EditClass = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [classData, setClassData] = useState({
-        class_name: '',
-        _class: '',
-
-    });
+    const [classData, setClassData] = useState();
+    const [selectedOptions  , setSelectedOptions] = useState([])
     const handleChange = (e) => {
         const { name, value } = e.target;
         setClassData(prev => ({ ...prev, [name]: value }));
-        // console.log(studentData)
+        console.log(classData)
     }
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -43,13 +41,21 @@ const EditClass = () => {
             console.log("result", result)
             const filteredData = {
                 class_name: result[0].class_name,
-                _class: result[0].class,
+                desc: result[0].desc,
+                academic_year: result[0].academic_year,
+                subjects : result[0].subjects,
                 class_id: result[0].class_id
             }
+            setSelectedOptions(result[0].subjects)
             setClassData(filteredData);
         }
         getData();
     }, [])
+    const handleChangeSubject = (selectedOptions) =>{
+        setSelectedOptions(selectedOptions);
+        console.log(selectedOptions)
+        setClassData(prev => ({ ...prev, subjects: selectedOptions }));
+    }
     return (
         <div>
             <div className='backmenu'>
@@ -64,12 +70,31 @@ const EditClass = () => {
                 <div className='input-container'>
 
                     <label htmlFor="class_name">Class Name</label>
-                    <input value={classData.class_name} onChange={handleChange} type="text" name="class_name" placeholder='Enter class name' required />
+                    <input value={classData?.class_name} onChange={handleChange} type="text" name="class_name" placeholder='Enter class name' required />
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="_class">Class</label>
-                    <input value={classData._class} onChange={handleChange} type="text" name="_class" placeholder='Enter class' />
+                    <label htmlFor="desc">Description</label>
+                    <input value={classData?.desc} onChange={handleChange} type="text" name="desc" placeholder='Enter description' />
+                </div>
+                <div className='input-container'>
+
+                    <label htmlFor="academic_year">Academic Year</label>
+                    <input value={classData?.academic_year} onChange={handleChange} type="text" name="academic_year" placeholder='Enter academic year' />
+                </div>
+                <div className='input-container'>
+                    <label htmlFor="subjects">Subjects subjects</label>
+                    {/* <Select
+                        options={ options}
+                        className={'selectBox react-select'}
+                        value={selectedOptions }
+                        isMulti={true}
+                        onChange={handleChangeSubject}
+                        styles={{backgroundColor : "black"}}
+                    /> */}
+                    <MultipleSubject selectedOptions={selectedOptions} handleChangeSubject={handleChangeSubject} />
+
+                    {/* <input onChange={handleChange} type="text" name="academic_year" placeholder='Enter academic year' /> */}
                 </div>
                 <button className='btn'>Submit</button>
             </form>

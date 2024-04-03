@@ -10,6 +10,7 @@ const ClassPage = () => {
   const getData = async () => {
     const data = await getClass();
     setClasses(data)
+    console.log(data)
   }
   useEffect(() => {
     getData();
@@ -37,7 +38,8 @@ const ClassPage = () => {
         <thead>
           <tr>
             <th>Class Name</th>
-            <th>class</th>
+            <th>Desc</th>
+            <th>Academic Year</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -47,7 +49,8 @@ const ClassPage = () => {
             classes?.map((_class, index) => {
               return <tr key={_class.class_id} className={index % 2 == 0 ? "even" : "odd"}>
                 <td>{_class.class_name}</td>
-                <td>{_class.class}</td>
+                <td>{_class.desc}</td>
+                <td>{_class.academic_year}</td>
                 <td className='action'><Link to={`edit/${_class.class_id}`}><FaEdit size={20} color="green" /></Link></td>
                 <td className='action'><button onClick={(e) => handleDelete(_class.class_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>

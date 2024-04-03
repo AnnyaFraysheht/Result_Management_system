@@ -30,3 +30,8 @@
     gap: 10px;
     
 }
+.paginationPart{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}

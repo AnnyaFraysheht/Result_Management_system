@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getClass } from '../services/fetchFunction';
+import "./component.css"
 
-const ClassInput = ({ value,  handleChange }) => {
+const ClassInput = ({ value, small,  handleChange }) => {
     const [classes, setClasses] = useState();
     const getData = async () => {
 
@@ -12,7 +13,7 @@ const ClassInput = ({ value,  handleChange }) => {
         getData();
     }, [])
     return (
-        <select value={value} className='selectBox' name="class_id" id="class" onChange={handleChange}>
+        <select  value={value} className={`${small ? "small" : ''} selectBox`} name="class_id" id="class" onChange={handleChange}>
 
             <option className='selectOption' value={''}>Choose Class</option>
             {

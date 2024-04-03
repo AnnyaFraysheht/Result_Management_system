@@ -90,7 +90,7 @@ const EditExam = () => {
                 <div className='input-container'>
 
                     <label htmlFor="_class">Exam Subject </label>
-                    <SubjectInput value={examData.subject_id} handleChange={handleChange} />
+                    <SubjectInput class_id={examData?.class_id} value={examData.subject_id} handleChange={handleChange} />
                 </div>
                 <div className='input-container'>
 

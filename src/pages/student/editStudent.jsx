@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import ClassInput from '../../components/ClassInput';
+import { toast } from 'react-toastify';
 const EditStudent = () => {
     const navigate = useNavigate();
     // const [classes, setClasses] = useState();
@@ -46,6 +47,7 @@ const EditStudent = () => {
                 withCredentials: true,
             }).then(response => {
                 console.log(response.data)
+                toast.success("Student Edited Successfully")
                 navigate("/admin/students");
             }).catch(error => {
                 if (error.response) {

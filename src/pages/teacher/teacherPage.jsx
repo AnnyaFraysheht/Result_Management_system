@@ -40,7 +40,6 @@ const TeacherPage = () => {
             <th>Fname</th>
             <th>Mname</th>
             <th>Lname</th>
-            <th>Subject</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -53,7 +52,6 @@ const TeacherPage = () => {
                 <td>{teacher.fname}</td>
                 <td>{teacher.mname}</td>
                 <td>{teacher.lname}</td>
-                <td>{teacher.subject_name}</td>
                 <td className='action'><Link to={`edit/${teacher.teacher_id}`}><FaEdit size={20} color="green" /></Link></td>
                 <td className='action'><button onClick={(e) => handleDelete(teacher.user_id)}><MdDelete size={20} color="red" /></button></td>
               </tr>

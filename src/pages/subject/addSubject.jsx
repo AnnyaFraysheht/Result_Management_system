@@ -11,7 +11,7 @@ const AddSubject = () => {
     const [subjectData, setSubjectData] = useState({
         subject_name: '',
         subject_code: '',
-        class_id: ''
+        desc: ''
 
     });
     const handleChange = (e) => {
@@ -30,7 +30,7 @@ const AddSubject = () => {
         console.log(subjectData)
         // alert("Form can be submitted")
 
-        const response = axios.post("http://localhost:8080/api/subject", subjectData, {
+        axios.post("http://localhost:8080/api/subject", subjectData, {
             withCredentials: true,
         }).then(response => {
             // console.log(response.data)
@@ -61,17 +61,17 @@ const AddSubject = () => {
                 <div className='input-container'>
 
                     <label htmlFor="sub_name">Subject Name</label>
-                    <input onChange={handleChange} type="text" id='sub_name' name="subject_name" placeholder='Enter class name' required />
+                    <input onChange={handleChange} type="text" id='sub_name' name="subject_name" placeholder='Enter Subject Name' required />
                 </div>
                 <div className='input-container'>
 
                     <label htmlFor="sCode">Subject Code</label>
-                    <input onChange={handleChange} id='sCode' type="text" name="subject_code" placeholder='Enter class' />
+                    <input onChange={handleChange} id='sCode' type="text" name="subject_code" placeholder='Enter subject code' />
                 </div>
                 <div className='input-container'>
 
-                    <label htmlFor="cid">Class</label>
-                    <ClassInput handleChange={handleChange} />
+                    <label htmlFor="disc">Description</label>
+                    <input onChange={handleChange} id='disc' type="text" name="desc" placeholder='Enter Description' />
                 </div>
                 <button className='btn'>Submit</button>
             </form>
