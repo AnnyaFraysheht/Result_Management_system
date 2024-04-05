@@ -1,12 +1,13 @@
 .marksheet{
-    background-color: rgb(143, 137, 137);
+    background-color: rgba(220, 207, 207, 0.613);
     width: 100%;
     min-height: 75vh;
-    
+    border-radius: 10   px;
     padding: 10px;
     margin-top: 10px;
-    border: 6px double gray;
+    border: 6px double rgb(174, 173, 173);
     text-align: center;
+    color: black;
 }
 
 .term{
