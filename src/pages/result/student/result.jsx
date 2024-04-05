@@ -27,6 +27,17 @@ const ResultPage = () => {
     const printResult = () => {
         window.print();
     }
+    const gradeToGPA = {
+        "A": 4.0,
+        "A-": 3.6,
+        "B+": 3.2,
+        "B": 2.8,
+        "B-": 2.6,
+        "C": 2.2,
+        "F": "*",
+
+    }
+    
     return (
         <div>
             <div className='filterResult'>
@@ -66,6 +77,7 @@ const ResultPage = () => {
                             <th>S.N</th>
                             <th>Subject</th>
                             <th>Mark Obtained</th>
+                            <th>Remarks</th>
                             <th>Grade</th>
                             <th>Grade Point</th>
                         </tr>
@@ -76,19 +88,20 @@ const ResultPage = () => {
                                 <td>{index + 1}</td>
                                 <td>{item.subject_name}</td>
                                 <td>{item.marks_obtained}</td>
+                                <td>{item.remarks}</td>
                                 <td>{item.grade}</td>
-                                <td>"--"</td>
+                                <td>{gradeToGPA[item.grade]}</td>
                             </tr>
                         })
                         }
                         <tr>
                             <td colSpan={2}>Total</td>
                             <td>abc</td>
-                            <td  >Average grade point</td>
-                            <td>4.0</td>
+                            <td colSpan={2} >Average grade point</td>
+                            <td>{4.0}</td>
                         </tr>
                         <tr>
-                            <td colSpan={3}>Attendance : ...</td>
+                            <td colSpan={3}></td>
                             <td colSpan={2}>Remarks: Good</td>
                         </tr>
 

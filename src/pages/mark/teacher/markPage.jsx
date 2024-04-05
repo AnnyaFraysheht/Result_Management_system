@@ -46,7 +46,10 @@ const TeacherMarkPage = () => {
       } else if (value >= 50) {
         remarks = "Pass"
         grade = "B-"
-      } else if (value < 50) {
+      } else if (value >= 40) {
+        remarks = "Just Pass"
+        grade = "C"
+      } else {
         remarks = "Fail"
         grade = "F"
       }
@@ -127,16 +130,19 @@ const TeacherMarkPage = () => {
       <hr />
 
       <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            {
-              studentMarks[0] ? <th>{studentMarks[0].subject_name}</th> : <th>subject</th>
-            }
-            <th>remarks</th>
-            <th>gpa</th>
-          </tr>
-        </thead>
+        {
+          result ? <thead>
+            <tr>
+              <th>Name</th>
+              {
+                studentMarks[0] ? <th>{studentMarks[0].subject_name}</th> : <th>subject</th>
+              }
+              <th>remarks</th>
+              <th>gpa</th>
+            </tr>
+          </thead>
+            : ""
+        }
         <tbody>
           {
             result?.map((studentMark) => {

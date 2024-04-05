@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getSubjects } from '../services/fetchFunction';
 import Select from 'react-select';
+// import Select from 'react-select';
 
 const MultipleSubject = ({ selectedOptions , handleChangeSubject}) => {
 
