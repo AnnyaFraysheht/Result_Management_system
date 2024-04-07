@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getClass, getExamByClass, getMarksOfClassByExam, getSectionByClass } from '../../../services/fetchFunction';
+import { getClass, getExamByClass, getExams, getMarksOfClassByExam, getSectionByClass } from '../../../services/fetchFunction';
 import axios from 'axios';
 import "../markpage.css"
 import { toast } from 'react-toastify';
@@ -13,14 +13,14 @@ const TeacherMarkPage = () => {
   const [result, setResult] = useState();
 
   const getClassData = async () => {
-    const classData = await getClassAssignedToTeacher();
+    const classData = await getClass();
     setClasses(classData);
   }
   const getExamData = async () => {
     console.log(selectedClass)
     if (selectedClass) {
 
-      const examData = await getExamByClass(selectedClass);
+      const examData = await getExams(selectedClass);
       setExams(examData);
     }
   }
@@ -31,6 +31,10 @@ const TeacherMarkPage = () => {
       Number(value);
       let grade, remarks;
       console.log(value)
+      if(value > 100 || value < 0){
+        window.alert("Value Exceeded Limit");
+        return;
+      }
       if (value > 90) {
         remarks = "Distinction"
         grade = "A"
@@ -149,7 +153,7 @@ const TeacherMarkPage = () => {
               return <tr>
                 <td>{studentMark.name} </td>
                 <td>
-                  <input type="number" onChange={(e) => { handleResultChange(e, studentMark.student_id) }} name="marks_obtained" value={studentMark.marks_obtained || ""} id="" />
+                  <input min={"0"} max={"100"} type="number" onChange={(e) => { handleResultChange(e, studentMark.student_id) }} name="marks_obtained" value={studentMark.marks_obtained || ""} id="" />
 
                 </td>
                 <td>

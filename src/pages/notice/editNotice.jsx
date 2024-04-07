@@ -5,11 +5,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getClass, getNoticeById } from '../../services/fetchFunction';
 import { toast } from 'react-toastify';
 import { IoMdArrowRoundBack } from 'react-icons/io';
+import MultiClass from '../../components/MultiClass';
 const EditNotice = ({ role }) => {
     const { id } = useParams();
     const [classes, setClasses] = useState();
+
+    const [selectedOptions, setSelectedOptions] = useState();
     const [noticeData, setNoticeData] = useState({
-        class_id: null,
+        class_id: [],
         notice_text: '',
         notice_id : id,
     })
@@ -17,10 +20,11 @@ const EditNotice = ({ role }) => {
     const getData = async () => {
         console.log(id)
 
-        const classData = await getClass();
-        setClasses(classData);
+        // const classData = await getClass();
+        // setClasses(classData);
         const noticeData = await getNoticeById(id);
         setNoticeData(noticeData[0]);
+        setSelectedOptions(noticeData[0].class)
     }
     useEffect(() => {
         getData();
@@ -45,6 +49,11 @@ const EditNotice = ({ role }) => {
         setNoticeData(prev => ({ ...prev, [e.target.name]: e.target.value }))
         console.log(noticeData)
     }
+    const handleChangeClass = (selectedOptions) =>{
+        setSelectedOptions(selectedOptions);
+        console.log(selectedOptions)
+        setNoticeData(prev => ({ ...prev, class: selectedOptions }));
+    }
     return (
         <>
             <div className='backmenu'>
@@ -59,7 +68,7 @@ const EditNotice = ({ role }) => {
                 <div className="contain input-container classSelect">
 
                     <label htmlFor="class">Select Class</label>
-                    <select value={noticeData.class_id} className='selectBox' name="class_id" id="class" onChange={handleChange}>
+                    {/* <select value={noticeData.class_id} className='selectBox' name="class_id" id="class" onChange={handleChange}>
 
                         <option value={''}>Open Notice</option>
                         {
@@ -68,7 +77,9 @@ const EditNotice = ({ role }) => {
                             })
                         }
 
-                    </select>
+                    </select> */}
+                    <MultiClass selectedOptions={selectedOptions} handleChangeClass={handleChangeClass} />
+
                 </div>
                 <div className="contain input-container">
                     <label htmlFor="message">Message</label>

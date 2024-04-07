@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import OpenNotice from '../../../components/OpenNotice/OpenNotice'
-import { getClassNotice } from '../../../services/fetchFunction';
+import { getClassNotice, getNotices } from '../../../services/fetchFunction';
 import Spinner from '../../../components/loader/Spinner';
 
 const StudentNotice = () => {
@@ -8,7 +8,7 @@ const StudentNotice = () => {
   const [loading, setLoading] = useState(false)
   const getClassNoticeData = async () => {
     setLoading(true);
-    const data = await getClassNotice();
+    const data = await getNotices();
     console.log(data)
     setClassNotice(data);
     setLoading(false);
@@ -19,7 +19,6 @@ const StudentNotice = () => {
   return (
     <>
 
-      <OpenNotice />
       <div className="notice">
 
         <h3 className='heading'>Class Notice</h3>

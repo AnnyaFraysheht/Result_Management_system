@@ -36,8 +36,8 @@ const LoginPage = () => {
                 const userRole = data.data[0].role;
                 // setIsAuthenticated(true);
                 // setRole(userRole)
-                localStorage.setItem("name", data.data[0].fname);
-                localStorage.setItem("image", data.data[0].image)
+                localStorage.setItem("name", data?.data[0]?.fname);
+                localStorage.setItem("image", data?.data[0]?.image)
 
                 navigate(`/${userRole}/dashboard`)
                 // window.location.href = `/${data.data[0].role}`;
@@ -98,10 +98,6 @@ const LoginPage = () => {
                     </form>
                     <p className="reset"><i>Contact College Admin to reset password</i> </p>
                 </div>
-                <span className="scroll">
-
-                    <ScrollingNotice />
-                </span>
             </div>
         </>
     )

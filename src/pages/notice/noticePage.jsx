@@ -51,7 +51,6 @@ const NoticePage = () => {
             <table >
                 <thead>
                     <tr>
-                        <th>For</th>
                         <th>Notice</th>
                         <th>Created At</th>
                         <th>Edit</th>
@@ -62,7 +61,6 @@ const NoticePage = () => {
                     {
                         notices?.map((notice, index) => {
                             return <tr key={notice.notice_id} className={index % 2 == 0 ? "even" : "odd"}>
-                                <td>{notice.class_id ? notice.class_name : "Open Notice"}</td>
                                 <td>{notice.notice_text}</td>
                                 <td>{notice.date_posted}</td>
                                 <td><Link className={"link"} to={`edit/${notice.notice_id}`}><FaEdit size={20} color="green" /></Link> </td>

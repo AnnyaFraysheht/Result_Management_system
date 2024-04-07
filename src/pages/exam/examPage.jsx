@@ -8,8 +8,10 @@ import ClassInput from '../../components/ClassInput';
 import { toast } from 'react-toastify';
 const ExamPage = () => {
     const [exams, setExams] = useState([]);
-
-
+    const [selectedClass, setSelectedClass] = useState();
+    const handleChange = (e) => {
+        setSelectedClass(e.target.value);
+    }
     const handleDelete = useCallback(async (id) => {
         try {
             if (window.confirm("Are you sure you want to delete")) {
@@ -23,19 +25,32 @@ const ExamPage = () => {
         }
     }, []);
 
-    const getExamData = async () => {
-        const data = await getExams();
-        console.log(data)
-        setExams(data)
+    const getExamData = async (id) => {
+        if (id) {
+            const data = await getExams(id);
+            console.log(data)
+            setExams(data)
+
+        }
+        else {
+
+            const data = await getExams();
+            console.log(data)
+            setExams(data)
+        }
     }
     useEffect(() => {
         getExamData();
     }, [])
+    useEffect(() => {
+        getExamData(selectedClass)
+    }, [selectedClass])
     return (
         <>
             <div className='heading_edit'>
 
                 <h2>Exams</h2>
+                <ClassInput small={true} handleChange={handleChange} />
                 <Link className="link" to={"add"}><button className="add">Create Exam</button></Link>
             </div>
 

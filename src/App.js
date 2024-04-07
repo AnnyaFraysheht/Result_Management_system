@@ -124,6 +124,7 @@ function App() {
           <Route path="mark/add" element={<TeacherAddMark />} />
           <Route path="notice" element={<NoticePage />} />
           <Route path="notice/add" element={<AddNotice role="teacher" />} />
+          <Route path="notice/edit/:id" element={<EditNotice role="teacher" />} />
           <Route path="teachers" element={<TeacherPage />} />
           <Route path="profile" element={<Profile />} />
         </Route>
