@@ -66,7 +66,7 @@ const SubjectPage = () => {
         try {
             if (window.confirm("Are you sure to delete Subject?")) {
                 await deleteSubject(id);
-                getData();
+                await getData(_class, limit, offset);
             }
         } catch (error) {
             console.log(error)

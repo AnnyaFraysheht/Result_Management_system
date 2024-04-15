@@ -10,19 +10,46 @@ import Search from "../../components/Search/Search"
 const StudentPage = () => {
   const [students, setStudents] = useState();
   const [_class, setClass] = useState();
+  const [searchText, setSearchText] = useState();
+
+  const debounce = (func, delay) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  };
+
   const getData = async (id) => {
     if (id) {
       const data = await getStudents(id);
       setStudents(data)
     } else {
+      if (searchText) {
+        const data = await getStudents(null, searchText);
+        setStudents(data)
+      } else {
 
-      const data = await getStudents();
-      setStudents(data)
+        const data = await getStudents();
+        setStudents(data)
+      }
     }
   }
   useEffect(() => {
     getData(_class);
+
   }, [_class])
+
+  const debouncedSearch = useCallback(
+    debounce(async (text) => {
+      const data = await getStudents(_class, text);
+      setStudents(data);
+    }, 500),
+    [_class]
+  );
+
   const handleDelete = useCallback(async (id) => {
     if (window.confirm("Are you sure to Delete?")) {
       try {
@@ -36,13 +63,17 @@ const StudentPage = () => {
   const handleChange = (e) => {
     setClass(e.target.value)
   }
+  const handleSearchText = (e) => {
+    setSearchText(e.target.value)
+    debouncedSearch(e.target.value);
+  }
   return (
     <>
       <div className='heading_edit'>
         <h2>Students</h2>
         <ClassInput small={true} handleChange={handleChange} />
 
-        <Search />
+        <Search handleSearchText={handleSearchText} />
         <Link className="link" to={"add"}><button className="add">Add Student</button></Link>
       </div>
 
