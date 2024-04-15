@@ -157,9 +157,12 @@ const AddStudent = () => {
                 <div className='input-container gender'>
 
                     <label htmlFor="gender">Gender</label>
-                    <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
-                    <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
-                    <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    <div className='genderinput'>
+
+                        <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                        <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                        <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    </div>
                 </div>
                 <div className='input-container'>
 

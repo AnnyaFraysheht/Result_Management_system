@@ -10,7 +10,7 @@ import MultipleSubject from '../../components/MultipleSubject';
 const EditTeacher = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [selectedOptions , setSelectedOptions] = useState()
+    const [selectedOptions, setSelectedOptions] = useState()
     const [validationError, setValidationError] = useState({
         email: '',
         primary_contact: '',
@@ -33,7 +33,7 @@ const EditTeacher = () => {
         console.log(teacherData)
         setValidationError((prev) => ({ ...prev, [name]: ifValid ? '' : `Invalid ` }))
     }
-    const handleChangeSubject = (selectedOptions) =>{
+    const handleChangeSubject = (selectedOptions) => {
         setSelectedOptions(selectedOptions);
         console.log(selectedOptions)
         setTeacherData(prev => ({ ...prev, subjects: selectedOptions }));
@@ -66,7 +66,7 @@ const EditTeacher = () => {
     useEffect(() => {
         const getData = async () => {
             const result = await getTeacherById(id);
-            console.log("result",result)
+            console.log("result", result)
             const filteredData = {
                 fname: result[0].fname,
                 mname: result[0].mname,
@@ -131,9 +131,12 @@ const EditTeacher = () => {
                 <div className='input-container gender'>
 
                     <label htmlFor="gender">Gender</label>
-                    <input checked={teacherData?.gender === "M"} required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
-                    <input checked={teacherData?.gender === "F"} required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
-                    <input checked={teacherData?.gender === "O"} required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    <div className="genderinput">
+
+                        <input checked={teacherData?.gender === "M"} required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                        <input checked={teacherData?.gender === "F"} required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                        <input checked={teacherData?.gender === "O"} required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    </div>
                 </div>
                 <div className='input-container'>
 

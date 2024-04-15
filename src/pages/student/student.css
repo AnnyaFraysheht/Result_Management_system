@@ -76,6 +76,7 @@ td > img{
     padding: 10px;
 }
 
+
 .link{
     text-decoration: none;
     color: black;
@@ -89,7 +90,11 @@ td > img{
     position: relative;
     margin: 20px;
 }
-
+.genderinput{
+    display: flex;
+    gap: 20px;
+    width: fit-content;
+}
 .input-container > label {
     position: absolute;
     top: -15px;

@@ -5,15 +5,24 @@ import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 import { Link } from "react-router-dom"
 import { deleteUser, getStudents } from "../../services/fetchFunction"
+import ClassInput from "../../components/ClassInput"
+import Search from "../../components/Search/Search"
 const StudentPage = () => {
   const [students, setStudents] = useState();
-  const getData = async () => {
-    const data = await getStudents();
-    setStudents(data)
+  const [_class, setClass] = useState();
+  const getData = async (id) => {
+    if (id) {
+      const data = await getStudents(id);
+      setStudents(data)
+    } else {
+
+      const data = await getStudents();
+      setStudents(data)
+    }
   }
   useEffect(() => {
-    getData();
-  }, [])
+    getData(_class);
+  }, [_class])
   const handleDelete = useCallback(async (id) => {
     if (window.confirm("Are you sure to Delete?")) {
       try {
@@ -24,13 +33,19 @@ const StudentPage = () => {
       }
     }
   }, []);
+  const handleChange = (e) => {
+    setClass(e.target.value)
+  }
   return (
     <>
       <div className='heading_edit'>
         <h2>Students</h2>
+        <ClassInput small={true} handleChange={handleChange} />
+
+        <Search />
         <Link className="link" to={"add"}><button className="add">Add Student</button></Link>
       </div>
-      
+
       <table>
         <thead>
           <tr>

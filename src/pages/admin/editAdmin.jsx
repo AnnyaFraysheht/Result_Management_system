@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./admin.css"
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -13,14 +13,14 @@ const EditAdmin = () => {
         secondary_contact: ''
 
     });
-    const {id} = useParams();
+    const { id } = useParams();
     const [adminData, setAdminData] = useState({
         fname: '',
         mname: '',
         lname: '',
         email: '',
         dob: '',
-        gender:'',
+        gender: '',
         primary_contact: '',
         secondary_contact: '',
         temporary_address: '',
@@ -67,14 +67,14 @@ const EditAdmin = () => {
             })
         }
     }
-    useEffect(()=>{
-        const getData = async () =>{
+    useEffect(() => {
+        const getData = async () => {
             const result = await getAdminById(id);
             console.log(result);
             setAdminData(result[0]);
         }
         getData();
-    },[])
+    }, [])
 
     return (
         <div>
@@ -116,9 +116,12 @@ const EditAdmin = () => {
                 <div className='input-container gender'>
 
                     <label htmlFor="gender">Gender</label>
-                    <input checked={adminData?.gender === 'M'} required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
-                    <input checked={adminData?.gender === 'F'} required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
-                    <input checked={adminData?.gender === 'O'} required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    <div className="genderinput">
+
+                        <input checked={adminData?.gender === 'M'} required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                        <input checked={adminData?.gender === 'F'} required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                        <input checked={adminData?.gender === 'O'} required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    </div>
                 </div>
                 <div className='input-container'>
 

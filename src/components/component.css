@@ -1,3 +1,8 @@
 .small{
-    width: fit-content;
+    width: fit-content !important;
+}
+
+.search{
+    width: 250px;
+    margin-right: 25px;
 }

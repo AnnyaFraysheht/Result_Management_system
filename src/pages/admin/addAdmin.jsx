@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import "./admin.css"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ const AddAdmin = () => {
         lname: '',
         email: '',
         dob: '',
-        gender:'',
+        gender: '',
         primary_contact: '',
         secondary_contact: '',
         temporary_address: '',
@@ -107,9 +107,12 @@ const AddAdmin = () => {
                 <div className='input-container gender'>
 
                     <label htmlFor="gender">Gender</label>
-                    <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
-                    <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
-                    <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    <div className="genderinput">
+
+                        <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                        <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                        <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    </div>
                 </div>
                 <div className='input-container'>
 

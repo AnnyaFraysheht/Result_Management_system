@@ -7,7 +7,7 @@ import { MdDelete } from 'react-icons/md'
 import ClassInput from '../../components/ClassInput';
 import { toast } from 'react-toastify';
 const ExamPage = () => {
-    const [exams, setExams] = useState([]);
+    const [exams, setExams] = useState();
     const [selectedClass, setSelectedClass] = useState();
     const handleChange = (e) => {
         setSelectedClass(e.target.value);
@@ -55,7 +55,8 @@ const ExamPage = () => {
             </div>
 
             <table>
-                <thead>
+                {
+                    exams?.length > 0 ? <thead>
                     <tr>
                         <th>Exam Name</th>
                         <th>Class </th>
@@ -65,7 +66,8 @@ const ExamPage = () => {
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
-                </thead>
+                </thead> : <h2>No Exams for This class</h2>
+                }
                 <tbody>
                     {
                         exams?.map((exam, index) => {

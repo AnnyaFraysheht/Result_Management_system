@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import "./teacher.css"
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,7 +26,7 @@ const AddTeacher = () => {
         secondary_contact: '',
         temporary_address: '',
         permanent_address: '',
-        subjects : [],
+        subjects: [],
         role: 'teacher'
 
     });
@@ -45,7 +45,7 @@ const AddTeacher = () => {
         console.log(teacherData)
         setValidationError((prev) => ({ ...prev, [name]: ifValid ? '' : `Invalid ` }))
     }
-    const handleChangeSubject = (selectedOptions) =>{
+    const handleChangeSubject = (selectedOptions) => {
         setSelectedOptions(selectedOptions);
         console.log(selectedOptions)
         setTeacherData(prev => ({ ...prev, subjects: selectedOptions }));
@@ -75,11 +75,11 @@ const AddTeacher = () => {
             })
         }
     }
-   
+
 
     return (
         <div>
-             <div className='backmenu'>
+            <div className='backmenu'>
                 <h1 className='back'>
 
                     <Link className='link' to={`/admin/teachers`}> <IoMdArrowRoundBack /></Link>
@@ -117,9 +117,12 @@ const AddTeacher = () => {
                 <div className='input-container gender'>
 
                     <label htmlFor="gender">Gender</label>
-                    <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
-                    <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
-                    <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    <div className="genderinput">
+
+                        <input required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                        <input required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                        <input required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    </div>
                 </div>
                 <div className='input-container'>
 
@@ -145,8 +148,8 @@ const AddTeacher = () => {
                     <label htmlFor="permanent_address">Permanent Address</label>
                     <input required onChange={handleChange} type="text" name="permanent_address" placeholder='Enter your secondary address' />
                 </div>
-                
-                
+
+
                 <div className='input-container'>
 
                     <label htmlFor="subject">Subjects</label>

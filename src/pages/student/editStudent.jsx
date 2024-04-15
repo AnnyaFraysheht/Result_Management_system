@@ -109,7 +109,7 @@ const EditStudent = () => {
                 <div className='input-container'>
 
                     <label htmlFor="email">Email</label>
-                    <input disabled style={{color: "white"}} value={studentData?.email} required onChange={handleChange} id='email' type="text" name="email" />
+                    <input disabled style={{ color: "white" }} value={studentData?.email} required onChange={handleChange} id='email' type="text" name="email" />
                     {validationError.email && (<span>{validationError.email}</span>)}
                 </div>
                 <div className='input-container'>
@@ -143,9 +143,12 @@ const EditStudent = () => {
                 <div className='input-container gender'>
 
                     <label htmlFor="gender">Gender</label>
-                    <input checked={studentData?.gender === 'M'} required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
-                    <input checked={studentData?.gender === 'F'} required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
-                    <input checked={studentData?.gender === 'O'} required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    <div className="genderinput">
+
+                        <input checked={studentData?.gender === 'M'} required onChange={handleChange} type="radio" name="gender" value={"M"} />Male
+                        <input checked={studentData?.gender === 'F'} required onChange={handleChange} type="radio" name="gender" value={"F"} />Female
+                        <input checked={studentData?.gender === 'O'} required onChange={handleChange} type="radio" name="gender" value={"O"} />Other
+                    </div>
                 </div>
                 <div className='input-container'>
 
