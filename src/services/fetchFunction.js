@@ -314,6 +314,7 @@ export const deleteUser = async (id) => {
       toast.error("You are the last here ! Dont vanish yourself");
     }
     console.log(error);
+    throw error;
   }
 };
 export const deleteClass = async (id) => {

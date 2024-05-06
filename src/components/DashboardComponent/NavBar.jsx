@@ -1,6 +1,7 @@
 import React from 'react'
 import oip from "../../assets/OIP.jpeg"
 import { Link } from 'react-router-dom'
+import "../component.css"
 
 const NavBar = () => {
     return (

@@ -254,7 +254,7 @@ const MarkPage = () => {
               {/* <td>{student.user_id}</td> */}
               {/* <td>{student.student_id}</td> */}
               {student.subjects_marks.map((subject) => (
-                <td key={subject.subject_id}>{/*subject.subject_name*/}{subject.marks_obtained || "N/A"}</td>
+                <td key={subject.subject_id}>{/*subject.subject_name*/}{subject.marks_obtained || "- "}</td>
               ))}
             </tr>
           ))}

@@ -6,3 +6,12 @@
     width: 250px;
     margin-right: 25px;
 }
+
+@media print{
+    nav{
+        display: none;
+        position: absolute;
+        top: -500px;
+        visibility: hidden;
+    }
+}

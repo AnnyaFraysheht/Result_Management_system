@@ -8,27 +8,36 @@ const ResultPage = () => {
     const [student, setStudent] = useState();
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(false);
+    const [total, setTotal] = useState(0)
     const getResult = async () => {
         try {
             setLoading(true);
             const response = await axios.get(`http://localhost:8080/api/result/${term}`, {
                 withCredentials: true,
             })
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setResult(response.data.data.markData[0])
             setUser(response.data.data.userData)
             setStudent(response.data.data.studentData)
             // console.log(result)
+            calculateTotal(response.data.data.markData[0]);
             setLoading(false);
         } catch (error) {
             console.log(error)
         }
     }
+    const calculateTotal = (marks) => {
+        console.log(marks)
+        const totalMarks = marks?.reduce((total, item) => total + item.marks_obtained, 0);
+        setTotal(totalMarks);
+        // totalMarks / marks.length
+        console.log(total)
+    }
     const printResult = () => {
         window.print();
     }
     const gradeToGPA = {
-        "A": 4.0,
+        "A": "4.0",
         "A-": 3.6,
         "B+": 3.2,
         "B": 2.8,
@@ -37,7 +46,7 @@ const ResultPage = () => {
         "F": "*",
 
     }
-    
+
     return (
         <div>
             <div className='filterResult'>
@@ -96,9 +105,9 @@ const ResultPage = () => {
                         }
                         <tr>
                             <td colSpan={2}>Total</td>
-                            <td>abc</td>
+                            <td>{total}</td>
                             <td colSpan={2} >Average grade point</td>
-                            <td>{4.0}</td>
+                            <td>{"4.0"}</td>
                         </tr>
                         <tr>
                             <td colSpan={3}></td>
