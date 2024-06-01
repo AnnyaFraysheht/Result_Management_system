@@ -10,7 +10,7 @@ import LoginPage from "./pages/login/loginPage";
 import Dashboard from "./pages/dashboard/dashboard";
 import DashboardLayout from "./layout/DashboardLayout";
 import StudentPage from "./pages/student/studentPage";
-import TeacherPage from "./pages/teacher/teacherPage";
+// import TeacherPage from "./pages/teacher/teacherPage";
 import ProtectedRoute from "./components/ProtecttedRoute";
 import NoticePage from "./pages/notice/noticePage";
 import AddNotice from "./pages/notice/addNotice";
